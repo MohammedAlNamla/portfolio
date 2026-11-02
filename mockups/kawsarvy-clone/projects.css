@@ -25,8 +25,13 @@
   flex-shrink: 0;
   width: min(62vw, 260px);
   padding: 8px 8px 12px;
+  border: 0;
   border-radius: 16px;
   background: #fff;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .07);
   scroll-snap-align: start;
   transform: rotate(var(--tilt));
@@ -77,7 +82,7 @@
   -webkit-line-clamp: 3;
 }
 
-a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .project-card:focus-visible img { filter: none; }
 
 @media (hover: none) {
@@ -124,14 +129,14 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
   }
   .project-name, .project-type { text-align: var(--caption); }
   /* An open card straightens, grows slightly and shows its full text */
-  a.project-card:focus-visible {
+  .project-card:focus-visible {
     z-index: 19;
     width: var(--open-w);
     left: calc(50% - var(--open-w) / 2);
     transform: translate(var(--arc-x), calc(var(--arc-y) - 6px));
   }
-  a.project-card:focus-visible .project-name { overflow: visible; text-align: left; white-space: normal; }
-  a.project-card:focus-visible .project-type {
+  .project-card:focus-visible .project-name { overflow: visible; text-align: left; white-space: normal; }
+  .project-card:focus-visible .project-type {
     display: block;
     height: auto;
     overflow: visible;

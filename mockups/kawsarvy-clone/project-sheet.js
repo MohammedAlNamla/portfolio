@@ -1,0 +1,113 @@
+// Details sheet: opens from a project card, and from a #project-<id> link.
+const sheet = document.getElementById('project-sheet');
+const sheetBody = document.getElementById('project-sheet-body');
+const sheetScroll = sheet.querySelector('.sheet-scroll');
+let currentIndex = -1;
+let closeTimer = null;
+let openerCard = null;
+
+const cropStyle = (image, [zoom, x, y]) =>
+  `background-image:url('${image}');background-size:${zoom};background-position:${x} ${y}`;
+
+const renderItems = items => items
+  .map(([title, text]) => `<div class="sheet-item"><strong>${title}</strong><p>${text}</p></div>`)
+  .join('');
+
+function renderGallery(project) {
+  if (!project.shots) return '';
+  const shots = project.shots.map(shot => `
+    <figure class="sheet-shot">
+      <div class="sheet-shot-img" role="img" aria-label="${shot.caption}" style="${cropStyle(project.image, shot.crop)}"></div>
+      <figcaption>${shot.caption}</figcaption>
+    </figure>`).join('');
+  return `<div class="sheet-gallery">${shots}</div>`;
+}
+
+function renderSheet(project, index) {
+  const previous = projects[(index - 1 + projects.length) % projects.length];
+  const next = projects[(index + 1) % projects.length];
+  const visit = project.url
+    ? `<a class="sheet-visit" href="${project.url}" target="_blank" rel="noopener">Visit site ↗</a>`
+    : '';
+  const demo = project.demo ? '<span class="project-demo">Demo image</span>' : '';
+
+  sheetBody.innerHTML = `
+    <div class="sheet-hero" role="img" aria-label="${project.name} ${project.demo ? 'demo image' : 'screens'}" style="${cropStyle(project.image, project.crop)}">${demo}</div>
+    <div class="sheet-head">
+      <div>
+        <h2 class="sheet-name" id="project-sheet-title">${project.name}</h2>
+        <p class="sheet-type">${project.type}</p>
+      </div>
+      ${visit}
+    </div>
+    <div class="sheet-meta">${project.meta.map(item => `<span>${item}</span>`).join('')}</div>
+    <div class="sheet-columns">
+      <section class="sheet-block"><h3>For the business</h3>${renderItems(project.business)}</section>
+      <section class="sheet-block"><h3>For engineers</h3>${renderItems(project.engineering)}</section>
+    </div>
+    ${renderGallery(project)}
+    <nav class="sheet-nav" aria-label="More projects">
+      <button type="button" data-go="${(index - 1 + projects.length) % projects.length}">← ${previous.name}</button>
+      <button type="button" data-go="${(index + 1) % projects.length}">${next.name} →</button>
+    </nav>`;
+  sheetScroll.scrollTop = 0;
+}
+
+function setHash(project) {
+  const url = project ? `#project-${project.id}` : `${location.pathname}${location.search}`;
+  history.replaceState(null, '', url);
+}
+
+function openSheet(index) {
+  clearTimeout(closeTimer);
+  sheet.classList.remove('is-closing');
+  currentIndex = index;
+  renderSheet(projects[index], index);
+  setHash(projects[index]);
+  if (!sheet.open) {
+    document.documentElement.classList.add('is-sheet-open');
+    sheet.showModal();
+  }
+}
+
+function finishClose() {
+  sheet.classList.remove('is-closing');
+  sheet.close();
+  document.documentElement.classList.remove('is-sheet-open');
+  setHash(null);
+  if (openerCard) openerCard.focus({ preventScroll: true });
+}
+
+function closeSheet() {
+  if (!sheet.open || sheet.classList.contains('is-closing')) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    finishClose();
+    return;
+  }
+  sheet.classList.add('is-closing');
+  closeTimer = setTimeout(finishClose, 220);
+}
+
+arc.addEventListener('click', (event) => {
+  const card = event.target.closest('.project-card');
+  if (!card) return;
+  openerCard = card;
+  openSheet(projects.findIndex(project => project.id === card.dataset.project));
+});
+
+sheet.querySelector('.sheet-close').addEventListener('click', closeSheet);
+sheet.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeSheet();
+});
+sheet.addEventListener('click', (event) => {
+  if (event.target === sheet) {
+    closeSheet();
+    return;
+  }
+  const go = event.target.closest('[data-go]');
+  if (go) openSheet(Number(go.dataset.go));
+});
+
+const linked = projects.findIndex(project => `#project-${project.id}` === location.hash);
+if (linked >= 0) openSheet(linked);
