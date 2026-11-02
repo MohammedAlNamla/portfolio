@@ -2,6 +2,7 @@
 :root {
   --card-w: clamp(132px, 19vw, 270px);
   --ease-card: cubic-bezier(0.23, 1, 0.32, 1);
+  --fan-spread: .56;
 }
 
 .opt { padding: 56px clamp(17px, 5vw, 72px) 72px; background: var(--surface); }
@@ -66,19 +67,19 @@
   top: 0;
   left: calc(50% - var(--card-w) / 2);
   transform:
-    translate(calc(var(--i) * var(--card-w) * .56), calc(var(--a) * var(--card-w) * .06))
+    translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--a) * var(--card-w) * .06))
     rotate(calc(var(--i) * 6deg));
   transform-origin: 50% 90%;
   z-index: var(--z);
 }
 .fan .pc:focus-visible {
   z-index: 9;
-  transform: translate(calc(var(--i) * var(--card-w) * .56), calc(var(--card-w) * -.05)) scale(1.05);
+  transform: translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--card-w) * -.05)) scale(1.05);
 }
 @media (hover: hover) and (pointer: fine) {
   .fan .pc:hover {
     z-index: 9;
-    transform: translate(calc(var(--i) * var(--card-w) * .56), calc(var(--card-w) * -.05)) scale(1.05);
+    transform: translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--card-w) * -.05)) scale(1.05);
   }
 }
 
@@ -200,6 +201,7 @@
 
 /* ---------- Narrow screens ---------- */
 @media (max-width: 759px) {
+  :root { --fan-spread: .34; }
   .opt-light { border-radius: 44px; }
   .row .pc { margin-inline: calc(var(--card-w) * -.32); }
   .fan .pc-type, .row .pc-type { display: none; }
