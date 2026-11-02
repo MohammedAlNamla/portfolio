@@ -57,16 +57,24 @@
   display: block;
   margin-top: 10px;
   padding-inline: 4px;
+  overflow: hidden;
   font-size: .9375rem;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+/* Every description reserves the same three lines, so all cards share one height */
 .project-type {
-  display: block;
+  display: -webkit-box;
+  height: calc(3 * 1.35em);
   margin-top: 2px;
   padding-inline: 4px;
+  overflow: hidden;
   color: var(--ink-soft);
   font-size: .75rem;
   line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
