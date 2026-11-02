@@ -373,19 +373,6 @@ svg { display: block; }
 
 .service h3 { margin-top: 21px; font-size: .9375rem; font-weight: 500; line-height: 20px; }
 .service p { margin-top: 15px; color: var(--ink-soft); font-size: .75rem; line-height: 17px; text-wrap: pretty; }
-.service-work { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 8px; font-size: .75rem; font-weight: 500; }
-.service-work a {
-  padding-block: 6px;
-  text-decoration: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 160ms ease;
-}
-.service-work a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-@media (hover: hover) and (pointer: fine) {
-  .service-work a:hover { text-decoration-color: currentColor; }
-}
 
 /* Enough room for the two-line heading before the desktop layout starts */
 @media (min-width: 600px) {
@@ -507,16 +494,13 @@ svg { display: block; }
   .divider { margin-top: calc(var(--u) * 72); }
   .divider-tag { width: calc(var(--u) * 123); height: calc(var(--u) * 36); font-size: calc(var(--u) * 11); }
 
-  .service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: calc(var(--u) * 62); }
+  .service-grid { gap: calc(var(--u) * 72) calc(var(--u) * 72); margin-top: calc(var(--u) * 72); }
 
   .service-icon { height: calc(var(--u) * 40); }
-  .service-icon svg { width: calc(var(--u) * 42); }
-  .service { padding-right: calc(var(--u) * 24); }
+  .service-icon svg { width: calc(var(--u) * 46); }
 
-  .service h3 { margin-top: calc(var(--u) * 22); font-size: calc(var(--u) * 16); line-height: calc(var(--u) * 22); }
-  .service p { margin-top: calc(var(--u) * 16); font-size: calc(var(--u) * 13); line-height: calc(var(--u) * 18); }
-  .service-work { gap: calc(var(--u) * 2) calc(var(--u) * 14); margin-top: calc(var(--u) * 10); font-size: calc(var(--u) * 12); }
-  .service-work a { padding-block: calc(var(--u) * 6); }
+  .service h3 { margin-top: calc(var(--u) * 24); font-size: calc(var(--u) * 19); line-height: calc(var(--u) * 26); }
+  .service p { margin-top: calc(var(--u) * 14); font-size: calc(var(--u) * 15); line-height: calc(var(--u) * 23); }
 
   .cta {
     padding: calc(var(--u) * 80) calc(var(--u) * 32) calc(var(--u) * 110);
