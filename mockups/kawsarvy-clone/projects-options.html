@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tilted Card Options</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects-options.css">
+</head>
+<body>
+  <div class="page">
+    <section class="opt">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">A</span><h2>المروحة</h2><p>الكروت مفتوحة من المركز، والمرور عليها يعدّل الكرت ويرفعه.</p></header>
+      <div class="fan" data-cards></div>
+    </section>
+
+    <section class="opt opt-light">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">B</span><h2>صور على طاولة</h2><p>مبعثرة ومتراكبة بشكل طبيعي، والأكثر شخصية بينها.</p></header>
+      <div class="scatter" data-cards></div>
+    </section>
+
+    <section class="opt">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">C</span><h2>رزمة تقلّبها</h2><p>مشروع واحد في الأعلى مع تفاصيله، والضغط يرسله إلى الخلف.</p></header>
+      <div class="deck-wrap">
+        <div class="deck" id="deck" data-cards></div>
+        <div class="deck-info">
+          <span class="deck-num" id="deck-num"></span>
+          <h3 class="deck-name" id="deck-name"></h3>
+          <p class="deck-type" id="deck-type"></p>
+          <button class="pill-btn" id="deck-next" type="button">Next project</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="opt opt-light">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">D</span><h2>صف متراكب</h2><p>الكل ظاهر في سطر واحد، والمرور يبعد الكروت المجاورة.</p></header>
+      <div class="row" data-cards></div>
+    </section>
+
+    <section class="opt">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">E</span><h2>شريط مائل متحرك</h2><p>نفس فكرة شريط الشعارات، ويتوقف عند المرور عليه.</p></header>
+      <div class="strip"><div class="strip-track" id="strip"><div class="strip-group" data-cards></div></div></div>
+    </section>
+
+    <section class="opt opt-light">
+      <header class="opt-head" dir="rtl"><span class="opt-tag">F</span><h2>صور معلّقة على خيط</h2><p>الخيط يكرر الخط الفاصل في قسم الخدمات، والكرت يتأرجح عند المرور.</p></header>
+      <div class="line-wrap"><div class="line-cards" data-cards></div></div>
+    </section>
+  </div>
+
+  <script src="projects-options.js"></script>
+</body>
+</html>
