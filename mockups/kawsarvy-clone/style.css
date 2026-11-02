@@ -340,10 +340,14 @@ svg { display: block; }
 /* ---------- Services ---------- */
 .services {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  margin-top: 32px;
   padding: 56px clamp(17px, 7vw, 64px) 76px;
-  background: var(--surface);
+  background: var(--surface-light);
+  border-radius: 70px;
+  box-shadow: 0 2px 0 rgba(255, 255, 255, .9);
 }
+.services .divider-tag { background: var(--surface); }
 
 .divider {
   position: relative;
@@ -488,7 +492,9 @@ svg { display: block; }
   .marquee { --marquee-gap: calc(var(--u) * 120); --logo-room: calc(var(--u) * 16); }
 
   .services {
+    margin-top: calc(var(--u) * 60);
     padding: calc(var(--u) * 90) calc(var(--u) * 236) calc(var(--u) * 120);
+    border-radius: calc(var(--u) * 100);
   }
 
   .divider { margin-top: calc(var(--u) * 72); }

@@ -2,7 +2,7 @@
 .experience {
   position: relative;
   z-index: 1;
-  padding: 8px clamp(17px, 7vw, 64px) 84px;
+  padding: 72px clamp(17px, 7vw, 64px) 84px;
   background: var(--surface);
 }
 .experience .divider { margin-top: 0; }
@@ -61,7 +61,7 @@
 }
 
 @media (min-width: 900px) {
-  .experience { padding: 0 calc(var(--u) * 236) calc(var(--u) * 120); }
+  .experience { padding: calc(var(--u) * 110) calc(var(--u) * 236) calc(var(--u) * 120); }
   .xp-list { max-width: calc(var(--u) * 640); margin-top: calc(var(--u) * 62); }
   .xp-row { padding: 0 0 calc(var(--u) * 40) calc(var(--u) * 42); }
   .xp-company { font-size: calc(var(--u) * 17); }
