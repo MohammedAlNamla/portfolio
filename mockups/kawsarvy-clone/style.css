@@ -1,5 +1,57 @@
 /* Measurements are taken from the reference shot, scaled to a 390px phone and a 1440px desktop. */
+/* Same type system as the Sufra landing page: DM Sans text, Unbounded headlines,
+   Thmanyah Sans for Arabic (the Latin fonts have no Arabic glyphs). */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/DM_Sans-variable-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/Unbounded-normal-500-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Thmanyah Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/thmanyahsans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Thmanyah Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/thmanyahsans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Thmanyah Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/thmanyahsans-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Thmanyah Sans";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("fonts/thmanyahsans-Black.woff2") format("woff2");
+}
+
 :root {
+  --font-text: "DM Sans", "Thmanyah Sans", sans-serif;
+  --font-display: "Unbounded", "Thmanyah Sans", sans-serif;
   --surface: #eeecea;
   --surface-light: #f7f7f7;
   --ink: #161616;
@@ -16,7 +68,7 @@
 body {
   background: var(--surface);
   color: var(--ink);
-  font-family: "Kumbh Sans", system-ui, sans-serif;
+  font-family: var(--font-text);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -55,21 +107,29 @@ svg { display: block; }
 }
 
 .title {
-  font-size: clamp(1.5rem, 8.2vw, 3rem);
-  font-weight: 570;
-  line-height: 1.28;
-  letter-spacing: -.015em;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 6vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.035em;
   text-align: center;
 }
 
 .subtitle {
   font-size: clamp(1.1rem, 6vw, 2rem);
-  font-weight: 570;
+  font-weight: 500;
   line-height: 1.36;
   letter-spacing: -.01em;
   text-align: center;
 }
 .subtitle-wide { display: none; }
+
+[dir="rtl"] .title {
+  font-family: "Thmanyah Sans", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+[dir="rtl"] .subtitle { font-weight: 700; letter-spacing: 0; }
 
 .tag {
   position: absolute;
@@ -302,7 +362,7 @@ svg { display: block; }
 @media (min-width: 900px) {
   .page { container-type: inline-size; }
 
-  .title { font-size: calc(var(--u) * 54); line-height: calc(var(--u) * 64); }
+  .title { font-size: calc(var(--u) * 42); line-height: calc(var(--u) * 54); }
 
   .subtitle { font-size: calc(var(--u) * 34); line-height: calc(var(--u) * 54); }
   .subtitle-wide { display: block; }
@@ -339,7 +399,7 @@ svg { display: block; }
     background: #fff;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, .55);
     color: var(--ink);
-    font: 600 calc(var(--u) * 12) "Kumbh Sans", system-ui, sans-serif;
+    font: 600 calc(var(--u) * 12) var(--font-text);
     cursor: pointer;
   }
   .bar-links { display: flex; gap: calc(var(--u) * 14); color: #2c2c2c; }
@@ -355,12 +415,12 @@ svg { display: block; }
   }
   .tag-emoji { font-size: calc(var(--u) * 10); }
 
-  .hero .title { margin-top: calc(var(--u) * 41); }
+  .hero .title { margin-top: calc(var(--u) * 56); }
   .btn-shots {
     gap: calc(var(--u) * 12);
     width: calc(var(--u) * 180);
     height: calc(var(--u) * 60);
-    margin-top: calc(var(--u) * 39);
+    margin-top: calc(var(--u) * 54);
   }
 
   .clients {
