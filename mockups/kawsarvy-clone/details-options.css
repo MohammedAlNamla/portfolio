@@ -161,15 +161,15 @@ html.is-locked { overflow: hidden; }
 .dlg-split { width: min(1180px, 96vw); height: min(90dvh, 820px); margin: auto; border-radius: 28px; }
 .dlg-split[open] { animation: pop-in 240ms var(--ease-panel); }
 .dlg-split.is-closing { animation: pop-out 150ms ease forwards; }
-.dlg-split .d-wrap { display: grid; gap: 26px; }
-.dlg-split .d-media { display: grid; gap: 14px; }
-.dlg-split .d-gallery { margin-top: 0; grid-template-columns: 1fr; }
+.dlg-split .d-wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.dlg-split .d-media { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.dlg-split .d-gallery { margin-top: 0; grid-template-columns: minmax(0, 1fr); }
 .dlg-split .d-head { margin-top: 0; }
 .dlg-split .d-columns { grid-template-columns: 1fr; gap: 26px; }
 
 @media (min-width: 860px) {
   .dlg-split .dlg-scroll { display: flex; flex-direction: column; overflow: hidden; }
-  .dlg-split .d-wrap { flex: 1; grid-template-columns: 1.15fr 1fr; gap: 34px; min-height: 0; }
+  .dlg-split .d-wrap { flex: 1; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 34px; min-height: 0; }
   .dlg-split .d-media, .dlg-split .d-text { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 }
 
