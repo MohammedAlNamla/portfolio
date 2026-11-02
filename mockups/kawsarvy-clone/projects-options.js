@@ -36,7 +36,7 @@ function fanSlot(rank) {
 const cardVars = {
   fan: i => {
     const slot = fanSlot(i);
-    return { '--i': slot, '--a': (slot * slot) / 4, '--z': count - i, '--caption': slot > 0 ? 'right' : 'left' };
+    return { '--i': slot, '--z': count - i, '--caption': slot > 0 ? 'right' : 'left' };
   },
   scatter: i => {
     const place = (narrow ? scatterLayoutNarrow : scatterLayout)[i];

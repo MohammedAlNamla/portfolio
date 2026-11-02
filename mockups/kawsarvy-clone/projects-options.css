@@ -2,7 +2,6 @@
 :root {
   --card-w: clamp(132px, 19vw, 270px);
   --ease-card: cubic-bezier(0.23, 1, 0.32, 1);
-  --fan-spread: .4;
 }
 
 .opt { padding: 56px clamp(17px, 5vw, 72px) 72px; background: var(--surface); }
@@ -71,26 +70,33 @@
   .pc:hover { box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 18px 40px rgba(0, 0, 0, .13); }
 }
 
-/* ---------- A: fan ---------- */
-.fan { position: relative; height: calc(var(--card-w) * 1.5); }
+/* ---------- A: arc ---------- */
+/* Each card sits on a circle: --i is its slot, and it tilts with the curve at that point */
+.fan {
+  --card-w: clamp(116px, 15vw, 290px);
+  --arc-radius: calc(var(--card-w) * 5.4);
+  --arc-step: 6.8deg;
+  position: relative;
+  height: calc(var(--card-w) * 2.15);
+}
 .fan .pc {
+  --angle: calc(var(--i) * var(--arc-step));
+  --arc-x: calc(var(--arc-radius) * sin(var(--angle)));
+  --arc-y: calc(var(--arc-radius) * (1 - cos(var(--angle))));
   position: absolute;
   top: 0;
   left: calc(50% - var(--card-w) / 2);
-  transform:
-    translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--a) * var(--card-w) * .05))
-    rotate(calc(var(--i) * 4deg));
-  transform-origin: 50% 90%;
+  transform: translate(var(--arc-x), var(--arc-y)) rotate(var(--angle));
   z-index: var(--z);
 }
 .fan .pc:focus-visible {
-  z-index: 9;
-  transform: translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--card-w) * -.05)) scale(1.05);
+  z-index: 19;
+  transform: translate(var(--arc-x), calc(var(--arc-y) - var(--card-w) * .06)) scale(1.05);
 }
 @media (hover: hover) and (pointer: fine) {
   .fan .pc:hover {
-    z-index: 9;
-    transform: translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--card-w) * -.05)) scale(1.05);
+    z-index: 19;
+    transform: translate(var(--arc-x), calc(var(--arc-y) - var(--card-w) * .06)) scale(1.05);
   }
 }
 
@@ -212,7 +218,7 @@
 
 /* ---------- Narrow screens ---------- */
 @media (max-width: 759px) {
-  :root { --fan-spread: .2; }
+  .fan { --arc-radius: calc(var(--card-w) * 3); --arc-step: 4.4deg; height: calc(var(--card-w) * 1.75); }
   .opt-light { border-radius: 44px; }
   .row .pc { margin-inline: calc(var(--card-w) * -.39); }
   .fan .pc-type, .row .pc-type { display: none; }
