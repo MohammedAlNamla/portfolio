@@ -2,13 +2,13 @@
 // crop = [zoom, x, y] for the cover image; shots = crops of the same image shown in the gallery.
 const projects = [
   {
-    id: 'sufra',
-    name: 'Sufra',
+    id: 'restrogram',
+    name: 'RestroGram',
     type: 'Restaurant menu, ordering and POS SaaS',
     image: '../../images/Sufra.webp',
     url: 'https://sufra.live/',
     crop: ['132%', '93%', '2%'],
-    meta: ['Full-stack', 'Live', 'Nuxt', 'Supabase', 'Rust'],
+    meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
       ['The problem', 'Restaurants need their menu, orders, tables and till to work as one system.'],
       ['Who uses it', 'Owners and staff run the dashboard, POS and kitchen screens. Diners order from the menu.'],
@@ -16,8 +16,8 @@ const projects = [
     ],
     engineering: [
       ['A POS that survives outages', "Orders queue in IndexedDB and sync on reconnect, so a dropped line doesn't stop a busy shift."],
-      ['The database as the boundary', 'The public menu has only the anon key, so row-level security protects every table.'],
-      ['Printing from the browser', 'A small Rust tray app sends ESC/POS bytes to USB printers, with WebUSB as the fallback.']
+      ['One backend for every app', 'A single Laravel API serves the menu, dashboard, operator console and staff app across many stores.'],
+      ['Central printing', 'A Flutter staff app doubles as the central print device for the restaurant.']
     ],
     shots: [
       { crop: ['240%', '39%', '4%'], caption: 'Owner dashboard and reports' },
@@ -155,24 +155,6 @@ const projects = [
       ['Drafts before changes', 'Edits are proposed as drafts for review instead of being written to the database.'],
       ['Topics from real usage', 'Suggestions use how code uses tables, not only names and foreign keys.'],
       ['Small and local', 'A local Node server with a plain JavaScript front end.']
-    ]
-  },
-  {
-    id: 'routerguard',
-    name: 'RouterGuard',
-    type: 'Android app for home network devices',
-    image: 'demo/routerguard.svg',
-    demo: true,
-    crop: ['100%', '50%', '50%'],
-    meta: ['Personal tool', 'Android'],
-    business: [
-      ['The problem', 'Home users rarely know who is connected to their network.'],
-      ['What it does', 'Lists connected devices, lets you name them, and flags new or unknown ones.']
-    ],
-    engineering: [
-      ['No special permissions', "It reads the router's own DHCP and ARP pages to find devices."],
-      ['Catches static IPs', "The ARP list reveals devices that don't appear among DHCP clients."],
-      ['Nothing in the background', 'It only scans when you open the app.']
     ]
   }
 ];

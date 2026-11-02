@@ -204,9 +204,9 @@ svg { display: block; }
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .8);
 }
 .avatar-tag {
-  left: 93px;
+  left: 80px;
   top: 33px;
-  width: 112px;
+  width: 152px;
   height: 33px;
   font-size: .6875rem;
   transform: rotate(-9deg);
@@ -233,17 +233,7 @@ svg { display: block; }
   line-height: 1;
   white-space: nowrap;
 }
-.logo-national { gap: .5em; font-size: .93em; font-weight: 600; text-transform: uppercase; }
-.logo-national svg { width: 2.85em; }
-.logo-mattered { gap: .1em; font-size: 2em; font-weight: 500; letter-spacing: -.02em; }
-.logo-mattered svg { width: .32em; }
-.logo-cocacola { font-family: "Oleo Script", cursive; font-size: 2em; }
-.logo-adobe { gap: .35em; font-size: 1.8em; font-weight: 500; }
-.logo-adobe svg { width: 1.3em; }
-.logo-subway { gap: .05em; font-size: 1.75em; font-weight: 900; letter-spacing: -.03em; }
-.logo-subway svg { width: .4em; }
-.logo-codecademy { font-size: 1.65em; font-weight: 500; }
-.logo-codecademy span { margin-right: .05em; padding: .08em .16em; border: 1.5px solid currentColor; }
+.logo { font-size: 1.75em; font-weight: 600; letter-spacing: -.02em; }
 
 /* The track holds two identical groups, so sliding it by half loops without a jump */
 .marquee {
@@ -408,7 +398,7 @@ svg { display: block; }
   .avatar-tag {
     left: calc(var(--u) * 100);
     top: calc(var(--u) * 35);
-    width: calc(var(--u) * 122);
+    width: calc(var(--u) * 166);
     height: calc(var(--u) * 36);
     font-size: calc(var(--u) * 11);
   }
