@@ -34,6 +34,18 @@ copyButton.addEventListener('click', async () => {
 });
 
 const marqueeTrack = document.getElementById('marquee-track');
-const marqueeClone = marqueeTrack.firstElementChild.cloneNode(true);
+const marqueeGroup = marqueeTrack.firstElementChild;
+const marqueeLogos = [...marqueeGroup.children];
+
+// Four logos alone are narrower than a wide screen, so each group repeats them
+for (let copy = 0; copy < 2; copy++) {
+  for (const logo of marqueeLogos) {
+    const logoClone = logo.cloneNode(true);
+    logoClone.setAttribute('aria-hidden', 'true');
+    marqueeGroup.append(logoClone);
+  }
+}
+
+const marqueeClone = marqueeGroup.cloneNode(true);
 marqueeClone.setAttribute('aria-hidden', 'true');
 marqueeTrack.append(marqueeClone);

@@ -290,7 +290,11 @@ svg { display: block; }
   line-height: 1;
   white-space: nowrap;
 }
-.logo { font-size: 1.75em; font-weight: 600; letter-spacing: -.02em; }
+.logo { gap: .45em; font-size: 1.5em; font-weight: 600; letter-spacing: -.02em; }
+.logo img { filter: grayscale(1); transition: filter 180ms ease; }
+.logo-mark { height: 1.15em; }
+.logo-full { height: 2.4em; }
+.logo-badge { height: 1.9em; border-radius: 50%; }
 
 /* The track holds two identical groups, so sliding it by half loops without a jump */
 .marquee {
@@ -321,13 +325,14 @@ svg { display: block; }
 @media (hover: hover) and (pointer: fine) {
   .marquee:hover .marquee-track { animation-play-state: paused; }
   .logo:hover { transform: scale(1.08); }
+  .logo:hover img { filter: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; width: auto; }
   .marquee-group { flex: 1; flex-wrap: wrap; justify-content: center; padding-inline: 16px; }
-  .marquee-group[aria-hidden] { display: none; }
-  .logo { transition: none; }
+  .marquee-group[aria-hidden], .logo[aria-hidden] { display: none; }
+  .logo, .logo img { transition: none; }
 }
 
 /* ---------- Services ---------- */
