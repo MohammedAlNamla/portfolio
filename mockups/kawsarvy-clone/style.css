@@ -287,8 +287,7 @@ svg { display: block; }
 .services {
   position: relative;
   z-index: 1;
-  margin-top: -70px;
-  padding: 145px clamp(17px, 7vw, 64px) 76px;
+  padding: 56px clamp(17px, 7vw, 64px) 76px;
   background: var(--surface);
 }
 
@@ -432,8 +431,7 @@ svg { display: block; }
   .marquee { --marquee-gap: calc(var(--u) * 120); --logo-room: calc(var(--u) * 16); }
 
   .services {
-    margin-top: calc(var(--u) * -90);
-    padding: calc(var(--u) * 190) calc(var(--u) * 236) calc(var(--u) * 120);
+    padding: calc(var(--u) * 90) calc(var(--u) * 236) calc(var(--u) * 120);
   }
 
   .divider { margin-top: calc(var(--u) * 72); }
