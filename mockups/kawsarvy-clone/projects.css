@@ -85,7 +85,7 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .project-card:hover { box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 18px 40px rgba(0, 0, 0, .13); }
+  .project-card:hover { box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 10px 26px rgba(0, 0, 0, .09); }
   .project-card:hover img { filter: none; }
 }
 
@@ -98,7 +98,7 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
     --card-w: clamp(116px, 15vw, 290px);
     --arc-radius: calc(var(--card-w) * 5.4);
     --arc-step: 6.8deg;
-    --open-w: max(var(--card-w), 250px);
+    --open-w: max(calc(var(--card-w) * 1.1), 170px);
     position: relative;
     display: block;
     height: calc(var(--card-w) * 2);
@@ -123,12 +123,12 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
       box-shadow 260ms ease;
   }
   .project-name, .project-type { text-align: var(--caption); }
-  /* An open card straightens, grows to a readable size and shows its full text */
+  /* An open card straightens, grows slightly and shows its full text */
   a.project-card:focus-visible {
     z-index: 19;
     width: var(--open-w);
     left: calc(50% - var(--open-w) / 2);
-    transform: translate(calc(var(--arc-x) * .9), calc(var(--arc-y) - var(--card-w) * .08));
+    transform: translate(var(--arc-x), calc(var(--arc-y) - 6px));
   }
   a.project-card:focus-visible .project-name { overflow: visible; text-align: left; white-space: normal; }
   a.project-card:focus-visible .project-type {
@@ -145,7 +145,7 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
     z-index: 19;
     width: var(--open-w);
     left: calc(50% - var(--open-w) / 2);
-    transform: translate(calc(var(--arc-x) * .9), calc(var(--arc-y) - var(--card-w) * .08));
+    transform: translate(var(--arc-x), calc(var(--arc-y) - 6px));
   }
   .project-card:hover .project-name { overflow: visible; text-align: left; white-space: normal; }
   .project-card:hover .project-type {
