@@ -28,13 +28,14 @@
 }
 
 @media (min-width: 760px) {
-  .xp-row { grid-template-columns: 1fr 1.5fr auto; gap: 32px; align-items: baseline; }
+  .xp-row { grid-template-columns: 1fr 1.5fr 130px; gap: 32px; align-items: baseline; }
+  .xp-date { text-align: right; }
 }
 
 @media (min-width: 900px) {
   .experience { padding: 0 calc(var(--u) * 236) calc(var(--u) * 120); }
   .xp-list { margin-top: calc(var(--u) * 62); }
-  .xp-row { gap: calc(var(--u) * 40); padding-block: calc(var(--u) * 26); }
+  .xp-row { grid-template-columns: 1fr 1.5fr calc(var(--u) * 140); gap: calc(var(--u) * 40); padding-block: calc(var(--u) * 26); }
   .xp-row:first-child { padding-top: 0; }
   .xp-row:last-child { padding-bottom: 0; }
   .xp-company { font-size: calc(var(--u) * 17); }
