@@ -1,40 +1,48 @@
+// Biggest project first. Projects without a real screenshot use a labelled demo image.
 const projects = [
-  { name: 'Sufra', type: 'Restaurant menu and ordering SaaS', image: 'Sufra.webp' },
-  { name: 'BookForMe', type: 'Booking platform for service businesses', image: 'BFM.webp' },
-  { name: 'UOP', type: 'University website and CMS', image: 'UOP.webp' },
-  { name: 'Taskat', type: 'Agile project management tool', image: 'Taskat.webp' },
-  { name: 'NetSpeed', type: 'Internet service management system', image: 'NetSpeed.webp' }
+  { name: 'Sufra', type: 'Restaurant menu, ordering and POS SaaS', image: '../../images/Sufra.webp' },
+  { name: 'BookForMe', type: 'Booking platform for service businesses', image: '../../images/BFM.webp' },
+  { name: 'Taskat', type: 'Agile project management tool', image: '../../images/Taskat.webp' },
+  { name: 'Edux', type: 'Education platform for teachers and students', image: 'demo/edux.svg', demo: true },
+  { name: 'UOP', type: 'University website and CMS', image: '../../images/UOP.webp' },
+  { name: 'NetSpeed', type: 'Internet service management system', image: '../../images/NetSpeed.webp' },
+  { name: 'Shahrazad Tours', type: 'Flights, transfers and eSIM booking backend', image: 'demo/shahrazad.svg', demo: true },
+  { name: 'ER Atlas', type: 'Visual database schema explorer', image: 'demo/er-atlas.svg', demo: true },
+  { name: 'RouterGuard', type: 'Android app for home network devices', image: 'demo/routerguard.svg', demo: true }
 ];
+const count = projects.length;
 
 const scatterLayout = [
-  { x: '0%', y: '10%', r: '-9deg', z: 2 },
-  { x: '17%', y: '46%', r: '5deg', z: 4 },
-  { x: '38%', y: '2%', r: '-3deg', z: 3 },
-  { x: '54%', y: '46%', r: '-6deg', z: 5 },
-  { x: '76%', y: '8%', r: '8deg', z: 2 }
+  { x: '0%', y: '4%', r: '-8deg' }, { x: '19%', y: '0%', r: '4deg' }, { x: '38%', y: '6%', r: '-3deg' },
+  { x: '57%', y: '0%', r: '6deg' }, { x: '77%', y: '5%', r: '-5deg' }, { x: '9%', y: '50%', r: '5deg' },
+  { x: '29%', y: '54%', r: '-6deg' }, { x: '48%', y: '50%', r: '3deg' }, { x: '68%', y: '54%', r: '-4deg' }
 ];
 const scatterLayoutNarrow = [
-  { x: '0%', y: '0%', r: '-7deg', z: 2 },
-  { x: '50%', y: '4%', r: '6deg', z: 3 },
-  { x: '26%', y: '30%', r: '-3deg', z: 5 },
-  { x: '0%', y: '60%', r: '5deg', z: 3 },
-  { x: '50%', y: '62%', r: '-6deg', z: 4 }
+  { x: '0%', y: '0%', r: '-6deg' }, { x: '31%', y: '2%', r: '4deg' }, { x: '62%', y: '0%', r: '-3deg' },
+  { x: '0%', y: '33%', r: '5deg' }, { x: '31%', y: '35%', r: '-5deg' }, { x: '62%', y: '33%', r: '4deg' },
+  { x: '0%', y: '66%', r: '-4deg' }, { x: '31%', y: '68%', r: '5deg' }, { x: '62%', y: '66%', r: '-5deg' }
 ];
-const alternating = ['-5deg', '4deg', '-3deg', '5deg', '-4deg'];
-const fanArc = [2, .6, 0, .6, 2];
-const rowOffsets = ['6px', '-6px', '4px', '-4px', '6px'];
-// Each card sits over the one before it, so no project name gets covered
-const layersLeftToRight = [1, 2, 3, 4, 5];
+const alternating = ['-5deg', '4deg', '-3deg', '5deg', '-4deg', '3deg', '-5deg', '4deg', '-3deg'];
+const rowOffsets = ['6px', '-6px', '4px', '-4px', '6px', '-6px', '4px', '-4px', '6px'];
 
 const narrow = window.matchMedia('(max-width: 759px)').matches;
 
+// A: the biggest project takes the centre and the rest alternate outwards
+function fanSlot(rank) {
+  const step = Math.ceil(rank / 2);
+  return rank % 2 === 0 ? -step : step;
+}
+
 const cardVars = {
-  fan: i => ({ '--i': i - 2, '--a': fanArc[i], '--z': layersLeftToRight[i] }),
+  fan: i => {
+    const slot = fanSlot(i);
+    return { '--i': slot, '--a': (slot * slot) / 4, '--z': count - i, '--caption': slot > 0 ? 'right' : 'left' };
+  },
   scatter: i => {
     const place = (narrow ? scatterLayoutNarrow : scatterLayout)[i];
-    return { '--x': place.x, '--y': place.y, '--r': place.r, '--z': place.z };
+    return { '--x': place.x, '--y': place.y, '--r': place.r, '--z': count - i };
   },
-  row: i => ({ '--r': alternating[i], '--dy': rowOffsets[i], '--z': layersLeftToRight[i] }),
+  row: i => ({ '--r': alternating[i], '--dy': rowOffsets[i], '--z': count - i, '--caption': 'right' }),
   'strip-group': i => ({ '--r': alternating[i] }),
   'line-cards': i => ({ '--r': alternating[i] })
 };
@@ -44,7 +52,10 @@ function renderCard(project, vars = {}) {
   card.className = 'pc';
   card.href = '#';
   card.innerHTML = `
-    <img src="../../images/${project.image}" alt="${project.name} screenshot" loading="lazy">
+    <span class="pc-media">
+      <img src="${project.image}" alt="${project.name} ${project.demo ? 'demo image' : 'screenshot'}" loading="lazy">
+      ${project.demo ? '<span class="pc-demo">Demo</span>' : ''}
+    </span>
     <span class="pc-name">${project.name}</span>
     <span class="pc-type">${project.type}</span>`;
   Object.entries(vars).forEach(([key, value]) => card.style.setProperty(key, value));
@@ -77,13 +88,14 @@ let deckOrder = projects.map((_, i) => i);
 function paintDeck() {
   deckOrder.forEach((cardIndex, position) => {
     const card = deckCards[cardIndex];
-    card.style.setProperty('--r', deckPose[position].r);
-    card.style.setProperty('--dx', deckPose[position].dx);
-    card.style.setProperty('--z', deckCards.length - position);
+    const pose = deckPose[Math.min(position, deckPose.length - 1)];
+    card.style.setProperty('--r', pose.r);
+    card.style.setProperty('--dx', pose.dx);
+    card.style.setProperty('--z', count - position);
     card.classList.toggle('is-top', position === 0);
   });
   const top = deckOrder[0];
-  document.getElementById('deck-num').textContent = `0${top + 1} / 0${projects.length}`;
+  document.getElementById('deck-num').textContent = `0${top + 1} / 0${count}`;
   document.getElementById('deck-name').textContent = projects[top].name;
   document.getElementById('deck-type').textContent = projects[top].type;
 }

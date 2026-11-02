@@ -2,7 +2,7 @@
 :root {
   --card-w: clamp(132px, 19vw, 270px);
   --ease-card: cubic-bezier(0.23, 1, 0.32, 1);
-  --fan-spread: .56;
+  --fan-spread: .4;
 }
 
 .opt { padding: 56px clamp(17px, 5vw, 72px) 72px; background: var(--surface); }
@@ -35,6 +35,17 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .07);
   transition: transform 260ms var(--ease-card), box-shadow 260ms ease;
 }
+.pc-media { position: relative; display: block; }
+.pc-demo {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: .6875rem;
+  font-weight: 600;
+}
 .pc img {
   display: block;
   width: 100%;
@@ -45,8 +56,8 @@
   filter: grayscale(1);
   transition: filter 220ms ease;
 }
-.pc-name { display: block; margin-top: 10px; padding-inline: 4px; font-size: .9375rem; font-weight: 600; }
-.pc-type { display: block; margin-top: 2px; padding-inline: 4px; color: var(--ink-soft); font-size: .75rem; }
+.pc-name { display: block; margin-top: 10px; padding-inline: 4px; font-size: .9375rem; font-weight: 600; text-align: var(--caption, left); }
+.pc-type { display: block; margin-top: 2px; padding-inline: 4px; color: var(--ink-soft); font-size: .75rem; text-align: var(--caption, left); }
 
 .pc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .pc:focus-visible img { filter: none; }
@@ -61,14 +72,14 @@
 }
 
 /* ---------- A: fan ---------- */
-.fan { position: relative; height: calc(var(--card-w) * 1.28); }
+.fan { position: relative; height: calc(var(--card-w) * 1.5); }
 .fan .pc {
   position: absolute;
   top: 0;
   left: calc(50% - var(--card-w) / 2);
   transform:
-    translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--a) * var(--card-w) * .06))
-    rotate(calc(var(--i) * 6deg));
+    translate(calc(var(--i) * var(--card-w) * var(--fan-spread)), calc(var(--a) * var(--card-w) * .05))
+    rotate(calc(var(--i) * 4deg));
   transform-origin: 50% 90%;
   z-index: var(--z);
 }
@@ -84,7 +95,7 @@
 }
 
 /* ---------- B: scattered ---------- */
-.scatter { position: relative; max-width: 1040px; height: calc(var(--card-w) * 1.9); margin-inline: auto; }
+.scatter { position: relative; max-width: 1100px; height: calc(var(--card-w) * 2.15); margin-inline: auto; }
 .scatter .pc {
   position: absolute;
   left: var(--x);
@@ -142,7 +153,7 @@
 .row { display: flex; justify-content: center; padding-block: 16px; }
 .row .pc {
   position: relative;
-  margin-inline: calc(var(--card-w) * -.09);
+  margin-inline: calc(var(--card-w) * -.27);
   transform: translateY(var(--dy)) rotate(var(--r));
   z-index: var(--z);
 }
@@ -156,7 +167,7 @@
 /* ---------- E: moving strip ---------- */
 .opt:has(.strip) { padding-inline: 0; }
 .strip { overflow: hidden; padding-block: 30px; }
-.strip-track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
+.strip-track { display: flex; width: max-content; animation: marquee 80s linear infinite; }
 .strip-group { display: flex; flex-shrink: 0; gap: 34px; padding-inline-end: 34px; }
 .strip .pc { width: clamp(180px, 21vw, 290px); transform: rotate(var(--r)); }
 .strip .pc:focus-visible { transform: scale(1.04); }
@@ -201,11 +212,11 @@
 
 /* ---------- Narrow screens ---------- */
 @media (max-width: 759px) {
-  :root { --fan-spread: .34; }
+  :root { --fan-spread: .2; }
   .opt-light { border-radius: 44px; }
-  .row .pc { margin-inline: calc(var(--card-w) * -.32); }
+  .row .pc { margin-inline: calc(var(--card-w) * -.39); }
   .fan .pc-type, .row .pc-type { display: none; }
-  .scatter { height: calc(var(--card-w) * 2.6); }
+  .scatter { height: calc(var(--card-w) * 4.2); }
   .strip-group { gap: 22px; padding-inline-end: 22px; }
 }
 
