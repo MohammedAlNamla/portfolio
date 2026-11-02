@@ -89,12 +89,16 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
   .project-card:hover img { filter: none; }
 }
 
+/* An open card may reach past this section, so the next one must sit below it */
+.services { z-index: 0; }
+
 /* ---------- Arc ---------- */
 @media (min-width: 760px) {
   .projects-arc {
     --card-w: clamp(116px, 15vw, 290px);
     --arc-radius: calc(var(--card-w) * 5.4);
     --arc-step: 6.8deg;
+    --open-w: max(var(--card-w), 250px);
     position: relative;
     display: block;
     height: calc(var(--card-w) * 2);
@@ -112,18 +116,44 @@ a.project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3p
     width: var(--card-w);
     transform: translate(var(--arc-x), var(--arc-y)) rotate(var(--angle));
     z-index: var(--layer);
+    transition:
+      transform 260ms cubic-bezier(0.23, 1, 0.32, 1),
+      width 260ms cubic-bezier(0.23, 1, 0.32, 1),
+      left 260ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 260ms ease;
   }
   .project-name, .project-type { text-align: var(--caption); }
+  /* An open card straightens, grows to a readable size and shows its full text */
   a.project-card:focus-visible {
     z-index: 19;
-    transform: translate(var(--arc-x), calc(var(--arc-y) - var(--card-w) * .06)) scale(1.05);
+    width: var(--open-w);
+    left: calc(50% - var(--open-w) / 2);
+    transform: translate(calc(var(--arc-x) * .9), calc(var(--arc-y) - var(--card-w) * .08));
+  }
+  a.project-card:focus-visible .project-name { overflow: visible; text-align: left; white-space: normal; }
+  a.project-card:focus-visible .project-type {
+    display: block;
+    height: auto;
+    overflow: visible;
+    text-align: left;
+    -webkit-line-clamp: unset;
   }
 }
 
 @media (min-width: 760px) and (hover: hover) and (pointer: fine) {
   .project-card:hover {
     z-index: 19;
-    transform: translate(var(--arc-x), calc(var(--arc-y) - var(--card-w) * .06)) scale(1.05);
+    width: var(--open-w);
+    left: calc(50% - var(--open-w) / 2);
+    transform: translate(calc(var(--arc-x) * .9), calc(var(--arc-y) - var(--card-w) * .08));
+  }
+  .project-card:hover .project-name { overflow: visible; text-align: left; white-space: normal; }
+  .project-card:hover .project-type {
+    display: block;
+    height: auto;
+    overflow: visible;
+    text-align: left;
+    -webkit-line-clamp: unset;
   }
 }
 
