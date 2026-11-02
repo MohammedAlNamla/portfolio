@@ -228,7 +228,7 @@ svg { display: block; }
   position: relative;
   z-index: 1;
   margin-top: -70px;
-  padding: 145px 17px 76px;
+  padding: 145px clamp(17px, 7vw, 64px) 76px;
   background: var(--surface);
 }
 
@@ -249,12 +249,12 @@ svg { display: block; }
 
 .service-grid {
   display: grid;
-  grid-template-columns: 184px minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 44px clamp(16px, 5vw, 40px);
   margin-top: 77px;
 }
-.service-extra { display: none; }
 
-.service-icon { display: flex; align-items: center; height: 36px; margin-left: -4px; }
+.service-icon { display: flex; align-items: center; height: 36px; }
 .service-icon svg, .cta-circle svg { height: auto; fill: none; stroke: #2b2b2b; stroke-width: 1.100; }
 .icon-ux { width: 38px; }
 .icon-web { width: 39px; }
@@ -262,7 +262,16 @@ svg { display: block; }
 .icon-dev { width: 39px; }
 
 .service h3 { margin-top: 21px; font-size: .9375rem; font-weight: 500; line-height: 20px; }
-.service p { margin-top: 15px; color: var(--ink-soft); font-size: .75rem; line-height: 17px; }
+.service p { margin-top: 15px; color: var(--ink-soft); font-size: .75rem; line-height: 17px; text-wrap: pretty; }
+.service p br { display: none; }
+
+/* Enough room for the two-line heading before the desktop layout starts */
+@media (min-width: 600px) {
+  .subtitle { font-size: 1.75rem; line-height: 1.5; }
+  .subtitle-wide { display: block; }
+  .subtitle-narrow { display: none; }
+  .service p { font-size: .8125rem; line-height: 19px; }
+}
 
 /* ---------- Call to action ---------- */
 .cta {
@@ -370,10 +379,9 @@ svg { display: block; }
   .divider { margin-top: calc(var(--u) * 72); }
   .divider-tag { width: calc(var(--u) * 123); height: calc(var(--u) * 36); font-size: calc(var(--u) * 11); }
 
-  .service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: calc(var(--u) * 62); }
-  .service-extra { display: block; }
+  .service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: calc(var(--u) * 62); }
 
-  .service-icon { height: calc(var(--u) * 40); margin-left: calc(var(--u) * -4); }
+  .service-icon { height: calc(var(--u) * 40); }
   .icon-ux { width: calc(var(--u) * 40); }
   .icon-web { width: calc(var(--u) * 42); }
   .icon-design { width: calc(var(--u) * 40); }
@@ -381,6 +389,7 @@ svg { display: block; }
 
   .service h3 { margin-top: calc(var(--u) * 22); font-size: calc(var(--u) * 16); line-height: calc(var(--u) * 22); }
   .service p { margin-top: calc(var(--u) * 16); font-size: calc(var(--u) * 13); line-height: calc(var(--u) * 18); }
+  .service p br { display: inline; }
 
   .cta {
     padding: calc(var(--u) * 80) calc(var(--u) * 32) calc(var(--u) * 110);
