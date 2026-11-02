@@ -1,0 +1,192 @@
+/* Comparison page for the experience timeline. Uses the tokens and fonts from style.css. */
+.xl { min-height: 100vh; padding: 60px clamp(16px, 4vw, 56px) 90px; background: var(--surface); }
+.xl-head { margin-bottom: 44px; text-align: center; }
+.xl-head h1 { font-size: 1.75rem; font-weight: 700; }
+.xl-head p { margin-top: 6px; color: var(--ink-soft); font-size: .9375rem; }
+
+.xl-list { display: grid; gap: 56px; max-width: 1320px; margin-inline: auto; }
+.xl-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.xl-letter {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--btn);
+  color: #fff;
+  font-size: .8125rem;
+  font-weight: 600;
+}
+.xl-label h2 { flex-shrink: 0; font-size: 1.0625rem; font-weight: 700; }
+.xl-label p { color: var(--ink-soft); font-size: .875rem; }
+
+.xl-frames { display: grid; grid-template-columns: minmax(0, 1fr) 360px; align-items: start; gap: 20px; }
+.frame {
+  container: xp / inline-size;
+  padding: 28px;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 10px 26px rgba(0, 0, 0, .05);
+}
+.frame-phone { padding: 22px 16px; }
+
+@media (max-width: 860px) {
+  .xl-frames { grid-template-columns: minmax(0, 1fr); }
+  .frame { padding: 22px 16px; }
+  .frame-phone { display: none; }
+}
+
+/* ---------- Shared pieces ---------- */
+.mark {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  font-size: .6875rem;
+  font-weight: 700;
+}
+.mark img { width: 100%; height: 100%; object-fit: contain; opacity: .92; filter: grayscale(1); transition: opacity 180ms ease, filter 180ms ease; }
+.company { font-size: 1rem; font-weight: 600; }
+.role { display: block; margin-top: 2px; color: var(--ink-soft); font-size: .8125rem; }
+.note { margin-top: 6px; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
+.date { color: var(--ink-soft); font-size: .8125rem; font-weight: 500; }
+.is-current .date { color: var(--ink); font-weight: 600; }
+.duration { color: var(--ink-soft); font-size: .8125rem; }
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--ink-soft);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.now-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #2f9e62; box-shadow: 0 0 0 3px rgba(47, 158, 98, .18); }
+.now-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px 4px 9px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: .75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover .mark img, .now-card:hover .mark img { opacity: 1; filter: none; }
+}
+
+/* ---------- A: grouped, with a date column ---------- */
+.a-group + .a-group { margin-top: 32px; }
+.a-row { position: relative; display: grid; grid-template-columns: 170px 38px minmax(0, 1fr); gap: 20px; padding-bottom: 28px; }
+.a-row:last-child { padding-bottom: 0; }
+.a-row:not(:last-child)::before { content: ""; position: absolute; top: 38px; bottom: 0; left: 209px; width: 1.5px; background: var(--line); }
+.a-when .date, .a-when .duration { display: block; }
+
+@container xp (max-width: 640px) {
+  .a-row { grid-template-columns: 38px minmax(0, 1fr); column-gap: 18px; }
+  .a-row:not(:last-child)::before { left: 18px; }
+  .a-when { grid-column: 2; display: flex; flex-wrap: wrap; gap: 2px 10px; }
+  .a-row .mark { grid-column: 1; grid-row: 1 / 3; }
+  .a-row .a-body { grid-column: 2; margin-top: -14px; }
+}
+
+/* ---------- B: big start years ---------- */
+.b-row { position: relative; display: grid; grid-template-columns: 110px 38px minmax(0, 1fr); gap: 24px; padding-bottom: 30px; }
+.b-row:last-child { padding-bottom: 0; }
+.b-row:not(:last-child)::before { content: ""; position: absolute; top: 38px; bottom: 0; left: 153px; width: 1.5px; background: var(--line); }
+.b-year { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; letter-spacing: -.03em; line-height: 1.3; }
+.b-row.is-repeat .b-year { visibility: hidden; }
+.b-top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-bottom: 4px; }
+
+@container xp (max-width: 640px) {
+  .b-row { grid-template-columns: 38px minmax(0, 1fr); column-gap: 16px; }
+  .b-row:not(:last-child)::before { left: 18px; }
+  .b-year { grid-column: 2; font-size: 1.25rem; }
+  .b-row.is-repeat .b-year { display: none; }
+  .b-row .mark { grid-column: 1; grid-row: 1 / 3; }
+  .b-body { grid-column: 2; }
+}
+
+/* ---------- C: current roles as cards, the rest as a short list ---------- */
+.now-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.now-card { padding: 20px; border-radius: 20px; background: var(--surface-light); box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+.now-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+.now-card .date { display: block; margin-top: 12px; }
+.earlier { margin-top: 28px; }
+.earlier-row { display: flex; align-items: center; gap: 14px; padding-block: 12px; border-top: 1px solid var(--line); }
+.earlier-main { flex: 1; min-width: 0; }
+.earlier-when { text-align: right; }
+.earlier-when .date, .earlier-when .duration { display: block; }
+
+@container xp (max-width: 640px) {
+  .now-cards { grid-template-columns: minmax(0, 1fr); }
+  .earlier-row { flex-wrap: wrap; }
+  .earlier-when { width: 100%; padding-left: 52px; text-align: left; }
+}
+
+/* ---------- D: time chart ---------- */
+.d-chart { position: relative; }
+.d-axis { position: relative; height: 22px; margin-bottom: 8px; color: var(--ink-soft); font-size: .75rem; }
+.d-axis span { position: absolute; transform: translateX(-50%); }
+.d-axis span:first-child { transform: none; }
+.d-today {
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  width: 1.5px;
+  background: #2f9e62;
+}
+.d-today-label {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  color: #24754a;
+  font-size: .75rem;
+  font-weight: 600;
+  transform: translateX(-50%);
+}
+.d-row { position: relative; padding-block: 12px; }
+.d-info { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; background: var(--surface); }
+.d-info .mark { width: 32px; height: 32px; }
+.d-track { position: relative; height: 10px; border-radius: 999px; background: rgba(0, 0, 0, .05); }
+.d-bar { position: absolute; top: 0; bottom: 0; min-width: 8px; border-radius: 999px; background: #a9a7a4; }
+.is-current .d-bar { background: var(--btn); }
+.d-bar-edu { background: transparent; box-shadow: inset 0 0 0 1.5px #a9a7a4; }
+.d-date { margin-left: auto; text-align: right; }
+.d-date .date, .d-date .duration { display: block; }
+
+@container xp (max-width: 640px) {
+  .d-info { flex-wrap: wrap; }
+  .d-date { width: 100%; margin-left: 44px; text-align: left; }
+  .d-date .date, .d-date .duration { display: inline; margin-right: 8px; }
+}
+
+/* ---------- E: quiet table ---------- */
+.e-head, .e-row { display: grid; grid-template-columns: 170px minmax(0, 1.1fr) minmax(0, 1.2fr) 100px; align-items: center; gap: 16px; }
+.e-head { padding-bottom: 10px; color: var(--ink-soft); font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.e-row { padding-block: 16px; border-top: 1px solid var(--line); }
+.e-company { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.e-when .date, .e-when .duration { display: block; }
+.e-status { justify-self: end; color: var(--ink-soft); font-size: .8125rem; }
+.e-role .role { margin-top: 0; color: var(--ink); }
+
+@container xp (max-width: 640px) {
+  .e-head { display: none; }
+  .e-row { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; }
+  .e-company { grid-column: 1; grid-row: 1; }
+  .e-status { grid-column: 2; grid-row: 1; }
+  .e-role { grid-column: 1 / -1; padding-left: 50px; }
+  .e-when { grid-column: 1 / -1; padding-left: 50px; }
+  .e-when .date, .e-when .duration { display: inline; margin-right: 8px; }
+}
