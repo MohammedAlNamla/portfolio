@@ -1,0 +1,182 @@
+/* Comparison page for the hero top bar. Uses the tokens and fonts from style.css. */
+.no { min-height: 100vh; padding: 60px clamp(16px, 4vw, 56px) 90px; background: var(--surface); }
+.no-head { margin-bottom: 44px; text-align: center; }
+.no-head h1 { font-size: 1.75rem; font-weight: 700; }
+.no-head p { margin-top: 6px; color: var(--ink-soft); font-size: .9375rem; }
+
+.no-list { display: grid; gap: 56px; max-width: 1320px; margin-inline: auto; }
+.no-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.no-letter {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--btn);
+  color: #fff;
+  font-size: .8125rem;
+  font-weight: 600;
+}
+.no-label h2 { font-size: 1.0625rem; font-weight: 700; }
+.no-label p { color: var(--ink-soft); font-size: .875rem; }
+
+.no-frames { display: grid; grid-template-columns: minmax(0, 1fr) 360px; align-items: start; gap: 20px; }
+.frame {
+  container: nav / inline-size;
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 10px 26px rgba(0, 0, 0, .05);
+}
+.frame-hero { display: flex; flex-direction: column; align-items: center; padding: 44px 16px 48px; }
+.frame-avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #2b2b2b;
+  color: #f7f7f7;
+  font-size: 1.25rem;
+  font-weight: 600;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .85);
+}
+.frame-hero .title { margin-top: 20px; font-size: 1.375rem; line-height: 1.3; letter-spacing: -.035em; }
+
+@media (max-width: 860px) {
+  .no-frames { grid-template-columns: minmax(0, 1fr); }
+  .frame-phone { display: none; }
+}
+
+/* ---------- Shared bar pieces ---------- */
+.nb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 28px 0;
+  color: #2c2c2c;
+  font-size: .875rem;
+}
+.nb-group { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.nb svg { width: 16px; height: 16px; flex-shrink: 0; }
+.nb button { color: inherit; font: inherit; }
+
+.nb-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nb-email .icon-mail { display: none; }
+.nb-email .icon-copy { opacity: .55; transition: opacity 160ms ease; }
+.nb-email.is-copied .icon-copy { opacity: 1; }
+
+.nb-link { position: relative; padding-block: 6px; white-space: nowrap; }
+.nb-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.nb-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 160ms ease;
+}
+.nb-icon-solid { background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .06); }
+
+.nb-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding-inline: 18px;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.nb-cv-dark { background: var(--btn); color: #fff; }
+.nb-cv:active { transform: scale(.97); }
+.nb-cv .short { display: none; }
+
+.nb a:focus-visible, .nb button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.nb-icons { display: none; gap: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .nb-email:hover .icon-copy { opacity: 1; }
+  .nb-link:hover::after { transform: scaleX(1); }
+  .nb-icon:hover { background: rgba(0, 0, 0, .06); }
+  .nb-icon-solid:hover { background: #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+  .nb-cv:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 0, 0, .1); }
+  .nb-cv-dark:hover { background: #383838; }
+}
+
+/* ---------- B: floating capsule ---------- */
+.nb-capsule { justify-content: center; }
+.nb-capsule-in {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 5px 5px 5px 22px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 8px 22px rgba(0, 0, 0, .07);
+}
+.nb-sep { width: 1px; height: 18px; background: var(--line); }
+
+/* ---------- C: name first ---------- */
+.nb-id { display: flex; align-items: center; gap: 10px; }
+.nb-id-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2b2b2b;
+  color: #f7f7f7;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.nb-id b { display: block; font-weight: 600; white-space: nowrap; }
+.nb-id small { display: block; color: var(--ink-soft); font-size: .75rem; }
+
+/* ---------- D: availability ---------- */
+.nb-status { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; white-space: nowrap; }
+.nb-dot { width: 8px; height: 8px; border-radius: 50%; background: #2f9e62; box-shadow: 0 0 0 3px rgba(47, 158, 98, .18); }
+.nb-divider { width: 1px; height: 16px; background: #cfcdca; }
+
+/* ---------- Phone width: email and links collapse into icons ---------- */
+@container nav (max-width: 640px) {
+  .nb { padding: 14px 16px 0; gap: 8px; }
+  .nb-group { gap: 8px; }
+  .nb-email { justify-content: center; width: 40px; height: 40px; }
+  .nb-email .text, .nb-email .icon-copy { display: none; }
+  .nb-email .icon-mail { display: block; }
+  .nb-email.is-copied .icon-copy { display: block; }
+  .nb-email.is-copied .icon-mail { display: none; }
+  .nb-links { display: none; }
+  .nb-icons { display: flex; }
+  .nb-cv .long { display: none; }
+  .nb-cv .short { display: inline; }
+  .nb-cv { height: 40px; padding-inline: 16px; }
+  .nb-capsule-in { flex: 1; justify-content: space-between; gap: 4px; padding-left: 6px; }
+  .nb-sep, .nb-divider, .nb-id small { display: none; }
+}
