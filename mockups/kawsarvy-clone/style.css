@@ -290,11 +290,14 @@ svg { display: block; }
   line-height: 1;
   white-space: nowrap;
 }
-.logo { gap: .45em; font-size: 1.5em; font-weight: 600; letter-spacing: -.02em; }
-.logo img { filter: grayscale(1); transition: filter 180ms ease; }
+/* Quiet grey by default so logos follow the page, full colour on hover */
+.logo { gap: .45em; font-size: 1.5em; font-weight: 600; letter-spacing: -.02em; opacity: .92; filter: grayscale(1); }
 .logo-square { height: 1.9em; border-radius: .4em; }
 .logo-full { height: 2.4em; }
 .logo-badge { height: 1.9em; border-radius: 50%; }
+.logo-iug img { height: 2.5em; }
+.logo-iug-name { display: grid; gap: .2em; font-size: .9em; letter-spacing: 0; }
+.logo-iug-name small { font-size: .5em; font-weight: 500; }
 
 /* The track holds two identical groups, so sliding it by half loops without a jump */
 .marquee {
@@ -316,7 +319,7 @@ svg { display: block; }
   gap: var(--marquee-gap);
   padding-inline-end: var(--marquee-gap);
 }
-.logo { flex-shrink: 0; transition: transform 180ms ease; }
+.logo { flex-shrink: 0; transition: transform 180ms ease, opacity 180ms ease, filter 180ms ease; }
 
 @keyframes marquee {
   to { transform: translateX(-50%); }
@@ -324,15 +327,14 @@ svg { display: block; }
 
 @media (hover: hover) and (pointer: fine) {
   .marquee:hover .marquee-track { animation-play-state: paused; }
-  .logo:hover { transform: scale(1.08); }
-  .logo:hover img { filter: none; }
+  .logo:hover { transform: scale(1.08); opacity: 1; filter: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; width: auto; }
   .marquee-group { flex: 1; flex-wrap: wrap; justify-content: center; padding-inline: 16px; }
   .marquee-group[aria-hidden], .logo[aria-hidden] { display: none; }
-  .logo, .logo img { transition: none; }
+  .logo { transition: none; }
 }
 
 /* ---------- Services ---------- */
