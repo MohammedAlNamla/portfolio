@@ -1,4 +1,4 @@
-// Details sheet: opens from a project card, and from a #project-<id> link.
+// Details sheet: opens from a project card, a service link, and a #project-<id> link.
 const sheet = document.getElementById('project-sheet');
 const sheetBody = document.getElementById('project-sheet-body');
 const sheetScroll = sheet.querySelector('.sheet-scroll');
@@ -93,6 +93,14 @@ arc.addEventListener('click', (event) => {
   if (!card) return;
   openerCard = card;
   openSheet(projects.findIndex(project => project.id === card.dataset.project));
+});
+
+document.querySelector('.service-grid').addEventListener('click', (event) => {
+  const link = event.target.closest('[data-open-project]');
+  if (!link) return;
+  event.preventDefault();
+  openerCard = link;
+  openSheet(projects.findIndex(project => project.id === link.dataset.openProject));
 });
 
 sheet.querySelector('.sheet-close').addEventListener('click', closeSheet);
