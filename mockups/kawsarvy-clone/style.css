@@ -292,7 +292,7 @@ svg { display: block; }
   background: var(--surface);
   border-radius: 50%;
 }
-.cta-circle svg { width: 79px; }
+.cta-circle svg { width: 62px; stroke-width: .65; stroke-linecap: round; stroke-linejoin: round; }
 .cta-title { margin-top: 29px; }
 .cta-actions { display: flex; gap: 15px; margin-top: 29px; }
 .btn-email { width: 112px; height: 50px; gap: 9px; font-size: .6875rem; }
@@ -396,7 +396,7 @@ svg { display: block; }
     border-radius: calc(var(--u) * 100) calc(var(--u) * 100) 0 0;
   }
   .cta-circle { width: calc(var(--u) * 130); height: calc(var(--u) * 130); }
-  .cta-circle svg { width: calc(var(--u) * 85); }
+  .cta-circle svg { width: calc(var(--u) * 68); }
   .cta-title { margin-top: calc(var(--u) * 36); }
   .cta-actions { gap: calc(var(--u) * 16); margin-top: calc(var(--u) * 36); }
   .btn-email, .btn-whatsapp { width: calc(var(--u) * 124); height: calc(var(--u) * 56); font-size: calc(var(--u) * 12); }
