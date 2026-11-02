@@ -6,7 +6,7 @@ const projects = [
   { name: 'Edux', type: 'Education platform for teachers and students', image: 'demo/edux.svg', demo: true },
   { name: 'UOP', type: 'University website and CMS', image: '../../images/UOP.webp' },
   { name: 'NetSpeed', type: 'Internet service management system', image: '../../images/NetSpeed.webp' },
-  { name: 'Shahrazad Tours', type: 'Flights, transfers and eSIM booking backend', image: 'demo/shahrazad.svg', demo: true },
+  { name: 'Shahrazad Tours', type: 'Booking API for flights, transfers and travel eSIMs', image: 'demo/shahrazad.svg', demo: true },
   { name: 'ER Atlas', type: 'Visual database schema explorer', image: 'demo/er-atlas.svg', demo: true },
   { name: 'RouterGuard', type: 'Android app for home network devices', image: 'demo/routerguard.svg', demo: true }
 ];

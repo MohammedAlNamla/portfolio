@@ -1,0 +1,43 @@
+/* Experience: two quiet rows under a divider, no cards. */
+.experience {
+  position: relative;
+  z-index: 1;
+  padding: 8px clamp(17px, 7vw, 64px) 84px;
+  background: var(--surface);
+}
+.experience .divider { margin-top: 0; }
+
+.xp-list { margin-top: 44px; }
+.xp-row {
+  display: grid;
+  gap: 6px;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.xp-row:first-child { padding-top: 0; }
+.xp-row:last-child { padding-bottom: 0; border-bottom: 0; }
+
+.xp-company { font-size: 1.0625rem; font-weight: 600; }
+.xp-company a { transition: color 160ms ease; }
+.xp-role { display: block; margin-top: 2px; color: var(--ink-soft); font-size: .8125rem; }
+.xp-note { color: var(--ink-soft); font-size: .875rem; line-height: 1.5; }
+.xp-date { color: var(--ink-soft); font-size: .8125rem; white-space: nowrap; }
+
+@media (hover: hover) and (pointer: fine) {
+  .xp-company a:hover { color: var(--ink-fade); }
+}
+
+@media (min-width: 760px) {
+  .xp-row { grid-template-columns: 1fr 1.5fr auto; gap: 32px; align-items: baseline; }
+}
+
+@media (min-width: 900px) {
+  .experience { padding: 0 calc(var(--u) * 236) calc(var(--u) * 120); }
+  .xp-list { margin-top: calc(var(--u) * 62); }
+  .xp-row { gap: calc(var(--u) * 40); padding-block: calc(var(--u) * 26); }
+  .xp-row:first-child { padding-top: 0; }
+  .xp-row:last-child { padding-bottom: 0; }
+  .xp-company { font-size: calc(var(--u) * 17); }
+  .xp-role, .xp-date { font-size: calc(var(--u) * 13); }
+  .xp-note { font-size: calc(var(--u) * 14); }
+}
