@@ -17,13 +17,6 @@
 .project-name { font-size: 1.0625rem; }
 .project-tag { font-size: .875rem; }
 
-/* Years speak the same voice as the Arabic headings */
-.xp-year {
-  font-family: "Fatimah", "Thmanyah Sans", sans-serif;
-  font-size: 1.125rem;
-  letter-spacing: 0;
-}
-
 /* Small screens: the name sits under the picture instead of over it */
 @media (max-width: 599px) {
   .hero .avatar-tag { left: 50%; top: auto; bottom: -14px; transform: translateX(-50%) rotate(-6deg); }
@@ -37,5 +30,4 @@
   .project-name { font-size: calc(var(--u) * 16); }
   .project-tag { font-size: calc(var(--u) * 14); }
   .project-summary { font-size: calc(var(--u) * 14); }
-  .xp-year { font-size: calc(var(--u) * 20); }
 }
