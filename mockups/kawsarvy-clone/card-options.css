@@ -1,0 +1,86 @@
+/* Comparison page for the project card layout. The arc itself comes from projects.css. */
+.co { min-height: 100vh; padding: 60px clamp(16px, 4vw, 56px) 90px; background: var(--surface); }
+.co-head { margin-bottom: 40px; text-align: center; }
+.co-head h1 { font-size: 1.5rem; font-weight: 700; }
+.co-head p { margin-top: 6px; color: var(--ink-soft); font-size: .875rem; }
+.co-theme { min-height: 40px; margin-top: 14px; padding-inline: 16px; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--ink); font: inherit; font-size: .8125rem; cursor: pointer; }
+
+.co-option { padding-block: 34px 10px; border-top: 1px solid var(--line); }
+.co-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 26px; }
+.co-letter { flex-shrink: 0; font-size: .875rem; font-weight: 700; }
+.co-label h2 { flex-shrink: 0; font-size: .9375rem; font-weight: 700; }
+.co-label p { color: var(--ink-soft); font-size: .8125rem; }
+.co-option .project-card { cursor: default; }
+
+/* Shared: each name sits on the side of the card that stays visible in the arc */
+.co-option .project-name { padding-inline: 2px; font-size: .8125rem; text-align: var(--caption); }
+.co-option .project-card:hover .project-name,
+.co-option .project-card:focus-visible .project-name { text-align: var(--caption); }
+.co-tag { display: block; margin-top: 1px; padding-inline: 2px; color: var(--ink-soft); font-size: .6875rem; line-height: 1.35; text-align: var(--caption); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 1 and 6: image and name */
+.v-name .project-type { display: none; }
+.v-name .project-card { padding-bottom: 10px; }
+
+/* 6: smaller cards, further apart */
+@media (min-width: 760px) {
+  .v-spaced { --card-w: clamp(104px, 13vw, 250px); --arc-step: 7.4deg; }
+}
+
+/* 2: name on a pill over the image */
+.v-pill .project-card { padding: 6px; }
+.v-pill .project-type { display: none; }
+.v-pill .project-name {
+  position: absolute;
+  bottom: 8px;
+  max-width: calc(100% - 16px);
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-light);
+  color: var(--ink);
+  font-size: .75rem;
+}
+.v-pill [data-side="left"] .project-name { left: 8px; }
+.v-pill [data-side="right"] .project-name { right: 8px; }
+
+/* 3: tall image with the name over a soft shade */
+.v-shade .project-card { position: absolute; overflow: hidden; padding: 0; }
+.v-shade .project-media img { aspect-ratio: 4 / 5; border-radius: 0; }
+.v-shade .project-type { display: none; }
+.v-shade .project-name {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 44px 10px 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .78));
+  color: #fff;
+  font-size: .8125rem;
+}
+@media (max-width: 759px) {
+  .v-shade .project-card { position: relative; }
+}
+
+/* 4: name and one short word */
+.v-tag .project-type { display: none; }
+.v-tag .project-card { padding-bottom: 10px; }
+
+/* 5: image only, the name appears on hover */
+.v-image .project-card { padding: 6px; }
+.v-image .project-type { display: none; }
+.v-image .project-name {
+  position: absolute;
+  inset: auto 6px 6px;
+  margin: 0;
+  padding: 26px 8px 8px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+  color: #fff;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.v-image .project-card:hover .project-name,
+.v-image .project-card:focus-visible .project-name { opacity: 1; }
+@media (hover: none) {
+  .v-image .project-name { opacity: 1; }
+}
