@@ -1,53 +1,73 @@
 const svg = content => `<svg viewBox="0 0 24 24" aria-hidden="true">${content}</svg>`;
+const circle = (content, modifier = '') => `<div class="ci-circle${modifier}">${content}</div>`;
 
 const icons = [
   {
-    name: 'مكعب بناء',
-    note: 'يترجم كلمة build مباشرة، وبأسلوب أيقونات الصفحة.',
-    art: svg('<path class="ink" d="m12 3 8 4.500-8 4.500-8-4.500z"/><path d="M4 7.500v9l8 4.500 8-4.500v-9M12 12v9"/>')
+    name: 'أنا وأنت',
+    note: 'دائرتان متداخلتان: حروفك ودائرة للزائر. فكرة شراكة بدون أيقونة تقليدية.',
+    art: '<div class="ci-pair"><span class="ci-pair-me">MN</span><span class="ci-pair-you">You</span></div>'
   },
   {
-    name: 'طيارة ورق',
-    note: 'تعني أرسل لي رسالة، وهي الخطوة التالية بعد العبارة.',
-    art: svg('<path d="M21 3 3 10.500l6.500 3L21 3zM21 3l-7.500 18-4-7.500"/><path class="ink" d="m9.500 13.500.800 5 2.700-2.900z"/>')
+    name: 'تقاطع',
+    note: 'دائرتان تلتقيان في منطقة غامقة. مجرد وهادئ جدًا.',
+    art: circle(svg('<circle cx="9" cy="12" r="6.500"/><circle cx="15" cy="12" r="6.500"/><path class="ink" d="M12 6.230a6.500 6.500 0 0 1 0 11.540 6.500 6.500 0 0 1 0-11.540z"/>'))
   },
   {
-    name: 'محادثة',
-    note: 'واضحة وودودة، وتناسب كلمة let’s.',
-    art: svg('<path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-4 3.500V17H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle class="ink" cx="8" cy="11" r="1"/><circle class="ink" cx="12" cy="11" r="1"/><circle class="ink" cx="16" cy="11" r="1"/>')
+    name: 'سطر الأوامر',
+    note: 'مؤشر يومض كأن الصفحة تنتظر كلامك. قريب من شغلك وفيه حركة خفيفة.',
+    art: circle(svg('<path d="m5 8 5 4-5 4"/><rect class="ink ci-cursor" x="12" y="15" width="7" height="1.500"/>'))
   },
   {
-    name: 'مكعبات مركبة',
-    note: 'قطع تُبنى فوق بعض، أوسع من مكعب واحد لكن أكثر تفصيلًا.',
-    art: svg('<rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><rect class="ink" x="8" y="3" width="8" height="8" rx="1"/>')
+    name: 'نقطتان متصلتان',
+    note: 'نظامان يتصلان، أو أنت والعميل. بسيطة وتناسب هندسة الأنظمة.',
+    art: circle(svg('<circle cx="6" cy="17" r="3"/><circle class="ink" cx="18" cy="7" r="3"/><path d="M8.300 15 15.700 9"/>'))
   },
   {
-    name: 'نجمة',
-    note: 'تناسب كلمة great، وأنيقة لكنها أقل ارتباطًا بعملك.',
-    art: svg('<path d="M12 3c.800 5 4 8.200 9 9-5 .800-8.200 4-9 9-.800-5-4-8.200-9-9 5-.800 8.200-4 9-9z"/><path class="ink" d="M19 2.500c.200 1.300 1 2.100 2.500 2.500-1.500.400-2.300 1.200-2.500 2.500-.200-1.300-1-2.100-2.500-2.500 1.500-.400 2.300-1.200 2.500-2.500z"/>')
+    name: 'قاعدة بيانات',
+    note: 'رمز الـ backend الأشهر، ويكمل عبارة From the database.',
+    art: circle(svg('<ellipse cx="12" cy="6" rx="7.500" ry="3"/><path d="M4.500 6v12c0 1.650 3.360 3 7.500 3s7.500-1.350 7.500-3V6M4.500 12c0 1.650 3.360 3 7.500 3s7.500-1.350 7.500-3"/>'))
   },
   {
-    name: 'رمز الكود',
-    note: 'يقول إنك مهندس برمجيات من أول نظرة، لكنه شائع.',
-    art: svg('<path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.500 5l-3 14"/>')
+    name: 'يد تلوّح',
+    note: 'رمز تعبيري مثل 👏🏼 الموجود بجانب اسمك. الأكثر ودًا.',
+    art: circle('<span class="ci-emoji">👋🏼</span>')
   },
   {
-    name: 'سهم',
-    note: 'الأبسط والأهدأ، ونفس سهم زر See My Work.',
-    art: svg('<path d="M6 18 18 6M8 6h10v10"/>')
+    name: 'ظرف',
+    note: 'واضح ومباشر، ويرتبط بزر Email Me.',
+    art: circle(svg('<rect x="3" y="5.500" width="18" height="13" rx="1.500"/><path d="m3.500 7 8.500 6.500L20.500 7"/>'))
   },
   {
-    name: 'صورتك الشخصية',
-    note: 'الأقوى إنسانيًا. تحتاج صورتك بعد تعديلها، والحروف هنا مؤقتة.',
-    photo: true,
-    art: 'MN'
+    name: 'مصباح فكرة',
+    note: 'يقول: عندك فكرة؟ مألوف، لكنه مفهوم فورًا.',
+    art: circle(svg('<path d="M12 3a6.500 6.500 0 0 0-3.800 11.800c.700.500 1.300 1.300 1.300 2.200h5c0-.900.600-1.700 1.300-2.200A6.500 6.500 0 0 0 12 3z"/><path d="M9.500 20h5M10.500 22.500h3"/>'))
+  },
+  {
+    name: 'إشارة',
+    note: 'دوائر تتسع من نقطة خضراء، كأنها تقول: أنا متاح.',
+    art: circle(svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.500"/><circle class="ci-green" cx="12" cy="12" r="2"/>'))
+  },
+  {
+    name: 'مكعب على داكن',
+    note: 'نفس المكعب بدائرة غامقة مثل زر Email Me، فيصبح حضوره أقوى.',
+    art: circle(svg('<path class="ci-light-fill" d="m12 3 8 4.500-8 4.500-8-4.500z"/><path d="M4 7.500v9l8 4.500 8-4.500v-9M12 12v9"/>'), ' is-dark')
+  },
+  {
+    name: 'شارة متاح',
+    note: 'بدل الصورة، جملة صغيرة تعطي معلومة مفيدة. تناسب إذا كنت متاحًا فعلًا.',
+    art: '<span class="ci-status"><span class="ci-status-dot"></span>Available for work</span>'
+  },
+  {
+    name: 'بدون صورة',
+    note: 'الأهدأ: العبارة والزران فقط، مع توسيط أوضح.',
+    art: ''
   }
 ];
 
 document.getElementById('icons').innerHTML = icons.map((icon, index) => `
   <article class="ci-card">
     <span class="ci-number">${index + 1}</span>
-    <div class="ci-circle${icon.photo ? ' is-photo' : ''}">${icon.art}</div>
+    <div class="ci-art">${icon.art}</div>
     <p class="title"><span class="line">Let’s build</span><span class="line">something great.</span></p>
     <h2 class="ci-name" dir="rtl">${icon.name}</h2>
     <p class="ci-note" dir="rtl">${icon.note}</p>
