@@ -236,18 +236,18 @@ function translatePage() {
   heroTitle.setAttribute('aria-label', 'أبني أنظمة تعمل وتكبر');
   heroTitle.innerHTML = `
     <span class="ar-line ar-soft" aria-hidden="true">أبني أنظمة</span>
-    <span class="ar-line" aria-hidden="true">تعمل ${stretchWord('وتكـ', 'ـبر.', 'ar-grow')}</span>`;
+    <span class="ar-line" aria-hidden="true">تعمل ${stretchWord('وتكـ', 'ـبر', 'ar-grow')}</span>`;
 
   const logos = document.querySelectorAll('.logo');
   logos[logos.length - 1].textContent = 'فكرتك';
 
   set('.clients-label', 'عملت مع');
   set('.ghost-word', 'أعمال');
-  setLines('.projects .subtitle', ['بعض المنتجات', 'التي بنيتها.']);
+  setLines('.projects .subtitle', ['بعض المنتجات', 'التي بنيتها']);
   document.querySelector('.projects .divider-tag').textContent = 'المشاريع';
 
-  setLines('.subtitle-wide', ['من قاعدة البيانات إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج.']);
-  setLines('.subtitle-narrow', ['من قاعدة البيانات', 'إلى الشاشة، أنظمة', 'تعمل بثبات في الإنتاج.']);
+  setLines('.subtitle-wide', ['من قاعدة البيانات إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج']);
+  setLines('.subtitle-narrow', ['من قاعدة البيانات', 'إلى الشاشة، أنظمة', 'تعمل بثبات في الإنتاج']);
   document.querySelector('.services .divider-tag').textContent = 'الخدمات';
 
   const services = [
@@ -263,7 +263,7 @@ function translatePage() {
 
   document.querySelector('.experience .divider-tag').textContent = 'الخبرات';
   setText(document.querySelector('.experience .line'), 'الطريق');
-  setText(document.querySelector('.xp-road'), 'حتى الآن.');
+  setText(document.querySelector('.xp-road'), 'حتى الآن');
   const experience = [
     ['أكتوبر 2026 — الآن', 'مهندس برمجيات (الواجهة الخلفية) · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
     ['أكتوبر 2023 — الآن', 'مهندس برمجيات (الواجهة الخلفية)', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
@@ -290,7 +290,7 @@ function translatePage() {
   contactTitle.setAttribute('aria-label', 'لنبن معًا شيئًا عظيمًا');
   contactTitle.innerHTML = `
     <span class="ar-line ar-soft" aria-hidden="true">لنبنِ معًا</span>
-    <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('عظـ', 'ـيمًا.', 'ar-join')}</span>`;
+    <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('عظـ', 'ـيمًا', 'ar-join')}</span>`;
   setText(document.querySelector('.btn-email'), 'راسلني');
   set('.btn-whatsapp', 'واتساب');
 }
