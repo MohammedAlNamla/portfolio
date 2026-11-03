@@ -236,6 +236,9 @@ svg { display: block; }
 }
 .bar-email-text, .bar-email .icon-copy, .bar-email .icon-check, .bar-email.is-copied .icon-mail { display: none; }
 .bar-email.is-copied .icon-check { display: block; }
+.bar-start { display: flex; align-items: center; gap: 2px; }
+.bar-logo { display: grid; place-items: center; width: 40px; height: 40px; color: var(--ink); font-family: "Mr De Haviland", "Times New Roman", serif; font-size: 2.5rem; line-height: 1; }
+.bar-logo:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 8px; }
 .bar-right { display: flex; align-items: center; gap: 8px; }
 .bar-links { display: none; }
 .bar-icons { display: flex; gap: 2px; }
@@ -449,6 +452,8 @@ svg { display: block; }
 
 /* Small phones: the name tag moves in so it stays on screen */
 @media (max-width: 400px) {
+  .bar-right { gap: 2px; }
+  .bar-logo { width: 34px; font-size: 2.25rem; }
   .avatar-tag { left: 74px; width: 118px; height: 30px; font-size: .625rem; }
 }
 
@@ -489,6 +494,8 @@ svg { display: block; }
   .bar-email-text, .bar-email .icon-copy { display: block; }
   .bar-email .icon-mail, .bar-email.is-copied .icon-copy { display: none; }
   .bar-email .icon-copy { opacity: .55; transition: opacity 160ms ease; }
+  .bar-start { gap: calc(var(--u) * 26); }
+  .bar-logo { width: calc(var(--u) * 44); height: calc(var(--u) * 44); font-size: calc(var(--u) * 52); }
   .bar-right { gap: calc(var(--u) * 26); }
   .bar-links { display: flex; gap: calc(var(--u) * 26); }
   .bar-links a { position: relative; padding-block: calc(var(--u) * 6); }
