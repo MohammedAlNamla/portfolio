@@ -1,0 +1,112 @@
+/* Big year timeline variants. Shared frames and marks come from experience-layouts.css. */
+.year { font-family: var(--font-display); font-weight: 500; letter-spacing: -.04em; line-height: 1.15; }
+.is-past .year { color: #8f8d8a; }
+.head { display: flex; align-items: center; gap: 12px; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+
+/* ---------- 1: editorial rows ---------- */
+.y1-row {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) 150px;
+  gap: 24px;
+  padding-block: 26px;
+  border-top: 1px solid var(--line);
+}
+.y1-row:first-child { padding-top: 0; border-top: 0; }
+.y1-row .year { font-size: 3rem; }
+.y1-row .head { margin-bottom: 8px; }
+.y1-side { text-align: right; }
+.y1-side .date, .y1-side .duration { display: block; }
+.y1-side .now-pill { margin-top: 8px; }
+
+@container xp (max-width: 640px) {
+  .y1-row { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+  .y1-row .year { font-size: 2.25rem; }
+  .y1-side { display: contents; }
+  .y1-side .now-pill { grid-column: 2; grid-row: 1; margin-top: 0; }
+  .y1-body { grid-column: 1 / -1; }
+  .y1-when { grid-column: 1 / -1; text-align: left; }
+  .y1-when .date, .y1-when .duration { display: inline; margin-right: 8px; }
+}
+
+/* ---------- 2: dark rail through current roles ---------- */
+.y2-row { position: relative; display: grid; grid-template-columns: 150px 38px minmax(0, 1fr); gap: 26px; padding-bottom: 34px; }
+.y2-row:last-child { padding-bottom: 0; }
+.y2-row:not(:last-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: 195px; width: 1.5px; background: var(--line); }
+.y2-row.is-current:not(:last-child)::before { width: 2.5px; background: var(--btn); }
+.y2-row .year { text-align: right; font-size: 2.25rem; }
+.y2-row .mark { position: relative; z-index: 1; }
+.y2-row.is-current .mark { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--btn); }
+.y2-row.is-repeat .year { visibility: hidden; }
+.y2-body .meta { margin-bottom: 6px; }
+
+@container xp (max-width: 640px) {
+  .y2-row { grid-template-columns: 38px minmax(0, 1fr); column-gap: 18px; }
+  .y2-row:not(:last-child)::before { left: 18px; }
+  .y2-row .year { grid-column: 2; text-align: left; font-size: 1.75rem; }
+  .y2-row.is-repeat .year { display: none; }
+  .y2-row .mark { grid-column: 1; grid-row: 1 / 3; }
+  .y2-body { grid-column: 2; margin-top: 6px; }
+}
+
+/* ---------- 3: full year ranges ---------- */
+.y3-row { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 28px; padding-block: 24px; border-top: 1px solid var(--line); }
+.y3-row:first-child { padding-top: 0; border-top: 0; }
+.y3-row .year { display: flex; align-items: center; gap: .32em; font-size: 2.25rem; white-space: nowrap; }
+.y3-now { display: inline-flex; align-items: center; gap: .24em; }
+.y3-now .now-dot { width: .24em; height: .24em; box-shadow: 0 0 0 .08em rgba(47, 158, 98, .18); }
+.y3-row .year-sep { color: #a9a7a4; font-size: .7em; }
+.y3-row .head { margin-bottom: 8px; }
+.y3-row .duration { display: block; margin-top: 6px; }
+
+@container xp (max-width: 640px) {
+  .y3-row { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .y3-row .year { font-size: 1.75rem; }
+}
+
+/* ---------- 4: year headers with role cards ---------- */
+.y4-block + .y4-block { margin-top: 30px; }
+.y4-title { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.y4-title .year { font-size: 2.25rem; }
+.y4-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.y4-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.y4-card { padding: 20px; border-radius: 20px; background: var(--surface-light); box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+.y4-card:only-child { grid-column: 1 / -1; }
+.y4-card .head { justify-content: space-between; margin-bottom: 14px; }
+.y4-card .meta { margin-top: 12px; }
+
+@container xp (max-width: 640px) {
+  .y4-cards { grid-template-columns: minmax(0, 1fr); }
+  .y4-title .year { font-size: 1.75rem; }
+}
+
+/* ---------- 5: giant year behind each card ---------- */
+.y5-list { display: grid; gap: 12px; }
+.y5-card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 190px 24px 24px;
+  border-radius: 22px;
+  background: var(--surface-light);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+}
+.y5-card .year {
+  position: absolute;
+  right: 18px;
+  bottom: -.14em;
+  color: rgba(0, 0, 0, .08);
+  font-size: 5.25rem;
+  pointer-events: none;
+}
+.y5-card .head { margin-bottom: 10px; }
+.y5-card .meta { margin-bottom: 8px; }
+.y5-card.is-current { background: var(--btn); color: #fff; }
+.y5-card.is-current .year { color: rgba(255, 255, 255, .1); }
+.y5-card.is-current .role, .y5-card.is-current .note, .y5-card.is-current .duration { color: #c9c7c4; }
+.y5-card.is-current .date { color: #fff; }
+.y5-card.is-current .now-pill, .y5-card.is-current .mark { color: var(--ink); }
+
+@container xp (max-width: 640px) {
+  .y5-card { padding: 20px 20px 62px; }
+  .y5-card .year { font-size: 3.75rem; }
+}
