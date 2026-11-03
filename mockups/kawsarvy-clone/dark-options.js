@@ -1,15 +1,15 @@
 const palettes = [
-  { name: 'الحالي', surface: '#1c1b1a', light: '#242321', raised: '#2e2c2a', ink: '#e9e7e3', fade: '#a5a29d', soft: '#a09e99', btn: '#e4e2dd', btnInk: '#1c1b1a', line: '#353330', muted: '#7d7b76' },
-  { name: 'جرافيت', surface: '#131313', light: '#1c1c1c', raised: '#292929', ink: '#f4f4f4', fade: '#a8a8a8', soft: '#a6a6a6', btn: '#f4f4f4', btnInk: '#131313', line: '#2e2e2e', muted: '#7a7a7a' },
-  { name: 'أسود', surface: '#000000', light: '#101010', raised: '#1f1f1f', ink: '#ffffff', fade: '#a3a3a3', soft: '#a0a0a0', btn: '#ffffff', btnInk: '#000000', line: '#262626', muted: '#757575' },
-  { name: 'حبر أزرق', surface: '#0e1116', light: '#161a21', raised: '#232833', ink: '#eff2f7', fade: '#a2aab8', soft: '#a0a7b4', btn: '#eff2f7', btnInk: '#0e1116', line: '#2a303b', muted: '#747c8a' },
-  { name: 'فحمي دافئ', surface: '#121110', light: '#1f1d1b', raised: '#2d2a27', ink: '#f5f2ec', fade: '#b0aba2', soft: '#aca79e', btn: '#f5f2ec', btnInk: '#121110', line: '#322f2b', muted: '#807b73' },
-  { name: 'أخضر داكن', surface: '#0e1411', light: '#161e1a', raised: '#232d28', ink: '#eff4f1', fade: '#a3b0a9', soft: '#a0ada6', btn: '#eff4f1', btnInk: '#0e1411', line: '#2a342f', muted: '#74807a' }
+  { name: 'رمادي عميق', surface: '#262626', light: '#2f2f2f', raised: '#3a3a3a', ink: '#f2f2f0', fade: '#bcbcb9', soft: '#b7b7b4', btn: '#f2f2f0', btnInk: '#262626', line: '#424242', muted: '#8c8c89' },
+  { name: 'رمادي ناعم', surface: '#2c2c2b', light: '#353534', raised: '#404040', ink: '#f3f3f0', fade: '#c0c0bc', soft: '#bbbbb7', btn: '#f3f3f0', btnInk: '#2c2c2b', line: '#484847', muted: '#92928e' },
+  { name: 'رمادي أخف', surface: '#333332', light: '#3c3c3b', raised: '#474746', ink: '#f5f5f2', fade: '#c6c6c2', soft: '#c1c1bd', btn: '#f5f5f2', btnInk: '#333332', line: '#50504e', muted: '#989894' },
+  { name: 'الأخف', surface: '#3a3a39', light: '#434342', raised: '#4e4e4c', ink: '#f7f7f4', fade: '#cbcbc7', soft: '#c7c7c3', btn: '#f7f7f4', btnInk: '#3a3a39', line: '#575755', muted: '#a0a09c' },
+  { name: 'دافئ ناعم', surface: '#2e2d2b', light: '#373634', raised: '#42403e', ink: '#f4f2ee', fade: '#c1beb8', soft: '#bcb9b3', btn: '#f4f2ee', btnInk: '#2e2d2b', line: '#4a4845', muted: '#93908a' },
+  { name: 'بارد ناعم', surface: '#2b2d30', light: '#34363a', raised: '#3f4246', ink: '#f2f3f5', fade: '#bfc2c7', soft: '#babdc2', btn: '#f2f3f5', btnInk: '#2b2d30', line: '#474a4f', muted: '#90939a' }
 ];
 
 const page = document.getElementById('page');
 const picker = document.getElementById('picker');
-let currentIndex = 0;
+let currentIndex = 1;
 
 function applyPalette(index) {
   currentIndex = index;
