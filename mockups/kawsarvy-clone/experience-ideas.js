@@ -103,7 +103,7 @@ const options = [
 
 document.getElementById('options').innerHTML = options.map(([name, note, build], index) => `
   <article class="ph-option">
-    <div class="ph-label"><b>${index + 1}. ${name}</b><span>${note}</span></div>
+    <div class="ph-label" dir="rtl"><b>${index + 1}. ${name}</b><span>${note}</span></div>
     <button class="ph-replay" type="button">إعادة ↺</button>
     <div class="ph-panes">
       <div class="ph-pane" dir="ltr"><div class="xd">${build('en')}</div></div>
