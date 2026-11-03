@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services Brush</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark.css">
+  <link rel="stylesheet" href="arabic.css">
+  <link rel="stylesheet" href="projects-heading.css">
+  <link rel="stylesheet" href="services-brush.css">
+</head>
+<body>
+  <svg class="brush-defs" aria-hidden="true">
+    <filter id="brush-edge" x="-5%" y="-30%" width="110%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035 .35" numOctaves="3" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="9"/>
+    </filter>
+    <filter id="brush-dry" x="-5%" y="-30%" width="110%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency=".012 .55" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" result="shape"/>
+      <feColorMatrix in="noise" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -7 4.2" result="streaks"/>
+      <feComposite in="shape" in2="streaks" operator="in"/>
+    </filter>
+  </svg>
+  <div class="page">
+    <main class="ph sv">
+      <header class="ph-head">
+        <h1>ضربة فرشاة خلف الكلمة</h1>
+        <p>الفرشاة ترسم نفسها مرة واحدة باتجاه القراءة. زر الإعادة يشغلها مرة ثانية.</p>
+        <button class="ph-theme" id="sv-theme" type="button">تبديل الفاتح والداكن</button>
+      </header>
+      <div class="ph-list" id="options"></div>
+    </main>
+  </div>
+
+  <script src="services-brush.js"></script>
+</body>
+</html>

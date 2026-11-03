@@ -1,0 +1,26 @@
+/* Brush stroke behind a word. The cards come from projects-heading.css. */
+:root { --brush: #d9d6d0; }
+:root[data-theme="dark"] { --brush: #5c5b57; }
+
+.brush-defs { position: absolute; width: 0; height: 0; }
+.sv .h-en { font-size: clamp(1.25rem, 2.1vw, 1.875rem); }
+.sv .h-ar { font-size: clamp(1.5rem, 2.6vw, 2.25rem); }
+
+.w-brush { position: relative; display: inline-block; isolation: isolate; padding-inline: .1em; }
+.w-brush svg { position: absolute; z-index: -1; inset: -.04em -.12em -.02em; width: calc(100% + .24em); height: calc(100% + .06em); overflow: visible; }
+.w-brush path { fill: var(--brush); }
+.w-brush.is-edge svg { filter: url(#brush-edge); }
+.w-brush.is-dry svg { filter: url(#brush-dry); }
+.w-brush.is-low svg { inset: auto -.1em -.06em; width: calc(100% + .2em); height: .55em; filter: url(#brush-edge); }
+.w-brush.is-sweep svg { filter: url(#brush-dry); transform: rotate(-1.5deg); }
+
+/* The stroke travels in the reading direction */
+.is-playing .w-brush svg { animation: brush-ltr 1000ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
+[dir="rtl"] .is-playing .w-brush svg { animation-name: brush-rtl; }
+@keyframes brush-ltr { from { clip-path: inset(-40% 100% -40% -5%); } to { clip-path: inset(-40% -5% -40% -5%); } }
+@keyframes brush-rtl { from { clip-path: inset(-40% -5% -40% 100%); } to { clip-path: inset(-40% -5% -40% -5%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-option * { animation: none !important; }
+  .ph-replay { display: none; }
+}
