@@ -25,7 +25,8 @@ function renderProject(project, rank) {
       ${project.demo ? '<span class="project-demo">Demo</span>' : ''}
     </span>
     <span class="project-name">${project.name}</span>
-    <span class="project-type">${project.type}</span>`;
+    <span class="project-tag">${project.tag}</span>
+    <span class="project-summary">${project.summary}</span>`;
   return card;
 }
 
