@@ -205,7 +205,16 @@ function setText(element, text) {
 }
 
 function setLines(selector, lines) {
-  document.querySelectorAll(`${selector} .line`).forEach((line, index) => { line.textContent = lines[index]; });
+  document.querySelectorAll(`${selector} .line`).forEach((line, index) => {
+    const brushed = line.querySelector('.w-brush');
+    if (!brushed) {
+      line.textContent = lines[index];
+      return;
+    }
+    const words = lines[index].split(' ');
+    setText(brushed, words.pop());
+    setText(line, words.join(' '));
+  });
 }
 
 const stretchWord = (start, end, modifier) =>
@@ -232,6 +241,8 @@ function translatePage() {
   const logos = document.querySelectorAll('.logo');
   logos[logos.length - 1].textContent = 'فكرتك';
 
+  set('.clients-label', 'عملت مع');
+  set('.ghost-word', 'أعمال');
   setLines('.projects .subtitle', ['بعض المنتجات', 'التي بنيتها.']);
   document.querySelector('.projects .divider-tag').textContent = 'المشاريع';
 

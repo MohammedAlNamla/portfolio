@@ -124,6 +124,16 @@ svg { display: block; }
 }
 .subtitle-wide { display: none; }
 
+/* A dry brush stroke behind one word, revealed once in the reading direction */
+:root { --brush: #dedad2; }
+.brush-defs { position: absolute; width: 0; height: 0; }
+.w-brush { position: relative; display: inline-block; isolation: isolate; padding-inline: .1em; color: var(--ink-fade); }
+.w-brush svg { position: absolute; z-index: -1; top: -.26em; left: -.6em; width: calc(100% + 1.2em); height: calc(100% + .52em); overflow: visible; fill: var(--brush); filter: url(#brush-rough); }
+[dir="rtl"] .w-brush svg { transform: scaleX(-1); }
+.w-brush.is-waiting svg { clip-path: inset(-40% 105% -40% -5%); }
+.w-brush.is-drawing svg { animation: brush-reveal 1000ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
+@keyframes brush-reveal { from { clip-path: inset(-40% 105% -40% -5%); } to { clip-path: inset(-40% -5% -40% -5%); } }
+
 [dir="rtl"] .title {
   font-family: "Thmanyah Sans", sans-serif;
   font-weight: 900;
@@ -318,6 +328,12 @@ svg { display: block; }
 .logo-iug img { height: 2.5em; }
 .logo-iug-name { display: grid; gap: .2em; font-size: .9em; letter-spacing: 0; }
 .logo-iug-name small { font-size: .5em; font-weight: 500; }
+
+/* A short label beside the strip, stacked on small screens */
+.clients-side { display: grid; align-items: center; justify-items: center; gap: 22px; }
+.clients-side .marquee { width: 100%; min-width: 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.clients-label { color: var(--ink-soft); font-size: 1.15em; font-weight: 500; white-space: nowrap; }
+[dir="rtl"] .clients-label { font-family: "Fatimah", "Thmanyah Sans", sans-serif; font-size: 1.45em; }
 
 /* The track holds two identical groups, so sliding it by half loops without a jump */
 .marquee {
@@ -527,6 +543,7 @@ svg { display: block; }
     font-size: calc(var(--u) * 14);
   }
   .marquee { --marquee-gap: calc(var(--u) * 120); --logo-room: calc(var(--u) * 16); }
+  .clients-side { grid-template-columns: auto minmax(0, 1fr); gap: calc(var(--u) * 40); padding-inline: calc(var(--u) * 120); }
 
   .services {
     margin-top: calc(var(--u) * 60);

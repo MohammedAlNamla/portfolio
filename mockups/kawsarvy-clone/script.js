@@ -62,16 +62,17 @@ document.querySelectorAll('.xp-duration[data-start]').forEach((duration) => {
   duration.textContent = formatDuration((today.getFullYear() - year) * 12 + today.getMonth() + 1 - month);
 });
 
-// The line under the experience title draws once when it is reached
-const roadWord = document.querySelector('.xp-road');
+// The line under the experience title and the services brush draw once when reached
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  roadWord.classList.add('is-waiting');
-  const roadObserver = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return;
-    roadWord.classList.replace('is-waiting', 'is-drawing');
-    roadObserver.disconnect();
-  }, { threshold: 1 });
-  roadObserver.observe(roadWord);
+  document.querySelectorAll('.xp-road, .w-brush').forEach((word) => {
+    word.classList.add('is-waiting');
+    const wordObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      word.classList.replace('is-waiting', 'is-drawing');
+      wordObserver.disconnect();
+    }, { threshold: .5 });
+    wordObserver.observe(word);
+  });
 }
 
 const marqueeTrack = document.getElementById('marquee-track');

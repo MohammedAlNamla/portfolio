@@ -159,7 +159,28 @@
   .project-card:hover .project-summary { display: block; }
 }
 
+/* A large, very faint word behind the projects heading */
+.projects .subtitle { position: relative; isolation: isolate; }
+.ghost-word {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 19vw, 8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.05em;
+  opacity: .05;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+[dir="rtl"] .ghost-word { font-family: "Fatimah", "Thmanyah Sans", sans-serif; font-weight: 900; letter-spacing: 0; }
+
 @media (min-width: 900px) {
+  .ghost-word { font-size: calc(var(--u) * 128); }
   .projects {
     margin-top: calc(var(--u) * -90);
     padding: calc(var(--u) * 190) calc(var(--u) * 72) calc(var(--u) * 40);

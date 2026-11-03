@@ -23,6 +23,7 @@
 [data-theme="dark"] .project-demo,
 [data-theme="dark"] .sheet-close,
 [data-theme="dark"] .xp-logo { background: var(--raised); color: var(--ink); }
+[data-theme="dark"] { --brush: #4d4c49; }
 [data-theme="dark"] .services .divider-tag { background: var(--raised); }
 [data-theme="dark"] .btn-light,
 [data-theme="dark"] .pill { box-shadow: none; }
