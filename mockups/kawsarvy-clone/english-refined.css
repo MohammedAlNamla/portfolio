@@ -1,0 +1,41 @@
+/* English in the refined copy: the same structure as the Arabic, in Latin type. */
+
+/* Hero and contact: a quiet line, then one word that arrives */
+html:not([dir="rtl"]) .en-title { color: var(--ink); font-size: clamp(1.45rem, 6.5vw, 2rem); line-height: 1.4; }
+.en-line { display: block; white-space: nowrap; }
+.en-soft { color: var(--ink-soft); }
+.en-grow { display: inline-block; font-size: 1.12em; transform-origin: 0 60%; }
+.en-title.is-playing .en-grow { animation: en-grow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+@keyframes en-grow {
+  from { letter-spacing: -.09em; transform: scale(.8); }
+  to { letter-spacing: -.035em; transform: scale(1); }
+}
+
+/* Section headings share the display voice, as the Arabic ones share Fatimah */
+html:not([dir="rtl"]) .subtitle { font-family: var(--font-display); font-size: clamp(1.05rem, 4.9vw, 1.5rem); line-height: 1.55; letter-spacing: -.035em; }
+html:not([dir="rtl"]) .xp-road { letter-spacing: 0; }
+
+/* Text sizes: titles, descriptions and small details */
+html:not([dir="rtl"]) .service h3, html:not([dir="rtl"]) .xp-company { font-size: 1.0625rem; font-weight: 600; line-height: 1.4; }
+html:not([dir="rtl"]) .service p, html:not([dir="rtl"]) .xp-note { font-size: .875rem; line-height: 1.6; }
+html:not([dir="rtl"]) .xp-date, html:not([dir="rtl"]) .xp-duration, html:not([dir="rtl"]) .xp-role { font-size: .8125rem; line-height: 1.55; }
+html:not([dir="rtl"]) .project-name { font-size: 1rem; }
+html:not([dir="rtl"]) .project-tag { font-size: .8125rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .en-title.is-playing .en-grow { animation: none; }
+}
+
+@media (min-width: 900px) {
+  html:not([dir="rtl"]) .en-title { line-height: 1.35; }
+  html:not([dir="rtl"]) .hero .en-title { font-size: calc(var(--u) * 58); }
+  html:not([dir="rtl"]) .cta .en-title { font-size: calc(var(--u) * 48); }
+  html:not([dir="rtl"]) .subtitle { font-size: calc(var(--u) * 28); line-height: calc(var(--u) * 48); }
+  html:not([dir="rtl"]) .btn, html:not([dir="rtl"]) .pill { font-size: calc(var(--u) * 14); }
+  html:not([dir="rtl"]) .tag { font-size: calc(var(--u) * 13); }
+  html:not([dir="rtl"]) .service h3, html:not([dir="rtl"]) .xp-company { font-size: calc(var(--u) * 18); line-height: calc(var(--u) * 26); }
+  html:not([dir="rtl"]) .service p, html:not([dir="rtl"]) .xp-note { font-size: calc(var(--u) * 15); line-height: calc(var(--u) * 24); }
+  html:not([dir="rtl"]) .xp-date, html:not([dir="rtl"]) .xp-duration, html:not([dir="rtl"]) .xp-role { font-size: calc(var(--u) * 13); line-height: calc(var(--u) * 20); }
+  html:not([dir="rtl"]) .project-name { font-size: calc(var(--u) * 15); }
+  html:not([dir="rtl"]) .project-tag { font-size: calc(var(--u) * 13); }
+}

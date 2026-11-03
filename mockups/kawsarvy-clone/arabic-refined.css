@@ -1,33 +1,24 @@
-/* Arabic comparison copy: loaded only by index-ar.html, after arabic.css. */
-
-/* This copy stays Arabic, so there is nothing to switch to */
-#lang-toggle { display: none; }
+/* Refined copy, both languages: loaded only by index-ar.html, after arabic.css. */
 .tag-emoji { display: none; }
 
 /* The marked word is the clearest one in its heading */
 .w-brush, .xp-road { color: var(--ink); }
-
-/* The strip travels with the reading direction */
-.marquee-track { animation-direction: reverse; }
-
-/* Three text sizes: titles, descriptions and small details */
-.service h3, .xp-company { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
-.service p, .xp-note { font-size: .9375rem; line-height: 1.6; }
-.xp-date, .xp-duration, .xp-role { font-size: .8125rem; line-height: 1.6; }
-.project-name { font-size: 1.0625rem; }
-.project-tag { font-size: .875rem; }
 
 /* Small screens: the name sits under the picture instead of over it */
 @media (max-width: 599px) {
   .hero .avatar-tag { left: 50%; top: auto; bottom: -14px; transform: translateX(-50%) rotate(-6deg); }
 }
 
-@media (min-width: 900px) {
-  .bar, .pill, .btn, .tag, .avatar-tag { font-size: calc(var(--u) * 14); }
-  .service h3, .xp-company { font-size: calc(var(--u) * 20); line-height: calc(var(--u) * 28); }
-  .service p, .xp-note { font-size: calc(var(--u) * 16); line-height: calc(var(--u) * 26); }
-  .xp-date, .xp-duration, .xp-role { font-size: calc(var(--u) * 14); line-height: calc(var(--u) * 22); }
-  .project-name { font-size: calc(var(--u) * 16); }
-  .project-tag { font-size: calc(var(--u) * 14); }
-  .project-summary { font-size: calc(var(--u) * 14); }
+/* Arabic: the strip travels with the reading direction */
+[dir="rtl"] .marquee-track { animation-direction: reverse; }
+
+/* Arabic: sizes on small screens (larger screens keep the sizes in arabic.css) */
+[dir="rtl"] .service h3, [dir="rtl"] .xp-company { font-weight: 600; }
+
+@media (max-width: 899px) {
+  [dir="rtl"] .service h3, [dir="rtl"] .xp-company { font-size: 1.125rem; line-height: 1.4; }
+  [dir="rtl"] .service p, [dir="rtl"] .xp-note { font-size: .9375rem; line-height: 1.6; }
+  [dir="rtl"] .xp-date, [dir="rtl"] .xp-duration, [dir="rtl"] .xp-role { font-size: .8125rem; line-height: 1.6; }
+  [dir="rtl"] .project-name { font-size: 1.0625rem; }
+  [dir="rtl"] .project-tag { font-size: .875rem; }
 }

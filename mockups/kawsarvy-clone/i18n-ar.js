@@ -26,8 +26,8 @@ const ui = isArabic
       useDark: 'Use dark theme',
       useLight: 'Use light theme',
       otherLanguage: 'التبديل إلى العربية',
-      demo: 'Demo',
-      demoImage: 'demo image',
+      demo: 'Illustration',
+      demoImage: 'illustration',
       screens: 'screens',
       screenshot: 'screenshot',
       visit: 'Visit site ↗',
@@ -44,8 +44,8 @@ function formatDuration(months) {
   const rest = months % 12;
   if (!isArabic) {
     const parts = [];
-    if (years) parts.push(`${years} ${years === 1 ? 'yr' : 'yrs'}`);
-    if (rest || !years) parts.push(`${Math.max(rest, 1)} ${rest > 1 ? 'mos' : 'mo'}`);
+    if (years) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+    if (rest || !years) parts.push(`${Math.max(rest, 1)} ${rest > 1 ? 'months' : 'month'}`);
     return parts.join(' ');
   }
   const arabicYears = count => (count === 1 ? 'سنة' : count === 2 ? 'سنتان' : count <= 10 ? `${count} سنوات` : `${count} سنة`);
@@ -298,6 +298,18 @@ function translatePage() {
     <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('يـ', 'ـدوم', 'ar-join')}</span>`;
   setText(document.querySelector('.btn-email'), 'راسلني');
   set('.btn-whatsapp', 'واتساب');
+}
+
+// The English headlines settle once when they come into view
+if (!isArabic) {
+  document.querySelectorAll('.en-title').forEach((title) => {
+    const titleObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      title.classList.add('is-playing');
+      titleObserver.disconnect();
+    }, { threshold: .4 });
+    titleObserver.observe(title);
+  });
 }
 
 if (isArabic) {
