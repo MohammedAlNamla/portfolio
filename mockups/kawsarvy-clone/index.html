@@ -18,11 +18,16 @@
   <script>
     try {
       if (localStorage.getItem('portfolio-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
-      if (localStorage.getItem('portfolio-lang') === 'ar') {
-        document.documentElement.lang = 'ar';
-        document.documentElement.dir = 'rtl';
-      }
     } catch (error) {}
+    // Arabic is the default; English only when the visitor chose it
+    let language = 'ar';
+    try {
+      language = localStorage.getItem('portfolio-lang') || 'ar';
+    } catch (error) {}
+    if (language !== 'en') {
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+    }
   </script>
 </head>
 <body>
