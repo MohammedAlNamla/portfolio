@@ -1,4 +1,4 @@
-/* Experience: a vertical timeline, newest first, with a logo on each stop. */
+/* Experience: start years beside a thin rail, darker through current roles. */
 .experience {
   position: relative;
   z-index: 1;
@@ -10,17 +10,46 @@
 .xp-list { max-width: 620px; margin: 48px auto 0; }
 .xp-row {
   position: relative;
-  margin-left: 20px;
-  padding: 0 0 36px 38px;
-  border-left: 1.5px solid var(--line);
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 4px 14px;
+  padding-bottom: 32px;
 }
-.xp-row:last-child { padding-bottom: 0; border-left-color: transparent; }
+.xp-row:last-child { padding-bottom: 0; }
+.xp-row:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 36px;
+  bottom: 0;
+  left: 18.5px;
+  width: 1px;
+  background: var(--line);
+}
+.xp-row.is-current:not(:last-child)::before { background: #8f8d8a; }
+
+.xp-year {
+  grid-column: 2;
+  width: fit-content;
+  color: #9b9996;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.25;
+}
+.is-current .xp-year {
+  background: linear-gradient(90deg, var(--ink) 30%, var(--ink-fade) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.is-repeat .xp-year { display: none; }
 
 /* Placeholder mark: put an <img> inside .xp-logo to use a real logo */
 .xp-logo {
-  position: absolute;
-  top: -2px;
-  left: -20px;
+  position: relative;
+  grid-column: 1;
+  grid-row: 1 / 3;
   display: grid;
   place-items: center;
   width: 38px;
@@ -43,11 +72,14 @@
   transition: opacity 180ms ease, filter 180ms ease;
 }
 
-.xp-date { display: block; margin-bottom: 8px; color: var(--ink-soft); font-size: .8125rem; }
-.xp-company { font-size: 1.0625rem; font-weight: 600; }
+.xp-body { grid-column: 2; }
+.xp-dates { display: flex; flex-wrap: wrap; gap: 0 8px; margin-bottom: 4px; }
+.xp-date, .xp-duration { color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
+.is-current .xp-date { color: var(--ink); }
+.xp-company { font-size: 1rem; font-weight: 600; line-height: 1.4; }
 .xp-company a { transition: color 160ms ease; }
-.xp-role { display: block; margin-top: 2px; color: var(--ink-soft); font-size: .8125rem; }
-.xp-note { margin-top: 8px; color: var(--ink-soft); font-size: .875rem; line-height: 1.5; }
+.xp-role { display: block; margin-top: 1px; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
+.xp-note { margin-top: 4px; color: var(--ink-soft); font-size: .875rem; line-height: 1.5; }
 
 @media (hover: hover) and (pointer: fine) {
   .xp-company a:hover { color: var(--ink-fade); }
@@ -62,9 +94,23 @@
 
 @media (min-width: 900px) {
   .experience { padding: calc(var(--u) * 110) calc(var(--u) * 236) calc(var(--u) * 120); }
-  .xp-list { max-width: calc(var(--u) * 640); margin-top: calc(var(--u) * 62); }
-  .xp-row { padding: 0 0 calc(var(--u) * 40) calc(var(--u) * 42); }
+  .xp-list { max-width: calc(var(--u) * 720); margin-top: calc(var(--u) * 72); }
+  .xp-row {
+    grid-template-columns: calc(var(--u) * 110) calc(var(--u) * 40) minmax(0, 1fr);
+    gap: calc(var(--u) * 22);
+    padding-bottom: calc(var(--u) * 40);
+  }
+  .xp-row:not(:last-child)::before {
+    top: calc(var(--u) * 40);
+    left: calc(var(--u) * 152);
+  }
+  .xp-year { grid-column: 1; font-size: calc(var(--u) * 21); justify-self: end; }
+  .is-repeat .xp-year { display: block; visibility: hidden; }
+  .xp-logo { grid-column: 2; grid-row: 1; width: calc(var(--u) * 40); height: calc(var(--u) * 40); font-size: calc(var(--u) * 12); }
+  .xp-body { grid-column: 3; }
+  .xp-dates { gap: 0 calc(var(--u) * 8); margin-bottom: calc(var(--u) * 4); }
+  .xp-date, .xp-duration, .xp-role { font-size: calc(var(--u) * 13); }
   .xp-company { font-size: calc(var(--u) * 17); }
-  .xp-role, .xp-date { font-size: calc(var(--u) * 13); }
-  .xp-note { font-size: calc(var(--u) * 14); }
+  .xp-role { margin-top: calc(var(--u) * 1); }
+  .xp-note { margin-top: calc(var(--u) * 4); font-size: calc(var(--u) * 14); }
 }
