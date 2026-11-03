@@ -1,43 +1,33 @@
 const svg = (box, inner) => `<svg class="lg" viewBox="${box}" aria-hidden="true">${inner}</svg>`;
 
-// M and N share their middle stem
-const ligature = (w) => {
-  const middle = (50 + w) / 2;
-  const edge = 1.2 * w;
-  return [
-    `M4 4h${w}v56h-${w}z`,
-    `M46 4h${w}v56h-${w}z`,
-    `M${96 - w} 4h${w}v56h-${w}z`,
-    `M4 4h${edge}L${middle} ${46 - 1.8 * w} ${46 + w - edge} 4h${edge}L${middle} 46z`,
-    `M46 4h${edge}L96 60h-${edge}z`
-  ].join('');
-};
-const LIGATURE = ligature(10);
-const joined = svg('0 0 100 64', `<path class="fill" d="${LIGATURE}"/>`);
-const thin = svg('0 0 100 64', `<path class="fill" d="${ligature(5)}"/>`);
-const single = svg('0 0 104 64', '<path class="thin draw" pathLength="1" stroke-width="8" d="M6 58 22 8 38 46 54 8 70 58 94 8"/>');
-const seal = svg('0 0 100 100', `<circle cx="50" cy="50" r="46" stroke-width="5"/><path class="fill" transform="translate(23 32) scale(.54)" d="${LIGATURE}"/>`);
-const tile = svg('0 0 100 100', `<rect class="fill" width="100" height="100" rx="26"/><path class="cut" transform="translate(21 30) scale(.58)" d="${LIGATURE}"/>`);
+// Lowercase m and n share their stems, so the pair becomes three arches in a row
+const ARCHES = 'M8 4V60M8 26a15 15 0 0 1 30 0V60M38 26a15 15 0 0 1 30 0V60M68 26a15 15 0 0 1 30 0V60';
+const arches = svg('0 0 106 64', `<path class="draw" pathLength="1" stroke-width="11" d="${ARCHES}"/>`);
+const archesThin = svg('0 0 106 64', `<path class="draw" pathLength="1" stroke-width="5" d="${ARCHES}"/>`);
+const archTile = svg('0 0 100 100', `<rect class="fill" width="100" height="100" rx="24"/><path transform="translate(19 29) scale(.59)" style="stroke:var(--tile-ink)" stroke-width="11" d="${ARCHES}"/>`);
+const archDot = svg('0 0 124 64', `<path stroke-width="11" d="${ARCHES}"/><circle cx="115" cy="54" r="6.5" class="live"/>`);
 
-const antLetter = svg('0 0 118 64', `<path class="fill" d="${LIGATURE}"/><circle class="fill" cx="109" cy="53" r="7"/>`);
+// Capital M and N cut out of one solid block
+const triangleBlock = svg('0 0 100 64', '<path class="fill" fill-rule="evenodd" d="M0 0H100V64H0ZM20 0H44L32 20ZM14 64V27L31 50V64ZM48 64V27L31 50V64ZM62 0H84V34ZM62 64V30L84 64Z"/>');
 
-const text = html => `<span class="lg-text">${html}</span>`;
-const mixed = text('<span class="serif">M</span><span class="end">N</span>');
-const namla = text('<span>namla</span>');
-const mNamla = text('<span class="serif">m</span><span class="end">namla</span>');
-const fullName = text('<span class="soft">al-</span><span>namla</span>');
+// A ribbon folded into MN, with two tones
+const ribbon = svg('0 0 100 64', '<path class="fill" d="M4 4H16L30 28V46Z" style="opacity:.42"/><path class="fill" d="M56 4H44L30 28V46Z"/><path class="fill" d="M46 4H56V60H46Z" style="opacity:.42"/><path class="fill" d="M4 4H14V60H4Z"/><path class="fill" d="M46 4H58L96 60H84Z"/><path class="fill" d="M86 4H96V60H86Z" style="opacity:.42"/>');
+
+// The letters as a small system diagram
+const nodes = svg('0 0 100 64', '<path class="draw" pathLength="1" stroke-width="3.5" d="M8 58V6L32 42 56 6V58M56 6 92 58V6"/><g class="fill"><circle cx="8" cy="58" r="5.5"/><circle cx="8" cy="6" r="5.5"/><circle cx="32" cy="42" r="5.5"/><circle cx="56" cy="6" r="5.5"/><circle cx="56" cy="58" r="5.5"/><circle cx="92" cy="58" r="5.5"/></g><circle class="live" cx="92" cy="6" r="5.5"/>');
+
+// One stroke of the pen, with a long exit like a signature
+const signature = svg('0 0 124 64', '<path class="thin draw" pathLength="1" stroke-width="5" d="M5 50C12 34 17 17 22 18 27 19 18 42 20 50 26 34 33 17 38 18 43 19 34 42 36 50 42 34 49 17 54 18 59 19 49 41 53 49 58 58 88 48 119 41"/>');
 
 const options = [
-  ['MN مدموجان', 'ترشيحي: M وN يشتركان في عمود واحد. بسيط، قوي، ويُقرأ حتى بأصغر حجم', joined],
-  ['MN ونقطة', 'الحرفان المدموجان ثم نقطة صغيرة', antLetter],
-  ['M إيطالي وN عريض', 'نفس لمسة عنوان البداية: خطك Unbounded مع Instrument Serif', mixed],
-  ['MN رفيع', 'نفس الدمج بخط أخف وأهدأ، لكنه يضعف في الأحجام الصغيرة', thin],
-  ['خط واحد متصل', 'M وN بحركة قلم واحدة، أقرب لنبض نظام يعمل. يُقرأ أبطأ من غيره', single],
-  ['ختم دائري', 'الحرفان داخل دائرة، يتكرر مع دوائر الموقع', seal],
-  ['مربع داكن', 'أيقونة جاهزة للتطبيقات وأيقونة التبويب', tile],
-  ['namla', 'كلمة بدل رمز، سهلة التذكر، وتكفي وحدها في الشريط', namla],
-  ['m + namla', 'حرف اسمك الأول بالإيطالي ثم العائلة', mNamla],
-  ['al-namla', 'اسم العائلة كاملًا بدرجتين', fullName]
+  ['ثلاثة أقواس', 'ترشيحي: m وn الصغيرتان تشتركان في أعمدتهما فتصبحان ثلاثة أقواس، كجسر مبني. وتكرر قوس مشاريعك', arches],
+  ['أقواس ونقطة حية', 'الأقواس ثم نقطة خضراء: نظام يعمل الآن', archDot],
+  ['أقواس رفيعة', 'أخف وأهدأ، وأنسب لهدوء الموقع على الأحجام الكبيرة', archesThin],
+  ['أيقونة الأقواس', 'نفس الفكرة كأيقونة تبويب وتطبيق', archTile],
+  ['شريط مطوي', 'M وN من شريط واحد ينثني بدرجتين، فيظهر عمق بدون ألوان', ribbon],
+  ['كتلة محفورة', 'MN كبيرة من كتلة واحدة، والفراغات مثلثات حادة', triangleBlock],
+  ['مخطط نظام', 'الحروف نقاط متصلة كمخطط قاعدة بيانات، وآخر نقطة خضراء', nodes],
+  ['توقيع', 'حركة قلم واحدة بذيل طويل، كالكشيدة لكن بلغة التوقيع', signature]
 ];
 
 const preview = mark => `
