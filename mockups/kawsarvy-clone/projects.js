@@ -1,9 +1,11 @@
 const tilts = ['-3deg', '2deg', '-2deg', '3deg'];
 
-// The biggest project takes the top of the arc and the rest alternate outwards
+// The biggest project takes the top of the arc and the rest alternate outwards.
+// An even count has no middle card, so half a step keeps both sides equal.
 function arcSlot(rank) {
   const step = Math.ceil(rank / 2);
-  return rank % 2 === 0 ? -step : step;
+  const slot = rank % 2 === 0 ? -step : step;
+  return projects.length % 2 === 0 ? slot - .5 : slot;
 }
 
 function renderProject(project, rank) {
