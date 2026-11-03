@@ -1,19 +1,19 @@
-/* Optional dark theme: warm, low-contrast greys that keep the page's quiet tone. Light stays the default. */
+/* Optional dark theme: soft greys that keep the page's quiet tone. Light stays the default. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface: #1c1b1a;
-  --surface-light: #242321;
-  --raised: #2e2c2a;
-  --ink: #e9e7e3;
-  --ink-fade: #a5a29d;
-  --ink-soft: #a09e99;
-  --btn: #e4e2dd;
-  --btn-ink: #1c1b1a;
-  --line: #353330;
+  --surface: #2c2c2b;
+  --surface-light: #353534;
+  --raised: #404040;
+  --ink: #f3f3f0;
+  --ink-fade: #c0c0bc;
+  --ink-soft: #bbbbb7;
+  --btn: #f3f3f0;
+  --btn-ink: #2c2c2b;
+  --line: #484847;
 }
 
 [data-theme="dark"] .page::after { filter: invert(1); opacity: .035; }
-[data-theme="dark"] .ink { fill: #dbd9d4; }
+[data-theme="dark"] .ink { fill: #e4e4e1; }
 
 /* Raised pieces that were white */
 [data-theme="dark"] .tag,
@@ -36,18 +36,18 @@
 [data-theme="dark"] .services,
 [data-theme="dark"] .cta { box-shadow: none; }
 [data-theme="dark"] .avatar-photo { box-shadow: 0 0 0 3px rgba(255, 255, 255, .07); }
-[data-theme="dark"] .avatar-photo rect { fill: #2e2c2a; }
+[data-theme="dark"] .avatar-photo rect { fill: var(--raised); }
 [data-theme="dark"] .avatar-photo text { fill: var(--ink); }
 
 /* Text and icons with fixed dark colours */
-[data-theme="dark"] .bar { color: #cfcdc8; }
-[data-theme="dark"] .logo { color: #d4d2cd; opacity: .85; filter: none; }
+[data-theme="dark"] .bar { color: #d8d8d4; }
+[data-theme="dark"] .logo { color: #dcdcd8; opacity: .85; filter: none; }
 [data-theme="dark"] .service-icon svg,
-[data-theme="dark"] .cta-circle svg { stroke: #d4d2cd; }
+[data-theme="dark"] .cta-circle svg { stroke: #dcdcd8; }
 [data-theme="dark"] .cta-circle { background: var(--raised); }
-[data-theme="dark"] .xp-year { color: #7d7b76; }
+[data-theme="dark"] .xp-year { color: #92928e; }
 [data-theme="dark"] .is-current .xp-year { color: transparent; }
-[data-theme="dark"] .xp-row.is-current:not(:last-child)::before { background: #6f6d68; }
+[data-theme="dark"] .xp-row.is-current:not(:last-child)::before { background: #7f7f7b; }
 [data-theme="dark"] .xp-logo { border-color: var(--line); }
 
 /* Logos: dark artwork is inverted so it stays visible */
@@ -67,9 +67,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   [data-theme="dark"] .btn-dark:hover,
-  [data-theme="dark"] .sheet-visit:hover { background: #f4f2ee; box-shadow: none; }
+  [data-theme="dark"] .sheet-visit:hover { background: #ffffff; box-shadow: none; }
   [data-theme="dark"] .btn-light:hover,
-  [data-theme="dark"] .pill:hover { background: #383633; box-shadow: none; }
+  [data-theme="dark"] .pill:hover { background: #4a4a49; box-shadow: none; }
   [data-theme="dark"] .bar-icon:hover,
   [data-theme="dark"] .bar-theme:hover { background: rgba(255, 255, 255, .07); }
   [data-theme="dark"] .logo:hover { opacity: 1; filter: none; }
