@@ -14,6 +14,9 @@
 .w-brush.is-low svg { inset: auto -.1em -.06em; width: calc(100% + .2em); height: .55em; filter: url(#brush-edge); }
 .w-brush.is-sweep svg { filter: url(#brush-dry); transform: rotate(-1.5deg); }
 
+.w-brush.is-rise-wide svg, .w-brush.is-rise-thin svg { inset: -.12em -.14em -.12em; width: calc(100% + .28em); height: calc(100% + .24em); filter: url(#brush-edge); }
+.w-brush.is-rise-thin path { fill: var(--ink-fade); }
+
 /* The stroke travels in the reading direction */
 .is-playing .w-brush svg { animation: brush-ltr 1000ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
 [dir="rtl"] .is-playing .w-brush svg { animation-name: brush-rtl; }

@@ -1,11 +1,18 @@
 const shape = '<svg viewBox="0 0 100 36" preserveAspectRatio="none" aria-hidden="true"><path d="M1 9C22 4 62 2 99 6c1 8 1 17-1 25-34 4-68 4-96 1-2-8-2-15-1-23z"/></svg>';
-const brush = (word, style) => `<span class="w-brush ${style}">${shape}${word}</span>`;
+const risingWide = '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C26 22 62 11 100 1l0 9C72 18 42 28 6 40z"/></svg>';
+const risingThin = '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36C28 26 62 14 100 3l0 3C66 18 34 31 3 40z"/></svg>';
+const brush = (word, style) => {
+  const art = style.includes('is-rise-wide') ? risingWide : style.includes('is-rise-thin') ? risingThin : shape;
+  return `<span class="w-brush ${style}">${art}${word}</span>`;
+};
 const en = (...lines) => `<div class="h-en">${lines.map(line => `<span>${line}</span>`).join('')}</div>`;
 const ar = (...lines) => `<div class="h-ar">${lines.map(line => `<span>${line}</span>`).join('')}</div>`;
 const EN_1 = 'From the database to the screen,';
 const AR_1 = 'من قاعدة البيانات إلى الشاشة،';
 
 const options = [
+  ['ضربة صاعدة عريضة', 'كما رسمتها: تصعد من أسفل الكلمة إلى أعلاها', 'is-rise-wide'],
+  ['ضربة صاعدة رفيعة', 'نفس الاتجاه بخط أدق وأغمق', 'is-rise-thin'],
   ['فرشاة ممتلئة', 'حواف خشنة ولون كامل', 'is-edge'],
   ['فرشاة جافة', 'خطوط الشعر ظاهرة داخل الضربة', 'is-dry'],
   ['ضربة سفلية', 'تغطي أسفل الكلمة فقط', 'is-low'],
