@@ -389,7 +389,7 @@ svg { display: block; }
 
 .service-icon { display: flex; align-items: center; height: 36px; }
 .service-icon svg, .cta-circle svg { height: auto; fill: none; stroke: #2b2b2b; stroke-width: 1.100; }
-.service-icon svg { width: 39px; }
+.service-icon svg { width: 39px; stroke-linecap: round; stroke-linejoin: round; }
 
 .service h3 { margin-top: 21px; font-size: .9375rem; font-weight: 500; line-height: 20px; }
 .service p { margin-top: 15px; color: var(--ink-soft); font-size: .75rem; line-height: 17px; text-wrap: pretty; }
