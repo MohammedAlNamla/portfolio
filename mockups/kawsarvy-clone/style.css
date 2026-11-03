@@ -431,6 +431,20 @@ svg { display: block; }
 .btn-email { width: 112px; height: 50px; gap: 9px; font-size: .6875rem; }
 .btn-whatsapp { width: 114px; height: 50px; font-size: .6875rem; }
 
+/* Small phones: the name tag moves in so it stays on screen */
+@media (max-width: 400px) {
+  .avatar-tag { left: 74px; width: 118px; height: 30px; font-size: .625rem; }
+}
+
+/* Tablets: the first section grows to suit the larger screen */
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero .title { font-size: clamp(2.5rem, 6.5vw, 3.5rem); }
+  .hero .avatar { width: 148px; height: 148px; }
+  .hero .avatar-tag { left: 124px; top: 46px; width: 156px; height: 38px; font-size: .8125rem; }
+  .hero .btn-shots { width: 200px; height: 64px; margin-top: 52px; font-size: .9375rem; }
+  .bar { font-size: 1rem; }
+}
+
 /* ---------- Desktop: every size is a fraction of the frame, so it scales as one piece ---------- */
 @media (min-width: 900px) {
   .page { container-type: inline-size; }

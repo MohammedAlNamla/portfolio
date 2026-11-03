@@ -51,6 +51,10 @@
   .is-playing .ar-grow, .is-playing .ar-stretch { animation: none; }
 }
 
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero .ar-title { font-size: clamp(3.25rem, 8.5vw, 4.75rem); }
+}
+
 @media (min-width: 900px) {
   .ar-title { line-height: 1.6; }
   .hero .ar-title { font-size: calc(var(--u) * 76); margin-top: calc(var(--u) * 36); }
