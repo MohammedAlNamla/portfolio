@@ -233,6 +233,21 @@ svg { display: block; }
   border-radius: 50%;
   transition: background-color 160ms ease;
 }
+.bar-theme {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+.icon-sun, [data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
 .pill {
   display: inline-flex;
   align-items: center;
@@ -250,7 +265,7 @@ svg { display: block; }
 .pill-long { display: none; }
 
 @media (hover: hover) and (pointer: fine) {
-  .bar-icon:hover { background: rgba(0, 0, 0, .06); }
+  .bar-icon:hover, .bar-theme:hover { background: rgba(0, 0, 0, .06); }
 }
 
 .avatar { position: relative; width: 112px; height: 112px; }
@@ -451,6 +466,7 @@ svg { display: block; }
     transition: transform 180ms ease;
   }
   .bar-icons, .pill-short { display: none; }
+  .bar-theme { width: calc(var(--u) * 42); height: calc(var(--u) * 42); }
   .pill {
     gap: calc(var(--u) * 8);
     height: calc(var(--u) * 42);

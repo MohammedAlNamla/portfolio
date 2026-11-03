@@ -33,6 +33,26 @@ copyButton.addEventListener('click', async () => {
   }, 1500);
 });
 
+// Light is the default; the choice is remembered only after a visitor picks dark or light
+const themeToggle = document.getElementById('theme-toggle');
+
+function showTheme(isDark) {
+  if (isDark) document.documentElement.dataset.theme = 'dark';
+  else delete document.documentElement.dataset.theme;
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
+}
+
+showTheme(document.documentElement.dataset.theme === 'dark');
+
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.dataset.theme !== 'dark';
+  showTheme(isDark);
+  try {
+    localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+  } catch (error) {}
+});
+
 // Durations of current roles stay correct without editing the page
 function formatDuration(months) {
   const years = Math.floor(months / 12);

@@ -1,0 +1,82 @@
+/* Optional dark theme: warm, low-contrast greys that keep the page's quiet tone. Light stays the default. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #1c1b1a;
+  --surface-light: #242321;
+  --raised: #2e2c2a;
+  --ink: #e9e7e3;
+  --ink-fade: #a5a29d;
+  --ink-soft: #a09e99;
+  --btn: #e4e2dd;
+  --btn-ink: #1c1b1a;
+  --line: #353330;
+}
+
+[data-theme="dark"] .page::after { filter: invert(1); opacity: .035; }
+[data-theme="dark"] .ink { fill: #dbd9d4; }
+
+/* Raised pieces that were white */
+[data-theme="dark"] .tag,
+[data-theme="dark"] .pill,
+[data-theme="dark"] .btn-light,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .project-demo,
+[data-theme="dark"] .sheet-close,
+[data-theme="dark"] .xp-logo { background: var(--raised); color: var(--ink); }
+[data-theme="dark"] .services .divider-tag { background: var(--raised); }
+[data-theme="dark"] .btn-light,
+[data-theme="dark"] .pill { box-shadow: none; }
+
+/* The main button flips to light */
+[data-theme="dark"] .btn-dark,
+[data-theme="dark"] .sheet-visit { background: var(--btn); color: var(--btn-ink); box-shadow: none; }
+
+/* White edges from the light theme become soft or disappear */
+[data-theme="dark"] .hero,
+[data-theme="dark"] .services,
+[data-theme="dark"] .cta { box-shadow: none; }
+[data-theme="dark"] .avatar-photo { box-shadow: 0 0 0 3px rgba(255, 255, 255, .07); }
+[data-theme="dark"] .avatar-photo rect { fill: #2e2c2a; }
+[data-theme="dark"] .avatar-photo text { fill: var(--ink); }
+
+/* Text and icons with fixed dark colours */
+[data-theme="dark"] .bar { color: #cfcdc8; }
+[data-theme="dark"] .logo { color: #d4d2cd; opacity: .85; filter: none; }
+[data-theme="dark"] .service-icon svg,
+[data-theme="dark"] .cta-circle svg { stroke: #d4d2cd; }
+[data-theme="dark"] .cta-circle { background: var(--raised); }
+[data-theme="dark"] .xp-year { color: #7d7b76; }
+[data-theme="dark"] .is-current .xp-year { color: transparent; }
+[data-theme="dark"] .xp-row.is-current:not(:last-child)::before { background: #6f6d68; }
+[data-theme="dark"] .xp-logo { border-color: var(--line); }
+
+/* Logos: dark artwork is inverted so it stays visible */
+[data-theme="dark"] .logo img { filter: grayscale(1); }
+[data-theme="dark"] .logo .logo-full,
+[data-theme="dark"] .logo-iug img,
+[data-theme="dark"] .xp-row .xp-logo img[src*="iug"] { filter: grayscale(1) invert(1); }
+
+/* Screens stay readable without glowing */
+[data-theme="dark"] .project-media img { filter: grayscale(1) brightness(.86); }
+[data-theme="dark"] .project-card:focus-visible img { filter: brightness(.92); }
+[data-theme="dark"] .sheet-hero,
+[data-theme="dark"] .sheet-shot-img { background-color: var(--raised); filter: brightness(.86); }
+[data-theme="dark"] .project-card { box-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25); }
+[data-theme="dark"] .sheet::backdrop { background: rgba(0, 0, 0, .55); }
+[data-theme="dark"] .sheet-close { box-shadow: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="dark"] .btn-dark:hover,
+  [data-theme="dark"] .sheet-visit:hover { background: #f4f2ee; box-shadow: none; }
+  [data-theme="dark"] .btn-light:hover,
+  [data-theme="dark"] .pill:hover { background: #383633; box-shadow: none; }
+  [data-theme="dark"] .bar-icon:hover,
+  [data-theme="dark"] .bar-theme:hover { background: rgba(255, 255, 255, .07); }
+  [data-theme="dark"] .logo:hover { opacity: 1; filter: none; }
+  [data-theme="dark"] .project-card:hover { box-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 26px rgba(0, 0, 0, .32); }
+  [data-theme="dark"] .project-card:hover .project-media img { filter: brightness(.92); }
+}
+
+@media (hover: none) {
+  [data-theme="dark"] .project-media img { filter: brightness(.86); }
+}
