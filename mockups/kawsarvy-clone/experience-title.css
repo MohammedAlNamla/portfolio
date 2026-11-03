@@ -1,0 +1,19 @@
+/* Experience titles. Option cards and word effects come from projects-heading.css. */
+:root { --brush: #dedad2; }
+:root[data-theme="dark"] { --brush: #4d4c49; }
+
+.brush-defs { position: absolute; width: 0; height: 0; }
+.ph-label { flex-wrap: wrap; gap: 2px 10px; padding-inline-end: 76px; }
+.ph-pane { min-height: 200px; }
+.ph-pane .h-en, .ph-pane .h-ar { max-width: 100%; }
+.ph-pane .h-en { font-size: clamp(1.25rem, 2.1vw, 1.875rem); }
+.ph-pane .h-ar { font-size: clamp(1.5rem, 2.6vw, 2.25rem); }
+.ph-pane .h-en > span, .ph-pane .h-ar > span { white-space: normal; }
+
+/* Brush behind a word */
+.w-brush { position: relative; display: inline-block; isolation: isolate; padding-inline: .1em; }
+.w-brush svg { position: absolute; z-index: -1; top: -.2em; left: -.3em; width: calc(100% + .6em); height: calc(100% + .4em); overflow: visible; filter: url(#brush-rough); }
+.w-brush path { fill: var(--brush); }
+[dir="rtl"] .w-brush svg { transform: scaleX(-1); }
+.is-playing .w-brush svg { animation: xt-brush 1000ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
+@keyframes xt-brush { from { clip-path: inset(-40% 100% -40% -5%); } to { clip-path: inset(-40% -5% -40% -5%); } }
