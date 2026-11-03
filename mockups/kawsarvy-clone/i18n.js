@@ -231,7 +231,6 @@ function translatePage() {
   setText(document.querySelector('.avatar-tag'), 'محمد النملة');
   setText(document.querySelector('.btn-shots'), 'استعرض أعمالي');
   document.querySelector('.avatar-photo').setAttribute('aria-label', 'محمد النملة');
-  document.querySelector('.avatar-photo text').textContent = 'م ن';
 
   const heroTitle = document.querySelector('.hero .title');
   heroTitle.classList.add('ar-title');
