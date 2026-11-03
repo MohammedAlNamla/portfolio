@@ -21,7 +21,7 @@
   position: absolute;
   top: 36px;
   bottom: 0;
-  left: 18.5px;
+  inset-inline-start: 18.5px;
   width: 1px;
   background: var(--line);
 }
@@ -102,7 +102,7 @@
   }
   .xp-row:not(:last-child)::before {
     top: calc(var(--u) * 40);
-    left: calc(var(--u) * 152);
+    inset-inline-start: calc(var(--u) * 152);
   }
   .xp-year { grid-column: 1; font-size: calc(var(--u) * 21); justify-self: end; }
   .is-repeat .xp-year { display: block; visibility: hidden; }

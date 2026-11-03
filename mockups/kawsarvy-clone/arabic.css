@@ -1,0 +1,73 @@
+/* Arabic version: right-to-left layout, the Fatimah display font and the stretched word animation. */
+@font-face { font-family: "Fatimah"; font-weight: 500; font-display: swap; src: url("fonts/fatimah/itfFatimahArabic-Medium.otf") format("opentype"); }
+@font-face { font-family: "Fatimah"; font-weight: 700; font-display: swap; src: url("fonts/fatimah/itfFatimahArabic-Bold.otf") format("opentype"); }
+@font-face { font-family: "Fatimah"; font-weight: 900; font-display: swap; src: url("fonts/fatimah/itfFatimahArabic-Black.otf") format("opentype"); }
+
+[dir="rtl"] body { font-family: "Thmanyah Sans", sans-serif; }
+[dir="rtl"] .line { background-image: linear-gradient(270deg, var(--ink) 30%, var(--ink-fade) 100%); padding-block: .1em; }
+[dir="rtl"] .subtitle { font-family: "Fatimah", "Thmanyah Sans", sans-serif; font-weight: 500; line-height: 1.6; }
+[dir="rtl"] .is-current .xp-year { background-image: linear-gradient(270deg, var(--ink) 30%, var(--ink-fade) 100%); }
+[dir="rtl"] .project-card { text-align: right; }
+[dir="rtl"] .project-card:hover .project-name,
+[dir="rtl"] .project-card:hover .project-tag,
+[dir="rtl"] .project-card:focus-visible .project-name,
+[dir="rtl"] .project-card:focus-visible .project-tag { text-align: right; }
+[dir="rtl"] .bar-email-text { direction: ltr; }
+[dir="rtl"] .btn-shots svg, [dir="rtl"] .sheet-visit { direction: rtl; }
+[dir="rtl"] .btn-shots svg { transform: scaleX(-1); }
+[dir="rtl"] .marquee { direction: ltr; }
+[dir="rtl"] .logo { font-family: "Thmanyah Sans", var(--font-text); letter-spacing: 0; }
+[dir="rtl"] .sheet-name { letter-spacing: -.02em; }
+.bar-lang { font: inherit; font-weight: 600; }
+
+/* Headlines */
+.ar-title {
+  color: var(--ink);
+  font-family: "Fatimah", "Thmanyah Sans", sans-serif !important;
+  font-size: clamp(2.375rem, 11vw, 3.25rem);
+  font-weight: 700 !important;
+  line-height: 1.6;
+  letter-spacing: 0 !important;
+}
+.ar-line { display: block; white-space: nowrap; }
+.ar-soft { font-weight: 500; }
+.ar-big { display: inline-block; font-weight: 900; }
+.ar-big > span:not(.ar-stretch) { display: inline-block; margin-inline: -.01em; }
+
+/* A clipped run of kashida widens smoothly, so the word never jumps letter by letter */
+.ar-stretch { display: inline-block; width: 1.5em; clip-path: inset(-50% 0); }
+.ar-stretch > span { display: inline-block; }
+.ar-grow { margin-inline: .12em .6em; transform: scale(1.14); transform-origin: 100% 45%; }
+.ar-join .ar-stretch { width: 1.2em; }
+
+.is-playing .ar-grow { animation: ar-scale 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+.is-playing .ar-grow .ar-stretch { animation: ar-stretch-grow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+.is-playing .ar-join .ar-stretch { animation: ar-stretch-join 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+@keyframes ar-scale { from { transform: scale(.72); } to { transform: scale(1.14); } }
+@keyframes ar-stretch-grow { from { width: 0; } to { width: 1.5em; } }
+@keyframes ar-stretch-join { from { width: 0; } to { width: 1.2em; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .is-playing .ar-grow, .is-playing .ar-stretch { animation: none; }
+}
+
+@media (min-width: 900px) {
+  .ar-title { line-height: 1.6; }
+  .hero .ar-title { font-size: calc(var(--u) * 76); margin-top: calc(var(--u) * 36); }
+  .cta .ar-title { font-size: calc(var(--u) * 60); }
+  [dir="rtl"] .subtitle { font-size: calc(var(--u) * 40); line-height: calc(var(--u) * 66); }
+
+  /* Arabic letters read smaller than Latin at the same size */
+  [dir="rtl"] .bar { font-size: calc(var(--u) * 14); }
+  [dir="rtl"] .pill, [dir="rtl"] .btn { font-size: calc(var(--u) * 15); }
+  [dir="rtl"] .tag { font-size: calc(var(--u) * 14); }
+  [dir="rtl"] .avatar-tag { font-size: calc(var(--u) * 13); }
+  [dir="rtl"] .service h3 { font-size: calc(var(--u) * 21); }
+  [dir="rtl"] .service p { font-size: calc(var(--u) * 17); line-height: calc(var(--u) * 26); }
+  [dir="rtl"] .xp-date, [dir="rtl"] .xp-duration, [dir="rtl"] .xp-role { font-size: calc(var(--u) * 15); }
+  [dir="rtl"] .xp-company { font-size: calc(var(--u) * 19); }
+  [dir="rtl"] .xp-note { font-size: calc(var(--u) * 16); line-height: 1.6; }
+  [dir="rtl"] .project-name { font-size: calc(var(--u) * 14); }
+  [dir="rtl"] .project-tag { font-size: calc(var(--u) * 13); }
+  [dir="rtl"] .project-summary { font-size: calc(var(--u) * 14); line-height: 1.55; }
+}

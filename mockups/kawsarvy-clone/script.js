@@ -22,14 +22,16 @@ async function copyText(text) {
   }
 }
 
+copyButton.setAttribute('aria-label', ui.copy);
+
 copyButton.addEventListener('click', async () => {
   if (!await copyText(email)) return;
   copyButton.classList.add('is-copied');
-  copyButton.setAttribute('aria-label', 'Email address copied');
+  copyButton.setAttribute('aria-label', ui.copied);
   clearTimeout(copyTimer);
   copyTimer = setTimeout(() => {
     copyButton.classList.remove('is-copied');
-    copyButton.setAttribute('aria-label', 'Copy email address');
+    copyButton.setAttribute('aria-label', ui.copy);
   }, 1500);
 });
 
@@ -40,7 +42,7 @@ function showTheme(isDark) {
   if (isDark) document.documentElement.dataset.theme = 'dark';
   else delete document.documentElement.dataset.theme;
   themeToggle.setAttribute('aria-pressed', String(isDark));
-  themeToggle.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
+  themeToggle.setAttribute('aria-label', isDark ? ui.useLight : ui.useDark);
 }
 
 showTheme(document.documentElement.dataset.theme === 'dark');
@@ -54,15 +56,6 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Durations of current roles stay correct without editing the page
-function formatDuration(months) {
-  const years = Math.floor(months / 12);
-  const rest = months % 12;
-  const parts = [];
-  if (years) parts.push(`${years} ${years === 1 ? 'yr' : 'yrs'}`);
-  if (rest || !years) parts.push(`${Math.max(rest, 1)} ${rest > 1 ? 'mos' : 'mo'}`);
-  return parts.join(' ');
-}
-
 const today = new Date();
 document.querySelectorAll('.xp-duration[data-start]').forEach((duration) => {
   const [year, month] = duration.dataset.start.split('-').map(Number);
@@ -85,3 +78,13 @@ for (let copy = 0; copy < 2; copy++) {
 const marqueeClone = marqueeGroup.cloneNode(true);
 marqueeClone.setAttribute('aria-hidden', 'true');
 marqueeTrack.append(marqueeClone);
+
+// The Arabic headlines stretch once when they come into view
+document.querySelectorAll('.ar-title').forEach((title) => {
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    title.classList.add('is-playing');
+    observer.disconnect();
+  }, { threshold: .4 });
+  observer.observe(title);
+});

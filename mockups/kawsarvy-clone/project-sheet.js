@@ -2,6 +2,7 @@
 const sheet = document.getElementById('project-sheet');
 const sheetBody = document.getElementById('project-sheet-body');
 const sheetScroll = sheet.querySelector('.sheet-scroll');
+sheet.querySelector('.sheet-close').setAttribute('aria-label', ui.close);
 let currentIndex = -1;
 let closeTimer = null;
 let openerCard = null;
@@ -27,12 +28,12 @@ function renderSheet(project, index) {
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   const visit = project.url
-    ? `<a class="sheet-visit" href="${project.url}" target="_blank" rel="noopener">Visit site ↗</a>`
+    ? `<a class="sheet-visit" href="${project.url}" target="_blank" rel="noopener">${ui.visit}</a>`
     : '';
-  const demo = project.demo ? '<span class="project-demo">Demo image</span>' : '';
+  const demo = project.demo ? `<span class="project-demo">${ui.demoImage}</span>` : '';
 
   sheetBody.innerHTML = `
-    <div class="sheet-hero" role="img" aria-label="${project.name} ${project.demo ? 'demo image' : 'screens'}" style="${cropStyle(project.image, project.crop)}">${demo}</div>
+    <div class="sheet-hero" role="img" aria-label="${project.name} ${project.demo ? ui.demoImage : ui.screens}" style="${cropStyle(project.image, project.crop)}">${demo}</div>
     <div class="sheet-head">
       <div>
         <h2 class="sheet-name" id="project-sheet-title">${project.name}</h2>
@@ -42,13 +43,13 @@ function renderSheet(project, index) {
     </div>
     <div class="sheet-meta">${project.meta.map(item => `<span>${item}</span>`).join('')}</div>
     <div class="sheet-columns">
-      <section class="sheet-block"><h3>For the business</h3>${renderItems(project.business)}</section>
-      <section class="sheet-block"><h3>For engineers</h3>${renderItems(project.engineering)}</section>
+      <section class="sheet-block"><h3>${ui.forBusiness}</h3>${renderItems(project.business)}</section>
+      <section class="sheet-block"><h3>${ui.forEngineers}</h3>${renderItems(project.engineering)}</section>
     </div>
     ${renderGallery(project)}
-    <nav class="sheet-nav" aria-label="More projects">
-      <button type="button" data-go="${(index - 1 + projects.length) % projects.length}">← ${previous.name}</button>
-      <button type="button" data-go="${(index + 1) % projects.length}">${next.name} →</button>
+    <nav class="sheet-nav" aria-label="${ui.moreProjects}">
+      <button type="button" data-go="${(index - 1 + projects.length) % projects.length}">${ui.previous(previous.name)}</button>
+      <button type="button" data-go="${(index + 1) % projects.length}">${ui.next(next.name)}</button>
     </nav>`;
   sheetScroll.scrollTop = 0;
 }
