@@ -1,22 +1,19 @@
-const shape = '<svg viewBox="0 0 100 36" preserveAspectRatio="none" aria-hidden="true"><path d="M1 9C22 4 62 2 99 6c1 8 1 17-1 25-34 4-68 4-96 1-2-8-2-15-1-23z"/></svg>';
-const risingWide = '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C26 22 62 11 100 1l0 9C72 18 42 28 6 40z"/></svg>';
-const risingThin = '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36C28 26 62 14 100 3l0 3C66 18 34 31 3 40z"/></svg>';
-const brush = (word, style) => {
-  const art = style.includes('is-rise-wide') ? risingWide : style.includes('is-rise-thin') ? risingThin : shape;
-  return `<span class="w-brush ${style}">${art}${word}</span>`;
-};
+// A wavy body with frayed ends. The inner shapes are the dry gaps left by the bristles.
+const BODY = 'M14 88L34 70 26 70 52 52 44 51 74 34 68 32 96 24C130 15 165 14 200 24C235 34 262 32 296 22L322 14 316 11 346 6 340 14 352 16 342 26 350 30 340 40 348 46 336 54 342 62 326 70C290 84 245 94 195 90C155 87 125 78 92 80C62 82 38 88 14 88Z';
+const GAPS = 'M70 50C110 37 160 35 205 45C245 53 285 47 325 31C285 49 245 56 205 49C160 40 112 42 70 50ZM120 60C140 55 160 54 178 56C160 56 140 57 120 60ZM130 25L150 22 172 24 150 25ZM240 35L262 34 285 28 262 37Z';
+const STRANDS = 'M3 97L30 82 12 96ZM18 68L48 49 28 67ZM58 26L88 17 68 28ZM350 2L358 1 330 12ZM354 36L359 37 345 48ZM300 90L330 76 312 90Z';
+const art = `<svg viewBox="0 0 360 100" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" d="${BODY}${GAPS}"/><path d="${STRANDS}"/></svg>`;
+const brush = (word, style) => `<span class="w-brush ${style}">${art}${word}</span>`;
 const en = (...lines) => `<div class="h-en">${lines.map(line => `<span>${line}</span>`).join('')}</div>`;
 const ar = (...lines) => `<div class="h-ar">${lines.map(line => `<span>${line}</span>`).join('')}</div>`;
 const EN_1 = 'From the database to the screen,';
 const AR_1 = 'من قاعدة البيانات إلى الشاشة،';
 
 const options = [
-  ['ضربة صاعدة عريضة', 'كما رسمتها: تصعد من أسفل الكلمة إلى أعلاها', 'is-rise-wide'],
-  ['ضربة صاعدة رفيعة', 'نفس الاتجاه بخط أدق وأغمق', 'is-rise-thin'],
-  ['فرشاة ممتلئة', 'حواف خشنة ولون كامل', 'is-edge'],
-  ['فرشاة جافة', 'خطوط الشعر ظاهرة داخل الضربة', 'is-dry'],
-  ['ضربة سفلية', 'تغطي أسفل الكلمة فقط', 'is-low'],
-  ['ضربة مائلة', 'فرشاة جافة بميل خفيف', 'is-sweep']
+  ['هادئة', 'الدرجة التي أنصح بها', ''],
+  ['أخف', 'تكاد تذوب في الخلفية', 'is-faint'],
+  ['أوضح', 'حضورها أقوى قليلًا', 'is-clear'],
+  ['أعرض', 'بالدرجة الهادئة وتتجاوز الكلمة أكثر', 'is-wide']
 ];
 
 document.getElementById('options').innerHTML = options.map(([name, note, style], index) => `
