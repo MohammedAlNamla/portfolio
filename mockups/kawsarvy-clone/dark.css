@@ -37,6 +37,8 @@
 [data-theme="dark"] .services,
 [data-theme="dark"] .cta { box-shadow: none; }
 [data-theme="dark"] .avatar-photo { box-shadow: 0 0 0 3px rgba(255, 255, 255, .07); }
+/* The name stays light so it never merges with the circle behind it */
+[data-theme="dark"] .avatar-tag { background: var(--btn); color: var(--btn-ink); }
 [data-theme="dark"] .avatar-photo rect { fill: var(--raised); }
 [data-theme="dark"] .avatar-photo text { fill: var(--ink); }
 
