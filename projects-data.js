@@ -1,30 +1,30 @@
 // Biggest project first. This list drives both the cards and the details sheet.
-// crop = [zoom, x, y] for the cover image; shots = crops of the same image shown in the gallery.
+// crop = [zoom, x, y]; projects can also supply separate detail and gallery images.
 const projects = [
   {
     id: 'restrogram',
     name: 'RestroGram',
-    type: 'Restaurant menu, ordering and POS SaaS',
+    type: 'Restaurant point of sale and operations',
     tag: 'Restaurant SaaS',
-    summary: 'Runs a restaurant from one system: QR menu, ordering, POS, kitchen screens and reports.',
-    image: 'images/Sufra.webp',
+    summary: 'Connects order taking, checkout, kitchen screens and stock control.',
+    image: 'images/covers/restrogram.webp',
+    detailImage: 'images/showcases/restrogram/overview.webp',
     url: 'https://sufra.live/',
-    crop: ['132%', '93%', '2%'],
     meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
-      ['The problem', 'Restaurants need their menu, orders, tables and till to work as one system.'],
-      ['Who uses it', 'Owners and staff run the dashboard, POS and kitchen screens. Diners order from the menu.'],
+      ['The problem', 'Restaurants need orders, tables, checkout and kitchen workflow to work as one system.'],
+      ['Who uses it', 'Cashiers take orders, kitchen staff track preparation, and managers oversee operations and stock.'],
       ['Where it stands', 'Live, with real restaurant owners and customers.']
     ],
     engineering: [
       ['A POS that survives outages', "Orders queue in IndexedDB and sync on reconnect, so a dropped line doesn't stop a busy shift."],
-      ['One backend for every app', 'A single Laravel API serves the menu, dashboard, operator console and staff app across many stores.'],
+      ['One backend for every app', 'A single Laravel API serves the dashboard, operator console and staff app across many stores.'],
       ['Central printing', 'A Flutter staff app doubles as the central print device for the restaurant.']
     ],
     shots: [
-      { crop: ['240%', '39%', '4%'], caption: 'Owner dashboard and reports' },
-      { crop: ['313%', '97.5%', '6%'], caption: 'Kitchen display, live orders' },
-      { crop: ['284%', '97%', '90%'], caption: 'Point of sale' }
+      { image: 'images/showcases/restrogram/feature-1.webp', caption: 'Point of sale and checkout with sample dish photography' },
+      { image: 'images/showcases/restrogram/feature-2.webp', caption: 'Kitchen display and inventory batch' },
+      { image: 'images/showcases/restrogram/feature-3.webp', caption: 'Supplier directory, company profiles and offers' }
     ]
   },
   {
@@ -33,9 +33,9 @@ const projects = [
     type: 'Booking platform for service businesses',
     tag: 'Booking platform',
     summary: 'Lets salons, clinics and spas take bookings online and manage calendars, clients and reports.',
-    image: 'images/BFM.webp',
+    image: 'images/covers/bookforme.webp',
+    detailImage: 'images/bookforme/showcase-hero.png',
     url: 'https://www.bookforme.ps',
-    crop: ['178%', '49%', '14.5%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
       ['The problem', 'Salons, clinics and spas need online booking without managing calls and messages by hand.'],
@@ -46,6 +46,10 @@ const projects = [
       ['Multi-tenant by design', 'Each store keeps its own isolated data across several connected apps.'],
       ['Availability logic', 'Calendars combine staff, services, working hours and blocked time.'],
       ['Live updates', 'Laravel Reverb pushes real-time changes over WebSockets.']
+    ],
+    shots: [
+      { image: 'images/bookforme/showcase-booking.png', caption: 'The customer booking experience' },
+      { image: 'images/bookforme/showcase-calendar.png', caption: 'Staff calendars and daily appointments' }
     ]
   },
   {
@@ -54,7 +58,8 @@ const projects = [
     type: 'Agile project management tool',
     tag: 'Project tool',
     summary: 'Keeps software teams in one place, from backlog and sprints to Kanban boards and chat.',
-    image: 'images/Taskat.webp',
+    image: 'images/covers/taskat.webp',
+    detailImage: 'images/showcases/taskat/overview.webp',
     crop: ['136%', '95%', '2%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
@@ -66,6 +71,10 @@ const projects = [
       ['Permissions per project', 'Role-based access is checked for each project, not only per account.'],
       ['A full audit trail', 'Every change to issues and projects is kept in a readable history.'],
       ['Real-time chat', 'Channels, reactions and pinned messages run on broadcasting.']
+    ],
+    shots: [
+      { image: 'images/showcases/taskat/feature-1.webp', caption: 'Project list and sprint backlog' },
+      { image: 'images/showcases/taskat/feature-2.webp', caption: 'Kanban board in light and dark mode' }
     ]
   },
   {
@@ -74,8 +83,8 @@ const projects = [
     type: 'Education platform for teachers and students',
     tag: 'Education',
     summary: 'Gives administrators, teachers and students their own space for educational content.',
-    image: 'demo/edux.svg',
-    demo: true,
+    image: 'images/covers/edux.webp',
+    detailImage: 'images/showcases/edux/overview.webp',
     crop: ['100%', '50%', '50%'],
     meta: ['Full-stack', 'In development', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
@@ -87,6 +96,10 @@ const projects = [
       ['Organised by domain', 'Roles get separate interfaces without duplicating the business modules behind them.'],
       ['A strict request path', 'Requests pass through protection layers, validation, services and repositories before Prisma.'],
       ['Safe public IDs', 'The API exposes UUIDs only, while the database can use numeric IDs inside.']
+    ],
+    shots: [
+      { image: 'images/showcases/edux/feature-1.webp', caption: 'Partner dashboard and learning library' },
+      { image: 'images/showcases/edux/feature-2.webp', caption: 'Administration and sign-in screens' }
     ]
   },
   {
@@ -95,7 +108,8 @@ const projects = [
     type: 'University website and CMS',
     tag: 'University CMS',
     summary: 'Lets university staff publish news, events, exams and pages in several languages.',
-    image: 'images/UOP.webp',
+    image: 'images/covers/uop.webp',
+    detailImage: 'images/showcases/uop/overview.webp',
     url: 'https://up.edu.ps/ar',
     crop: ['235%', '36%', '5%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'Vue', 'Inertia'],
@@ -108,6 +122,10 @@ const projects = [
       ['Pages without deploys', 'Any page created in the dashboard is served automatically by a catch-all route.'],
       ['A headless API', 'A JSON API keeps the public site separate from the admin system.'],
       ['Documented surface', 'The API is described with OpenAPI 3.0.']
+    ],
+    shots: [
+      { image: 'images/showcases/uop/feature-1.webp', caption: 'Admissions and the mobile university website' },
+      { image: 'images/showcases/uop/feature-2.webp', caption: 'CMS dashboard and content listing' }
     ]
   },
   {
@@ -116,9 +134,9 @@ const projects = [
     type: 'Internet service management system',
     tag: 'ISP management',
     summary: "Manages an internet provider's prepaid cards, loyalty points, support tickets and field work.",
-    image: 'images/NetSpeed.webp',
+    image: 'images/covers/netspeed.webp',
+    detailImage: 'images/showcases/netspeed/overview.webp',
     url: 'https://points.red-radius.com',
-    crop: ['279%', '33%', '2%'],
     meta: ['Full-stack', 'Laravel', 'jQuery', 'SMS'],
     business: [
       ['The problem', 'An internet provider needs cards, customers, support and field work in one system.'],
@@ -137,8 +155,8 @@ const projects = [
     type: 'Booking API for flights, transfers and travel eSIMs',
     tag: 'Travel API',
     summary: 'One API for booking flights and transfers and buying travel eSIMs, with guest checkout.',
-    image: 'demo/shahrazad.svg',
-    demo: true,
+    image: 'images/covers/shahrazad.webp',
+    detailImage: 'images/showcases/shahrazad/overview.webp',
     crop: ['100%', '50%', '50%'],
     meta: ['Backend', 'At Fikritak', 'Laravel 12', 'MySQL'],
     business: [
@@ -150,6 +168,10 @@ const projects = [
       ['Providers behind one interface', 'Business logic talks to one provider interface, so a provider can change without touching it.'],
       ['Booking without an account', 'A short reference and an email open a booking without signing in.'],
       ['Staying in sync', 'Provider webhooks and scheduled checks keep local orders up to date.']
+    ],
+    shots: [
+      { image: 'images/showcases/shahrazad/feature-1.webp', caption: 'Flight and transfer UI designs' },
+      { image: 'images/showcases/shahrazad/feature-2.webp', caption: 'Travel eSIM and flight UI designs' }
     ]
   },
   {
@@ -158,8 +180,8 @@ const projects = [
     type: 'Visual database schema explorer',
     tag: 'Developer tool',
     summary: 'Makes large database schemas easier to explore, with diagrams and reviewable change drafts.',
-    image: 'demo/er-atlas.svg',
-    demo: true,
+    image: 'images/covers/er-atlas.webp',
+    detailImage: 'images/showcases/er-atlas/overview.webp',
     crop: ['100%', '50%', '50%'],
     meta: ['Personal tool', 'Node.js', 'JavaScript', 'PostgreSQL'],
     business: [
@@ -171,6 +193,10 @@ const projects = [
       ['Drafts before changes', 'Edits are proposed as drafts for review instead of being written to the database.'],
       ['Suggestions from real usage', 'Suggestions use how code uses tables, not only names and foreign keys.'],
       ['Small and local', 'A local Node server with a plain JavaScript front end.']
+    ],
+    shots: [
+      { image: 'images/showcases/er-atlas/feature-1.webp', caption: 'Relationship diagrams in dark and light mode' },
+      { image: 'images/showcases/er-atlas/feature-2.webp', caption: 'Schema catalog and topics' }
     ]
   }
 ];

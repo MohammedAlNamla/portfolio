@@ -18,7 +18,9 @@ function renderGallery(project) {
   if (!project.shots) return '';
   const shots = project.shots.map(shot => `
     <figure class="sheet-shot">
-      <div class="sheet-shot-img" role="img" aria-label="${shot.caption}" style="${cropStyle(project.image, shot.crop)}"></div>
+      ${shot.image
+        ? `<a href="${shot.image}" target="_blank" rel="noopener"><img class="sheet-shot-img" src="${shot.image}" alt="${shot.caption}" loading="lazy"></a>`
+        : `<div class="sheet-shot-img" role="img" aria-label="${shot.caption}" style="${cropStyle(project.image, shot.crop)}"></div>`}
       <figcaption>${shot.caption}</figcaption>
     </figure>`).join('');
   return `<div class="sheet-gallery">${shots}</div>`;
@@ -31,9 +33,13 @@ function renderSheet(project, index) {
     ? `<a class="sheet-visit" href="${project.url}" target="_blank" rel="noopener">${ui.visit}</a>`
     : '';
   const demo = project.demo ? `<span class="project-demo">${ui.demoImage}</span>` : '';
+  const heroLabel = `${project.name} ${project.demo && !project.detailImage ? ui.demoImage : ui.screens}`;
+  const hero = project.detailImage
+    ? `<a href="${project.detailImage}" target="_blank" rel="noopener"><img class="sheet-hero sheet-hero-image" src="${project.detailImage}" alt="${heroLabel}"></a>`
+    : `<div class="sheet-hero" role="img" aria-label="${heroLabel}" style="${cropStyle(project.image, project.crop)}">${demo}</div>`;
 
   sheetBody.innerHTML = `
-    <div class="sheet-hero" role="img" aria-label="${project.name} ${project.demo ? ui.demoImage : ui.screens}" style="${cropStyle(project.image, project.crop)}">${demo}</div>
+    ${hero}
     <div class="sheet-head">
       <div>
         <h2 class="sheet-name" id="project-sheet-title">${project.name}</h2>

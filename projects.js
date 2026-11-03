@@ -21,7 +21,7 @@ function renderProject(project, rank) {
   card.style.setProperty('--caption', slot > 0 ? 'right' : 'left');
   card.innerHTML = `
     <span class="project-media">
-      <img src="${project.image}" alt="${project.name} ${project.demo ? ui.demoImage : ui.screenshot}" loading="lazy">
+      <img src="${project.image}" alt="${project.name} ${ui.demoImage}" loading="lazy">
       ${project.demo ? `<span class="project-demo">${ui.demo}</span>` : ''}
     </span>
     <span class="project-name">${project.name}</span>
