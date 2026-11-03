@@ -8,7 +8,7 @@
 .tc-section { max-width: 1240px; margin: 0 auto 52px; }
 .tc-section > h2 { margin-bottom: 14px; font-size: 1.125rem; font-weight: 700; }
 .tc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 470px), 1fr)); gap: 14px; }
-.tc-card { position: relative; overflow: hidden; display: grid; grid-template-rows: auto auto; justify-items: center; align-content: center; min-height: 300px; padding: 46px 16px 62px; border-radius: 24px; background: var(--surface-light); box-shadow: 0 0 0 1px rgba(0, 0, 0, .05); }
+.tc-card { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; justify-items: center; align-content: center; min-height: 300px; padding: 46px 16px 62px; border-radius: 24px; background: var(--surface-light); box-shadow: 0 0 0 1px rgba(0, 0, 0, .05); }
 .tc-number { position: absolute; top: 14px; right: 18px; font-size: .875rem; font-weight: 700; }
 .tc-name { position: absolute; bottom: 18px; right: 18px; color: var(--ink-soft); font-size: .875rem; }
 .tc-replay { position: absolute; bottom: 8px; left: 10px; min-height: 40px; padding-inline: 12px; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); font: inherit; font-size: .8125rem; cursor: pointer; }
@@ -64,9 +64,9 @@
 .tc-fade { -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
 .tc-strip-track { display: inline-block; animation: tc-marquee 24s linear infinite; }
 @keyframes tc-marquee { to { transform: translateX(-50%); } }
-.tc-side { display: flex; align-items: center; gap: 16px; width: 100%; }
+.tc-side { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 16px; width: 100%; min-width: 0; }
 .tc-side b { flex-shrink: 0; font-family: "Fatimah", sans-serif; font-size: 1.375rem; }
-.tc-side .tc-strip { flex: 1; }
+.tc-side .tc-strip { flex: 1; width: auto; min-width: 0; }
 
 /* Ring drawn around the handshake */
 .tc-circle { position: relative; display: grid; place-items: center; width: 92px; height: 92px; margin-bottom: 14px; border-radius: 50%; background: var(--surface); }
