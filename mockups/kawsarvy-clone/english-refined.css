@@ -1,15 +1,22 @@
 /* English in the refined copy: the same structure as the Arabic, in Latin type. */
 
-/* Hero and contact: a quiet line, then one word that arrives */
+/* Hero and contact: a quiet line, then a dark one. The hero's ampersand is the ornament. */
 html:not([dir="rtl"]) .en-title { color: var(--ink); font-size: clamp(1.45rem, 6.5vw, 2rem); line-height: 1.4; }
 .en-line { display: block; white-space: nowrap; }
 .en-soft { color: var(--ink-soft); }
-.en-grow { display: inline-block; font-size: 1.12em; transform-origin: 0 60%; }
-.en-title.is-playing .en-grow { animation: en-grow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
-@keyframes en-grow {
-  from { letter-spacing: -.09em; transform: scale(.8); }
-  to { letter-spacing: -.035em; transform: scale(1); }
+.en-amp {
+  display: inline-block;
+  margin-inline: -.02em .04em;
+  font-family: "Instrument Serif", "Times New Roman", serif;
+  font-size: 1.55em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: .6;
+  vertical-align: -.07em;
 }
+.en-title.is-playing .en-amp { animation: en-amp 1400ms cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes en-amp { from { opacity: 0; transform: rotate(-14deg) scale(.7); } }
 
 /* Section headings share the display voice, as the Arabic ones share Fatimah */
 html:not([dir="rtl"]) .subtitle { font-family: var(--font-display); font-size: clamp(1.05rem, 4.9vw, 1.5rem); line-height: 1.55; letter-spacing: -.035em; }
@@ -23,7 +30,7 @@ html:not([dir="rtl"]) .project-name { font-size: 1rem; }
 html:not([dir="rtl"]) .project-tag { font-size: .8125rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .en-title.is-playing .en-grow { animation: none; }
+  .en-title.is-playing .en-amp { animation: none; }
 }
 
 @media (min-width: 900px) {
