@@ -19,9 +19,6 @@ const single = svg('0 0 104 64', '<path class="thin draw" pathLength="1" stroke-
 const seal = svg('0 0 100 100', `<circle cx="50" cy="50" r="46" stroke-width="5"/><path class="fill" transform="translate(23 32) scale(.54)" d="${LIGATURE}"/>`);
 const tile = svg('0 0 100 100', `<rect class="fill" width="100" height="100" rx="26"/><path class="cut" transform="translate(21 30) scale(.58)" d="${LIGATURE}"/>`);
 
-// Namla means ant: three body parts, then legs and antennae
-const ant = svg('0 0 108 64', '<ellipse class="fill" cx="28" cy="34" rx="20" ry="14"/><circle class="fill" cx="58" cy="34" r="8"/><circle class="fill" cx="80" cy="30" r="11"/><path class="thin" stroke-width="3.5" d="M54 40 44 58M58 42V60M62 40 72 58M86 21C90 13 96 10 103 11"/>');
-const trail = svg('0 0 108 64', '<ellipse class="fill" cx="28" cy="34" rx="20" ry="14"/><circle class="fill" cx="58" cy="34" r="8"/><circle class="fill" cx="80" cy="32" r="11"/>');
 const antLetter = svg('0 0 118 64', `<path class="fill" d="${LIGATURE}"/><circle class="fill" cx="109" cy="53" r="7"/>`);
 
 const text = html => `<span class="lg-text">${html}</span>`;
@@ -32,9 +29,7 @@ const fullName = text('<span class="soft">al-</span><span>namla</span>');
 
 const options = [
   ['MN مدموجان', 'ترشيحي: M وN يشتركان في عمود واحد. بسيط، قوي، ويُقرأ حتى بأصغر حجم', joined],
-  ['النملة', 'معنى اسمك مرسوم: نملة تبني وتحمل أكثر من وزنها. قصة لا يملكها غيرك', ant],
-  ['ثلاث نقاط', 'جسم النملة مجردًا: من يعرف يراها، ومن لا يعرف يرى علامة هندسية', trail],
-  ['MN ونقطة النملة', 'يجمع الحروف مع المعنى: الحرفان ثم نقطة صغيرة كنملة تمشي', antLetter],
+  ['MN ونقطة', 'الحرفان المدموجان ثم نقطة صغيرة', antLetter],
   ['M إيطالي وN عريض', 'نفس لمسة عنوان البداية: خطك Unbounded مع Instrument Serif', mixed],
   ['MN رفيع', 'نفس الدمج بخط أخف وأهدأ، لكنه يضعف في الأحجام الصغيرة', thin],
   ['خط واحد متصل', 'M وN بحركة قلم واحدة، أقرب لنبض نظام يعمل. يُقرأ أبطأ من غيره', single],
