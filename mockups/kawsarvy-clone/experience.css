@@ -5,7 +5,37 @@
   padding: 72px clamp(17px, 7vw, 64px) 84px;
   background: var(--surface);
 }
-.experience .divider { margin-top: 0; }
+
+/* The title: a different voice and a hand-drawn line under the last words */
+.xp-road {
+  position: relative;
+  display: inline-block;
+  color: var(--ink-fade);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.22em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.xp-road svg {
+  position: absolute;
+  inset: auto -2% -.14em;
+  width: 104%;
+  height: .28em;
+  overflow: visible;
+  fill: none;
+  stroke: var(--ink-fade);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.xp-road path { stroke-dasharray: 1; vector-effect: non-scaling-stroke; }
+.xp-road.is-waiting path { stroke-dashoffset: 1; }
+.xp-road.is-drawing path { animation: xp-road-draw 1100ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
+@keyframes xp-road-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+[dir="rtl"] .xp-road { font-family: inherit; font-size: 1em; font-style: normal; font-weight: inherit; line-height: inherit; }
+[dir="rtl"] .xp-road svg { transform: scaleX(-1); }
 
 .xp-list { max-width: 620px; margin: 48px auto 0; }
 .xp-row {
@@ -43,7 +73,6 @@
   background-clip: text;
   color: transparent;
 }
-.is-repeat .xp-year { display: none; }
 
 /* Placeholder mark: put an <img> inside .xp-logo to use a real logo */
 .xp-logo {
@@ -81,6 +110,16 @@
 .xp-role { display: block; margin-top: 1px; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
 .xp-note { margin-top: 4px; color: var(--ink-soft); font-size: .875rem; line-height: 1.5; }
 
+/* Two roles under one company */
+.xp-steps { margin-top: 8px; }
+.xp-step { position: relative; padding-inline-start: 18px; padding-bottom: 14px; }
+.xp-step:last-child { padding-bottom: 0; }
+.xp-step::before { content: ""; position: absolute; top: 6px; inset-inline-start: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+.xp-step:last-child::before { background: var(--ink-fade); }
+.xp-step:not(:last-child)::after { content: ""; position: absolute; top: 17px; bottom: -2px; inset-inline-start: 3px; width: 1px; background: var(--line); }
+.xp-step:last-child .xp-date { color: var(--ink-soft); }
+.xp-step .xp-role { margin-top: 0; color: var(--ink); }
+
 @media (hover: hover) and (pointer: fine) {
   .xp-company a:hover { color: var(--ink-fade); }
   .xp-row:hover .xp-logo img { opacity: 1; filter: none; }
@@ -105,7 +144,6 @@
     inset-inline-start: calc(var(--u) * 152);
   }
   .xp-year { grid-column: 1; font-size: calc(var(--u) * 21); justify-self: end; }
-  .is-repeat .xp-year { display: block; visibility: hidden; }
   .xp-logo { grid-column: 2; grid-row: 1; width: calc(var(--u) * 40); height: calc(var(--u) * 40); font-size: calc(var(--u) * 12); }
   .xp-body { grid-column: 3; }
   .xp-dates { gap: 0 calc(var(--u) * 8); margin-bottom: calc(var(--u) * 4); }
@@ -113,4 +151,9 @@
   .xp-company { font-size: calc(var(--u) * 17); }
   .xp-role { margin-top: calc(var(--u) * 1); }
   .xp-note { margin-top: calc(var(--u) * 4); font-size: calc(var(--u) * 14); }
+  .xp-steps { margin-top: calc(var(--u) * 8); }
+  .xp-step { padding-inline-start: calc(var(--u) * 18); padding-bottom: calc(var(--u) * 16); }
+  .xp-step:last-child { padding-bottom: 0; }
+  .xp-step::before { top: calc(var(--u) * 6); width: calc(var(--u) * 7); height: calc(var(--u) * 7); }
+  .xp-step:not(:last-child)::after { top: calc(var(--u) * 17); inset-inline-start: calc(var(--u) * 3); }
 }

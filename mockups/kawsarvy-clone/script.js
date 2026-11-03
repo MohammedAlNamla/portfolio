@@ -62,6 +62,18 @@ document.querySelectorAll('.xp-duration[data-start]').forEach((duration) => {
   duration.textContent = formatDuration((today.getFullYear() - year) * 12 + today.getMonth() + 1 - month);
 });
 
+// The line under the experience title draws once when it is reached
+const roadWord = document.querySelector('.xp-road');
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  roadWord.classList.add('is-waiting');
+  const roadObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    roadWord.classList.replace('is-waiting', 'is-drawing');
+    roadObserver.disconnect();
+  }, { threshold: 1 });
+  roadObserver.observe(roadWord);
+}
+
 const marqueeTrack = document.getElementById('marquee-track');
 const marqueeGroup = marqueeTrack.firstElementChild;
 const marqueeLogos = [...marqueeGroup.children];

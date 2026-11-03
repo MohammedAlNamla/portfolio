@@ -251,18 +251,25 @@ function translatePage() {
   });
 
   document.querySelector('.experience .divider-tag').textContent = 'الخبرات';
+  setText(document.querySelector('.experience .line'), 'الطريق');
+  setText(document.querySelector('.xp-road'), 'حتى الآن.');
   const experience = [
-    ['أكتوبر 2026 — الآن', 'فكرتك', 'مهندس برمجيات (الواجهة الخلفية) · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
-    ['أكتوبر 2023 — الآن', 'Approved Tech', 'مهندس برمجيات (الواجهة الخلفية)', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
-    ['يونيو — أكتوبر 2023', 'Approved Tech', 'مطوّر واجهة خلفية · تدريب', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
-    ['2020 — 2025', 'الجامعة الإسلامية بغزة', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
+    ['أكتوبر 2026 — الآن', 'مهندس برمجيات (الواجهة الخلفية) · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
+    ['أكتوبر 2023 — الآن', 'مهندس برمجيات (الواجهة الخلفية)', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
+    ['يونيو — أكتوبر 2023', 'مطوّر واجهة خلفية · تدريب', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
+    ['2020 — 2025', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
   ];
-  document.querySelectorAll('.xp-row').forEach((row, index) => {
-    const [date, company, role, note] = experience[index];
-    row.querySelector('.xp-date').textContent = date;
-    setText(row.querySelector('.xp-company a') || row.querySelector('.xp-company'), company);
-    row.querySelector('.xp-role').textContent = role;
-    row.querySelector('.xp-note').textContent = note;
+  const experienceDates = document.querySelectorAll('.xp-date');
+  const experienceRoles = document.querySelectorAll('.xp-role');
+  const experienceNotes = document.querySelectorAll('.xp-note');
+  experience.forEach(([date, role, note], index) => {
+    experienceDates[index].textContent = date;
+    experienceRoles[index].textContent = role;
+    experienceNotes[index].textContent = note;
+  });
+  const companies = ['فكرتك', 'Approved Tech', 'الجامعة الإسلامية بغزة'];
+  document.querySelectorAll('.xp-company').forEach((company, index) => {
+    setText(company.querySelector('a') || company, companies[index]);
   });
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
   if (fixedDuration) fixedDuration.textContent = '4 أشهر';
