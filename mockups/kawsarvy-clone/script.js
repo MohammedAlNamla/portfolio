@@ -79,6 +79,26 @@ const marqueeClone = marqueeGroup.cloneNode(true);
 marqueeClone.setAttribute('aria-hidden', 'true');
 marqueeTrack.append(marqueeClone);
 
+// From the top of the page, the first scroll moves straight to the next section
+const heroSection = document.querySelector('.hero');
+const scrollKeys = ['ArrowDown', 'PageDown', ' '];
+
+function openNextSection(event) {
+  if (window.scrollY > 4 || document.getElementById('project-sheet').open) return;
+  event.preventDefault();
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: heroSection.offsetHeight, behavior: reducedMotion ? 'auto' : 'smooth' });
+}
+
+window.addEventListener('wheel', (event) => {
+  if (event.deltaY > 0 && !event.ctrlKey) openNextSection(event);
+}, { passive: false });
+
+window.addEventListener('keydown', (event) => {
+  const onControl = event.target.closest('a, button, input, textarea, select');
+  if (scrollKeys.includes(event.key) && !onControl) openNextSection(event);
+});
+
 // The Arabic headlines stretch once when they come into view
 document.querySelectorAll('.ar-title').forEach((title) => {
   const observer = new IntersectionObserver(([entry]) => {

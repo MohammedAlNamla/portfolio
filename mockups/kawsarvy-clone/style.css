@@ -189,10 +189,14 @@ svg { display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100svh;
   padding: 14px 17px 75px;
   background: var(--surface);
   border-radius: 0 0 70px 70px;
 }
+/* The first section fills the screen, with its content centred below the top bar */
+.hero .avatar { margin-top: auto; }
+.hero .btn-shots { margin-bottom: auto; }
 
 /* On phones the email and links collapse into icons */
 .bar {
@@ -442,7 +446,9 @@ svg { display: block; }
   .btn svg { width: calc(var(--u) * 14); height: auto; }
 
   .hero {
-    padding: calc(var(--u) * 54) calc(var(--u) * 71) calc(var(--u) * 111) calc(var(--u) * 88);
+    /* Shrinks with short screens too, so everything always fits in one screen */
+    --u: min(calc(100cqw / 1440), calc(100svh / 880));
+    padding: calc(var(--u) * 40) calc(100cqw / 1440 * 71) calc(var(--u) * 90) calc(100cqw / 1440 * 88);
     border-radius: 0 0 calc(var(--u) * 100) calc(var(--u) * 100);
     box-shadow: 0 2px 0 rgba(255, 255, 255, .9);
   }
@@ -481,7 +487,7 @@ svg { display: block; }
     .bar-links a:hover::after { transform: scaleX(1); }
   }
 
-  .avatar { width: calc(var(--u) * 120); height: calc(var(--u) * 120); margin-top: calc(var(--u) * 85); }
+  .avatar { width: calc(var(--u) * 120); height: calc(var(--u) * 120); }
   .avatar-photo { box-shadow: 0 0 0 calc(var(--u) * 4) rgba(255, 255, 255, .85); }
   .avatar-tag {
     left: calc(var(--u) * 100);
