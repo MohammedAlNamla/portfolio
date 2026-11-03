@@ -1,0 +1,79 @@
+/* English hero ideas. Option cards come from projects-heading.css. */
+.ph-label { flex-wrap: wrap; gap: 2px 10px; padding-inline-end: 76px; }
+.ph-panes { grid-template-columns: minmax(0, 1fr); }
+.ph-pane { min-height: 280px; padding: 40px 16px 48px; }
+
+.eh { color: var(--ink); font-size: clamp(2.1rem, 7.6vw, 5.25rem); font-weight: 400; line-height: 1.08; text-align: center; }
+.eh span { display: inline; }
+.eh .ln { display: block; white-space: nowrap; }
+.eh .soft { color: var(--ink-soft); }
+.eh i { font-style: italic; }
+
+/* Now */
+.eh-now { font-family: var(--font-display); font-size: clamp(1.45rem, 5.4vw, 3.5rem); font-weight: 500; line-height: 1.35; letter-spacing: -.035em; }
+
+/* Roman with an italic ending */
+.eh-italic { font-family: "Instrument Serif", serif; letter-spacing: -.01em; }
+
+/* The ampersand as the ornament */
+.eh-amp { font-family: "Instrument Serif", serif; letter-spacing: -.01em; }
+.eh-amp .amp { display: inline-block; margin-inline: .04em; color: var(--ink); font-size: 1.45em; font-style: italic; line-height: .6; vertical-align: -.05em; }
+.is-playing .eh-amp .amp { animation: eh-amp 1400ms cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes eh-amp { from { opacity: 0; transform: rotate(-14deg) scale(.7); } }
+
+/* Warm soft serif */
+.eh-fraunces { font-family: "Fraunces", serif; font-optical-sizing: auto; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 500; letter-spacing: -.025em; font-size: clamp(1.95rem, 7vw, 4.75rem); }
+.eh-fraunces i { font-weight: 400; }
+
+/* Thick and thin */
+.eh-bodoni { font-family: "Bodoni Moda", serif; font-optical-sizing: auto; font-weight: 600; letter-spacing: -.02em; font-size: clamp(1.9rem, 6.9vw, 4.75rem); }
+.eh-bodoni i { font-weight: 500; }
+
+/* Quiet sans with a serif ending, the voice of "so far" */
+.eh-mix { font-family: var(--font-text); font-size: clamp(1.75rem, 6.4vw, 4.25rem); font-weight: 500; letter-spacing: -.035em; }
+.eh-mix i { font-family: "Instrument Serif", serif; font-size: 1.16em; font-weight: 400; letter-spacing: -.01em; }
+
+/* The chart under the word */
+.eh-chart { font-family: var(--font-text); font-size: clamp(1.75rem, 6.4vw, 4.25rem); font-weight: 500; letter-spacing: -.035em; }
+.eh-chart .up { position: relative; display: inline-block; }
+.eh-chart svg { position: absolute; inset: auto -4% -.26em; width: 108%; height: .5em; overflow: visible; fill: none; stroke: var(--ink-fade); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.eh-chart svg path { stroke-dasharray: 1; vector-effect: non-scaling-stroke; }
+.eh-chart svg circle { fill: #2f9e62; stroke: none; }
+.is-playing .eh-chart path { animation: eh-draw 1500ms 200ms cubic-bezier(.4, .1, .2, 1) both; }
+.is-playing .eh-chart circle { animation: eh-dot 400ms 1500ms both; }
+@keyframes eh-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes eh-dot { from { opacity: 0; } }
+
+/* Letters that get heavier */
+.eh-weight { font-family: "Bricolage Grotesque", sans-serif; font-optical-sizing: auto; font-size: clamp(1.9rem, 6.9vw, 4.75rem); font-weight: 400; letter-spacing: -.035em; }
+.eh-weight b { display: inline-block; font-weight: var(--to); }
+.is-playing .eh-weight b { animation: eh-weight 1300ms cubic-bezier(.3, .7, .2, 1) both; animation-delay: calc(var(--order) * 120ms); }
+@keyframes eh-weight { from { font-weight: 200; } }
+
+/* The word widens through a variable font */
+.eh-wide { font-family: "Anybody", sans-serif; font-size: clamp(1.45rem, 5.4vw, 3.75rem); font-stretch: 100%; font-weight: 500; letter-spacing: -.02em; }
+.eh-wide b { display: inline-block; font-stretch: 150%; font-weight: 700; }
+.is-playing .eh-wide b { animation: eh-wide 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+@keyframes eh-wide { from { font-stretch: 60%; } }
+
+/* Tight modern grotesque */
+.eh-tight { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(2.1rem, 7.8vw, 5.5rem); font-stretch: 75%; font-weight: 700; letter-spacing: -.025em; line-height: 1; }
+
+/* Handwritten ending */
+.eh-hand { font-family: var(--font-text); font-size: clamp(1.75rem, 6.4vw, 4.25rem); font-weight: 500; letter-spacing: -.035em; }
+.eh-hand .script { display: inline-block; font-family: "Caveat", cursive; font-size: 1.35em; font-weight: 600; letter-spacing: 0; line-height: .7; transform: rotate(-3deg); }
+
+/* A line of code */
+.eh-code { font-family: "IBM Plex Mono", monospace; font-size: clamp(1.05rem, 4.2vw, 2.75rem); line-height: 1.5; letter-spacing: -.03em; text-align: center; }
+.eh-code .fade { color: var(--ink-soft); }
+.eh-code b { font-weight: 500; }
+
+/* A word that changes slowly */
+.eh-swap { font-family: "Instrument Serif", serif; letter-spacing: -.01em; }
+.eh-swap .swap { display: inline-grid; justify-items: start; vertical-align: baseline; text-align: start; }
+.eh-swap .swap > * { grid-area: 1 / 1; opacity: 0; transform: translateY(.12em); transition: opacity 500ms ease, transform 500ms ease; }
+.eh-swap .swap > .is-on { opacity: 1; transform: none; transition-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-option * { animation: none !important; transition: none !important; }
+}
