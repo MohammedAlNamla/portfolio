@@ -1,0 +1,79 @@
+/* Services ideas. Shared option cards and word effects come from projects-heading.css. */
+.sv .h-en { font-size: clamp(1.25rem, 2.1vw, 1.875rem); }
+.sv .h-ar { font-size: clamp(1.5rem, 2.6vw, 2.25rem); }
+.sv-group { max-width: 1240px; margin: 44px auto 14px; font-size: 1.25rem; font-weight: 700; }
+.sv-group:first-of-type { margin-top: 0; }
+
+.tc-note { margin-top: 12px; color: var(--ink-soft); font-size: .9375rem; }
+
+/* Pair of words joined by a line */
+.sv-link { display: flex; flex-direction: column; align-items: center; }
+.sv-line { position: relative; display: flex; align-items: center; width: min(280px, 72vw); height: 26px; }
+.sv-line i { flex: 1; height: 1.5px; background: var(--ink-fade); transform-origin: left; }
+[dir="rtl"] .sv-line i { transform-origin: right; }
+.sv-line b { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+.is-playing .sv-line i { animation: sv-grow 1200ms cubic-bezier(.22, .8, .24, 1) both; }
+@keyframes sv-grow { from { transform: scaleX(0); } }
+
+/* A dot travelling once along the line */
+.sv-travel { position: relative; width: min(320px, 76vw); height: 22px; margin-top: 16px; }
+.sv-travel::before { content: ""; position: absolute; inset: 50% 0 auto; height: 1.5px; background: var(--line); }
+.sv-travel i { position: absolute; top: 50%; inset-inline-start: calc(100% - 9px); width: 9px; height: 9px; border-radius: 50%; background: var(--ink); transform: translateY(-50%); }
+.is-playing .sv-travel i { animation: sv-travel 1900ms cubic-bezier(.45, .05, .25, 1) both; }
+@keyframes sv-travel { from { inset-inline-start: 0; } to { inset-inline-start: calc(100% - 9px); } }
+.sv-ends { display: flex; justify-content: space-between; width: min(320px, 76vw); margin-top: 6px; color: var(--ink-soft); font-size: .8125rem; }
+
+/* Steps that light up in order */
+.sv-steps { display: flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; margin-top: 14px; color: var(--ink-soft); font-size: .875rem; font-weight: 500; }
+.sv-steps em { font-style: normal; color: var(--ink); }
+.is-playing .sv-steps span { animation: sv-step 700ms both; animation-delay: calc(var(--order) * 320ms); }
+@keyframes sv-step { from { opacity: .2; } }
+
+/* Status */
+.sv-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--ink-soft); font-size: .875rem; }
+.sv-status i { width: 8px; height: 8px; border-radius: 50%; background: #2f9e62; box-shadow: 0 0 0 3px rgba(47, 158, 98, .18); }
+.is-playing .sv-status i { animation: sv-pulse 1100ms ease-out 2; }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(47, 158, 98, .4); } 100% { box-shadow: 0 0 0 10px rgba(47, 158, 98, 0); } }
+
+/* Command line */
+.sv-command { display: inline-block; margin-top: 14px; padding: 7px 12px; border-radius: 8px; background: var(--surface); color: var(--ink-soft); direction: ltr; font-family: "IBM Plex Mono", monospace; font-size: .8125rem; white-space: nowrap; }
+.sv-command b { color: var(--ink); font-weight: 400; }
+.is-playing .sv-command .sv-done { animation: sv-done 500ms 1000ms both; }
+@keyframes sv-done { from { opacity: 0; } }
+
+/* Mini service grids */
+.sv-mini { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; width: 100%; max-width: 500px; text-align: start; }
+.sv-item { position: relative; }
+.sv-item svg { display: block; width: 34px; height: auto; fill: none; stroke: var(--ink); stroke-width: 1.100; stroke-linecap: round; stroke-linejoin: round; }
+.sv-item svg .ink { fill: var(--ink); stroke: none; }
+.sv-item h3 { margin-top: 10px; color: var(--ink); font-size: .9375rem; font-weight: 600; line-height: 1.35; }
+.sv-item p { margin-top: 4px; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
+.sv-num { display: block; margin-bottom: 8px; color: var(--ink-soft); font-family: "IBM Plex Mono", monospace; font-size: .75rem; }
+
+/* Table lines */
+.sv-lines { gap: 0; }
+.sv-lines .sv-item { padding: 16px; border-top: 1px solid var(--line); }
+.sv-lines .sv-item:nth-child(odd) { border-inline-end: 1px solid var(--line); }
+.sv-lines .sv-item:nth-child(-n+2) { border-top: 0; }
+
+/* Icons in circles */
+.sv-circles .sv-item svg { box-sizing: content-box; width: 26px; padding: 11px; border-radius: 50%; background: var(--surface); }
+
+/* Rows with hover */
+.sv-hover .sv-item { padding: 12px; border-radius: 14px; transition: background-color 180ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .sv-hover .sv-item:hover { background: var(--surface); }
+  .sv-hover .sv-item:hover h3 { text-decoration: underline; text-decoration-color: var(--ink-fade); text-underline-offset: 4px; }
+}
+
+/* Icons drawing themselves */
+.is-playing .sv-draw svg :not(.ink) { stroke-dasharray: 1; animation: ph-draw 1300ms cubic-bezier(.3, .7, .2, 1) both; }
+.is-playing .sv-draw svg .ink { animation: sv-ink 500ms 800ms both; }
+@keyframes sv-ink { from { opacity: 0; } }
+
+/* Cards appearing in order */
+.is-playing .sv-rise .sv-item { animation: ph-stack 650ms cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--order) * 120ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-option * { animation: none !important; }
+}
