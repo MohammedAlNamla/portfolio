@@ -1,680 +1,251 @@
-﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>محمد النملة — مطوّر الواجهة الخلفية</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23040814'/><rect width='32' height='32' rx='8' fill='none' stroke='%23E5A55C' stroke-width='1.5' stroke-opacity='0.5'/><text x='16' y='22' text-anchor='middle' font-family='inherit' font-weight='800' font-size='13' fill='%23F7FAFF' letter-spacing='-1'>MN</text></svg>" />
-  <!-- apply saved language before first paint — avoids the AR→EN flip flash -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mohammed Al-Namla — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&text=M&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects.css">
+  <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="project-sheet.css">
+  <link rel="stylesheet" href="dark.css">
+  <link rel="stylesheet" href="arabic.css">
+  <link rel="stylesheet" href="english.css">
   <script>
-    (function(){
-      try{
-        var l = localStorage.getItem('lang') || 'ar';
-        var d = document.documentElement;
-        d.lang = l;
-        d.dir  = l === 'ar' ? 'rtl' : 'ltr';
-        if(l === 'en') document.title = 'Mohammed Al-Namla — Backend Developer';
-      }catch(e){}
-    })();
+    try {
+      if (localStorage.getItem('portfolio-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch (error) {}
+    // Arabic is the default; English only when the visitor chose it
+    let language = 'ar';
+    try {
+      language = localStorage.getItem('portfolio-lang') || 'ar';
+    } catch (error) {}
+    if (language !== 'en') {
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+    }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- fonts load async so first paint never waits on fonts.googleapis.com -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <svg class="brush-defs" aria-hidden="true">
+    <filter id="brush-rough" x="-5%" y="-20%" width="110%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency=".05 .3" numOctaves="2" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="3"/>
+    </filter>
+    <symbol id="brush-stroke" viewBox="0 0 360 100" preserveAspectRatio="none">
+      <path fill-rule="evenodd" d="M14 88L34 70 26 70 52 52 44 51 74 34 68 32 96 24C130 15 165 14 200 24C235 34 262 32 296 22L322 14 316 11 346 6 340 14 352 16 342 26 350 30 340 40 348 46 336 54 342 62 326 70C290 84 245 94 195 90C155 87 125 78 92 80C62 82 38 88 14 88ZM70 50C110 37 160 35 205 45C245 53 285 47 325 31C285 49 245 56 205 49C160 40 112 42 70 50ZM120 60C140 55 160 54 178 56C160 56 140 57 120 60ZM130 25L150 22 172 24 150 25ZM240 35L262 34 285 28 262 37Z"/>
+      <path d="M3 97L30 82 12 96ZM18 68L48 49 28 67ZM58 26L88 17 68 28ZM350 2L358 1 330 12ZM354 36L359 37 345 48ZM300 90L330 76 312 90Z"/>
+    </symbol>
+  </svg>
+  <div class="page">
+    <section class="hero">
+      <nav class="bar">
+        <button class="bar-email" id="copy" type="button" aria-label="Copy email address">
+          <svg class="icon-mail" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="1.500" y="3" width="13" height="10" rx="1.500"/><path d="m2 4 6 5 6-5"/></svg>
+          <span class="bar-email-text" id="email">moh.alnamla@gmail.com</span>
+          <svg class="icon-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.500" y="5.500" width="8" height="8" rx="1.500"/><path d="M10.500 3.500v-.500a1 1 0 0 0-1-1H3.500a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.500"/></svg>
+          <svg class="icon-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.500 3.200 3.200L13 4.800"/></svg>
+        </button>
+        <div class="bar-right">
+          <div class="bar-links">
+            <a href="https://github.com/Abu3Maher" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/mohammed-al-namla-084907260" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <div class="bar-icons">
+            <a class="bar-icon" href="https://github.com/Abu3Maher" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.630 0-12 5.373-12 12 0 5.303 3.438 9.800 8.205 11.385.600.113.820-.258.820-.577 0-.285-.010-1.040-.015-2.040-3.338.724-4.042-1.610-4.042-1.610C4.422 18.070 3.633 17.700 3.633 17.700c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.070 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.760-1.605-2.665-.300-5.466-1.332-5.466-5.930 0-1.310.465-2.380 1.235-3.220-.135-.303-.540-1.523.105-3.176 0 0 1.005-.322 3.300 1.230.960-.267 1.980-.399 3-.405 1.020.006 2.040.138 3 .405 2.280-1.552 3.285-1.230 3.285-1.230.645 1.653.240 2.873.120 3.176.765.840 1.230 1.910 1.230 3.220 0 4.610-2.805 5.625-5.475 5.920.420.360.810 1.096.810 2.220 0 1.606-.015 2.896-.015 3.286 0 .315.210.690.825.570C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            <a class="bar-icon" href="https://www.linkedin.com/in/mohammed-al-namla-084907260" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.900 1.637-1.850 3.370-1.850 3.601 0 4.267 2.370 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452z"/></svg></a>
+          </div>
+          <button class="bar-theme bar-lang" id="lang-toggle" type="button"></button>
+          <button class="bar-theme" id="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true"><path d="M13.500 9.700A6 6 0 0 1 6.300 2.500a6 6 0 1 0 7.200 7.200z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.500v1.500M8 13v1.500M1.500 8H3M13 8h1.500M3.400 3.400l1.100 1.100M11.500 11.500l1.100 1.100M3.400 12.600l1.100-1.100M11.500 4.500l1.100-1.100"/></svg>
+          </button>
+          <a class="pill" href="Mohammed_Al_Namla_CV.pdf" target="_blank" rel="noopener">
+            <span class="pill-long">My CV</span><span class="pill-short">CV</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M4.500 7 8 10.500 11.500 7M2.500 13.500h11"/></svg>
+          </a>
+        </div>
+      </nav>
 
-<div class="orb orb-a"></div>
-<div class="orb orb-b"></div>
-<div class="orb orb-c"></div>
-<div id="cur"></div>
-<div id="cur-r"></div>
-<div id="prog"></div>
-
-<!-- ══ NAV ══ -->
-<nav id="nav">
-  <div class="nav-w">
-    <a href="#hero" class="nav-logo">
-      <div class="logo-sq">MN</div>
-      <div>
-        <div class="logo-name" data-i18n="nav.name">محمد النملة</div>
-        <span class="logo-role" data-i18n="nav.role">مطوّر الواجهة الخلفية</span>
+      <div class="avatar">
+        <svg class="avatar-photo" viewBox="0 0 120 120" role="img" aria-label="Mohammed Al-Namla">
+          <rect width="120" height="120" fill="#2b2b2b"/>
+          <text class="avatar-logo" x="56" y="82" text-anchor="middle" font-size="84" fill="#f7f7f7">M</text>
+        </svg>
+        <span class="tag avatar-tag">Mohammed Al-Namla <span class="tag-emoji">👏🏼</span></span>
       </div>
-    </a>
-    <div class="nav-pill">
-      <a href="#about"      class="nav-pill-link" data-section="about"      data-i18n="nav.about">عنّي</a>
-      <a href="#projects"   class="nav-pill-link" data-section="projects"   data-i18n="nav.projects">المشاريع</a>
-      <a href="#skills"     class="nav-pill-link" data-section="skills"     data-i18n="nav.skills">المهارات</a>
-      <a href="#experience" class="nav-pill-link" data-section="experience" data-i18n="nav.experience">الخبرة</a>
-      <a href="#contact"    class="nav-pill-link" data-section="contact"    data-i18n="nav.contact">تواصل</a>
-    </div>
-    <div class="nav-r">
-      <button class="lang-toggle" id="lang-toggle" aria-label="Switch language" onclick="toggleLang()">EN</button>
-      <button class="nav-burger" id="nav-burger" aria-label="Menu" onclick="toggleMobileMenu()">
-        <span></span><span></span><span></span>
+
+      <h1 class="title en-title">
+        <span class="en-line en-soft">I build systems</span>
+        <span class="en-line">that work <span class="en-amp">&amp;</span> grow</span>
+      </h1>
+
+      <a class="btn btn-dark btn-shots" href="#projects">
+        See my work
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 12 12 2M4.5 2H12v7.5"/></svg>
+      </a>
+    </section>
+
+    <section class="clients">
+      <div class="clients-side">
+      <p class="clients-label">Worked with</p>
+      <div class="marquee">
+        <div class="marquee-track" id="marquee-track">
+          <div class="marquee-group">
+            <div class="logo"><img class="logo-square" src="logos/approved-tech.png" alt="">Approved Tech</div>
+            <div class="logo">
+              <img class="logo-full logo-on-light" src="logos/university-of-palestine.svg" alt="University of Palestine">
+              <img class="logo-full logo-on-dark" src="logos/university-of-palestine-dark.svg" alt="University of Palestine">
+            </div>
+            <div class="logo logo-iug">
+              <img src="logos/iug.png" alt="">
+              <span class="logo-iug-name" dir="rtl">
+                <span>الجامعة الإسلامية</span>
+                <small dir="ltr">Islamic University of Gaza</small>
+              </span>
+            </div>
+            <div class="logo"><img class="logo-badge" src="logos/netspeed.png" alt="">NetSpeed</div>
+            <div class="logo">Fikritak</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h2 class="subtitle">
+        <span class="ghost-word" aria-hidden="true">Work</span>
+        <span class="line">Some of the products</span>
+        <span class="line">I've built</span>
+      </h2>
+
+      <div class="divider"><span class="tag divider-tag">Projects</span></div>
+
+      <div class="projects-arc" id="projects-arc"></div>
+    </section>
+
+    <section class="services">
+      <h2 class="subtitle subtitle-wide">
+        <span class="line">From the database to the screen,</span>
+        <span class="line">built to run in <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>production</span></span>
+      </h2>
+      <h2 class="subtitle subtitle-narrow">
+        <span class="line">From the database</span>
+        <span class="line">to the screen,</span>
+        <span class="line">built to run in <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>production</span></span>
+      </h2>
+
+      <div class="divider"><span class="tag divider-tag">Services</span></div>
+
+      <div class="service-grid">
+        <article class="service">
+          <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><path class="ink" d="M21 3 38 11 21 19 4 11z"/><path d="M4 18 21 26 38 18M4 25 21 33 38 25"/></svg></div>
+          <h3>Multi-tenant SaaS</h3>
+          <p>One platform serving many businesses, each with its own data, roles and permissions.</p>        </article>
+        <article class="service">
+          <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><circle cx="9" cy="18" r="6"/><circle class="ink" cx="33" cy="18" r="6"/><path d="M15 18h12"/></svg></div>
+          <h3>APIs &amp; Integrations</h3>
+          <p>Documented APIs and external providers, kept in sync with webhooks and scheduled checks.</p>        </article>
+        <article class="service">
+          <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><path d="M8 14a14 14 0 0 1 24-5l3 3M35 5v7h-7"/><path d="M34 22a14 14 0 0 1-24 5l-3-3M7 31v-7h7"/></svg></div>
+          <h3>Real-time &amp; Offline</h3>
+          <p>Live updates over WebSockets, and a POS that keeps taking orders when the connection drops.</p>        </article>
+        <article class="service">
+          <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><rect x="9" y="2" width="24" height="12" rx="2"/><path d="M21 14v6"/><path class="ink" d="M21 18c5.500 0 10 1.800 10 4s-4.500 4-10 4-10-1.800-10-4 4.500-4 10-4z"/><path d="M11 22v8c0 2.200 4.500 4 10 4s10-1.800 10-4v-8"/></svg></div>
+          <h3>Full-stack Delivery</h3>
+          <p>Vue and Nuxt interfaces, shipped together with the backend behind them.</p>        </article>
+      </div>
+    </section>
+
+    <section class="experience">
+      <h2 class="subtitle">
+        <span class="line">The road <span class="xp-road">so far<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6C24 2 44 9 64 5S90 4 100 7"/></svg></span></span>
+      </h2>
+
+      <div class="divider"><span class="tag divider-tag">Experience</span></div>
+
+      <div class="xp-list">
+        <article class="xp-row is-current">
+          <div class="xp-year">2026</div>
+          <span class="xp-logo" role="img" aria-label="Fikritak placeholder logo">F</span>
+          <div class="xp-body">
+            <div class="xp-dates"><span class="xp-date">Oct 2026 — Now</span><span class="xp-duration" data-start="2026-10"></span></div>
+            <h3 class="xp-company">Fikritak</h3>
+            <span class="xp-role">Backend Engineer · Part-time</span>
+            <p class="xp-note">Building Shahrazad Tours, a booking API for flights, transfers and travel eSIMs.</p>
+          </div>
+        </article>
+        <article class="xp-row is-current">
+          <div class="xp-year">2023</div>
+          <span class="xp-logo"><img src="logos/approved-tech.png" alt="Approved Tech logo"></span>
+          <div class="xp-body">
+            <h3 class="xp-company"><a href="https://www.approved.tech/" target="_blank" rel="noopener">Approved Tech</a></h3>
+            <div class="xp-steps">
+              <div class="xp-step">
+                <div class="xp-dates"><span class="xp-date">Oct 2023 — Now</span><span class="xp-duration" data-start="2023-10"></span></div>
+                <span class="xp-role">Backend Engineer</span>
+                <p class="xp-note">SaaS, ERP and booking platforms for multiple clients.</p>
+              </div>
+              <div class="xp-step">
+                <div class="xp-dates"><span class="xp-date">Jun — Oct 2023</span><span class="xp-duration">4 months</span></div>
+                <span class="xp-role">Backend Development Intern</span>
+                <p class="xp-note">PHP, Laravel and MySQL, before joining the team full-time.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="xp-row">
+          <div class="xp-year">2020</div>
+          <span class="xp-logo"><img src="logos/iug.png" alt="Islamic University of Gaza logo"></span>
+          <div class="xp-body">
+            <div class="xp-dates"><span class="xp-date">2020 — 2025</span></div>
+            <h3 class="xp-company"><a href="https://www.iugaza.edu.ps/" target="_blank" rel="noopener">Islamic University of Gaza</a></h3>
+            <span class="xp-role">B.Sc. Information Technology</span>
+            <p class="xp-note">Web development, databases and software engineering.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-circle"><svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m11 17 2 2a1 1 0 1 0 3-3"/>
+          <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/>
+          <path class="ink" d="M20.7 2.7 22.2 14h-2.5l-1.100-9.800z"/>
+          <path d="M3 3 2 14l6.500 6.500a1 1 0 1 0 3-3"/>
+          <path d="M3 4h8"/>
+        </svg></div>
+      <h2 class="title cta-title en-title">
+        <span class="en-line en-soft">Let’s build</span>
+        <span class="en-line">something that lasts</span>
+      </h2>
+      <div class="cta-actions">
+        <a class="btn btn-dark btn-email" href="mailto:moh.alnamla@gmail.com">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.500" y="3" width="13" height="10" rx="1.500"/><path d="m2 4 6 5 6-5"/></svg>
+          Email me
+        </a>
+        <a class="btn btn-light btn-whatsapp" href="https://wa.me/970599473743" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="sheet" id="project-sheet" aria-labelledby="project-sheet-title">
+    <div class="sheet-scroll">
+      <button class="sheet-close" type="button" aria-label="Close" autofocus>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12"/></svg>
       </button>
+      <div class="sheet-body" id="project-sheet-body"></div>
     </div>
-  </div>
-  <!-- Mobile drawer -->
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="#about"      class="nav-drawer-link" data-section="about"      data-i18n="nav.about"      onclick="closeMobileMenu()">عنّي</a>
-    <a href="#projects"   class="nav-drawer-link" data-section="projects"   data-i18n="nav.projects"   onclick="closeMobileMenu()">المشاريع</a>
-    <a href="#skills"     class="nav-drawer-link" data-section="skills"     data-i18n="nav.skills"     onclick="closeMobileMenu()">المهارات</a>
-    <a href="#experience" class="nav-drawer-link" data-section="experience" data-i18n="nav.experience" onclick="closeMobileMenu()">الخبرة</a>
-    <a href="#contact"    class="nav-drawer-link" data-section="contact"    data-i18n="nav.contact"    onclick="closeMobileMenu()">تواصل</a>
-  </div>
-</nav>
+  </dialog>
 
-<!-- ══ HERO ══ -->
-<section id="hero">
-  <div class="hero-glow hero-glow-a"></div>
-  <div class="hero-glow hero-glow-b"></div>
-  <div class="wrap">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">
-        <span class="ey-line"></span>
-        <span data-i18n="hero.eyebrow">فلسطين · مطوّر الواجهة الخلفية</span>
-        <span class="ey-line" style="transform:scaleX(-1)"></span>
-      </div>
-      <div class="hero-name-wrap">
-        <span class="hero-first">Mohammed</span>
-        <span class="hero-last">Al-Namla</span>
-      </div>
-      <div class="hero-underline"></div>
-      <p class="hero-role-line" data-i18n-html="hero.tagline">أبني أنظمة قابلة<strong> للتوسع</strong></p>
-      <div class="hero-soc">
-        <a href="https://github.com/Abu3Maher" target="_blank" rel="noopener" class="soc" aria-label="GitHub">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="mailto:moh.alnamla@gmail.com" class="soc" aria-label="Email">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a href="tel:+970599473743" class="soc" aria-label="Phone">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.82a19.79 19.79 0 01-3.07-8.67 2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        </a>
-        <a href="Mohammed_Al_Namla_CV.pdf" download class="soc" aria-label="Download CV">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <span data-i18n="hero.scroll">تمرير</span>
-    <div class="hero-scroll-bar"></div>
-  </div>
-</section>
-
-<!-- ══ ABOUT ══ -->
-<section id="about" class="theme-light">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="rv-l">
-        <div class="s-label" data-i18n="about.label">عنّي</div>
-        <h2 class="s-h" data-i18n="about.heading">مطوّر يفكّر بمنطق الأنظمة</h2>
-        <p class="about-p" style="margin-top:22px;" data-i18n-html="about.p1">أنا <strong>مطوّر واجهة خلفية</strong> متخصص في بناء واجهات برمجية عالية الأداء، وأنظمة SaaS متعددة المستأجرين، وحلول الوقت الفعلي — أعمل عبر <strong>Php</strong> و<strong>Node.js</strong> — خريج تقنية المعلومات من الجامعة الإسلامية بغزة.</p>
-        <p class="about-p" data-i18n="about.p2">عملت على منصات حجز، أنظمة إدارة جامعية، إدارة مشاريع، بنية ISP، ونقاط بيع للمطاعم — كل مشروع يتطلب أمانًا وأداءً ودقةً في التصميم.</p>
-        <p class="about-p" data-i18n-html="about.p3">أتعامل مع كل مشروع بعقلية <strong>الإنتاج أولاً</strong>: تصميم قاعدة البيانات قبل الكود، الأمان افتراضيًا، والأداء هدف قابل للقياس.</p>
-        <div class="fact-grid">
-          <div class="fact-cell"><div class="fc-k" data-i18n="about.factLocationK">الموقع</div><div class="fc-v" data-i18n="about.factLocationV">فلسطين 🇵🇸</div></div>
-          <div class="fact-cell"><div class="fc-k" data-i18n="about.factRoleK">الدور الحالي</div><div class="fc-v">Backend Dev · Approved Tech</div></div>
-          <div class="fact-cell"><div class="fc-k" data-i18n="about.factEduK">التعليم</div><div class="fc-v" data-i18n="about.factEduV">بكالوريوس تقنية المعلومات · IUG</div></div>
-          <div class="fact-cell"><div class="fc-k" data-i18n="about.factStatusK">الحالة</div><div class="fc-v hi" data-i18n="about.factStatusV">متاح للعمل ✦</div></div>
-        </div>
-      </div>
-      <div class="rv-r d2">
-        <div class="about-card">
-          <div class="ac-name" data-i18n="about.cardName">محمد النملة</div>
-          <div class="ac-role" data-i18n="about.cardRole">مطوّر الواجهة الخلفية · فلسطين</div>
-          <div class="chips">
-            <span class="chip">PHP 8+</span><span class="chip">Laravel</span>
-            <span class="chip">Node.js</span><span class="chip">NestJS</span>
-            <span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
-            <span class="chip">Redis</span><span class="chip">Supabase</span>
-            <span class="chip">REST APIs</span><span class="chip">WebSockets</span>
-            <span class="chip">PHPUnit</span><span class="chip">GitHub Actions</span>
-            <span class="chip">RBAC</span><span class="chip">Multi-Tenant</span>
-            <span class="chip">Vue 3</span><span class="chip">Nuxt 4</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PROJECTS ══ -->
-<section id="projects" class="theme-dark">
-  <div class="wrap">
-    <div class="proj-hdr rv">
-      <div class="s-label" data-i18n="projects.label">المشاريع</div>
-      <h2 class="s-h" data-i18n="projects.heading">مشاريع مختارة</h2>
-      <p class="s-p" data-i18n="projects.sub">بعض من الأعمال التي شاركت في بنائها — انقر على أي مشروع لعرض التفاصيل.</p>
-    </div>
-  </div>
-  <div class="proj-cinema" id="proj-cinema">
-    <div class="proj-sticky" id="proj-sticky">
-      <!-- Cards: number · name · subtitle · button only -->
-      <div class="proj-card active" id="proj-card-sufra">
-        <div class="pc-text">
-          <div class="pc-text-inner">
-            <div class="pc-num">01</div>
-            <h3 class="pc-title" id="pc-title-sufra">Sufra</h3>
-            <p class="pc-subtitle" id="pc-sub-sufra"></p>
-            <div class="pc-footer">
-              <button class="proj-cta" onclick="openModal('sufra')" type="button">
-                <span data-i18n="projects.openBtn">عرض التفاصيل</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-              <span class="pc-counter" dir="ltr">01 / 05</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-image"><img src="images/Sufra.webp" alt="Sufra" loading="lazy" decoding="async" /></div>
-      </div>
-      <div class="proj-card" id="proj-card-bfm">
-        <div class="pc-text">
-          <div class="pc-text-inner">
-            <div class="pc-num">02</div>
-            <h3 class="pc-title" id="pc-title-bfm">BookForMe</h3>
-            <p class="pc-subtitle" id="pc-sub-bfm"></p>
-            <div class="pc-footer">
-              <button class="proj-cta" onclick="openModal('bfm')" type="button">
-                <span data-i18n="projects.openBtn">عرض التفاصيل</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-              <span class="pc-counter" dir="ltr">02 / 05</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-image"><img src="images/BFM.webp" alt="BookForMe" loading="lazy" decoding="async" /></div>
-      </div>
-      <div class="proj-card" id="proj-card-uop">
-        <div class="pc-text">
-          <div class="pc-text-inner">
-            <div class="pc-num">03</div>
-            <h3 class="pc-title" id="pc-title-uop">UOP Dashboard</h3>
-            <p class="pc-subtitle" id="pc-sub-uop"></p>
-            <div class="pc-footer">
-              <button class="proj-cta" onclick="openModal('uop')" type="button">
-                <span data-i18n="projects.openBtn">عرض التفاصيل</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-              <span class="pc-counter" dir="ltr">03 / 05</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-image"><img src="images/UOP.webp" alt="UOP Dashboard" loading="lazy" decoding="async" /></div>
-      </div>
-      <div class="proj-card" id="proj-card-netspeed">
-        <div class="pc-text">
-          <div class="pc-text-inner">
-            <div class="pc-num">04</div>
-            <h3 class="pc-title" id="pc-title-netspeed">NetSpeed</h3>
-            <p class="pc-subtitle" id="pc-sub-netspeed"></p>
-            <div class="pc-footer">
-              <button class="proj-cta" onclick="openModal('netspeed')" type="button">
-                <span data-i18n="projects.openBtn">عرض التفاصيل</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-              <span class="pc-counter" dir="ltr">04 / 05</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-image"><img src="images/NetSpeed.webp" alt="NetSpeed" loading="lazy" decoding="async" /></div>
-      </div>
-      <div class="proj-card" id="proj-card-taskat">
-        <div class="pc-text">
-          <div class="pc-text-inner">
-            <div class="pc-num">05</div>
-            <h3 class="pc-title" id="pc-title-taskat">Taskat</h3>
-            <p class="pc-subtitle" id="pc-sub-taskat"></p>
-            <div class="pc-footer">
-              <button class="proj-cta" onclick="openModal('taskat')" type="button">
-                <span data-i18n="projects.openBtn">عرض التفاصيل</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-              <span class="pc-counter" dir="ltr">05 / 05</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-image"><img src="images/Taskat.webp" alt="Taskat" loading="lazy" decoding="async" /></div>
-      </div>
-      <!-- floating dot nav -->
-      <div class="proj-dots-nav" aria-hidden="true">
-        <div class="proj-dot active" data-idx="0"></div>
-        <div class="proj-dot" data-idx="1"></div>
-        <div class="proj-dot" data-idx="2"></div>
-        <div class="proj-dot" data-idx="3"></div>
-        <div class="proj-dot" data-idx="4"></div>
-      </div>
-      <!-- mobile arrow nav (hidden on desktop) -->
-      <div class="proj-mob-nav" id="proj-mob-nav">
-        <button class="proj-mob-arrow" id="proj-arrow-prev" aria-label="Previous project" onclick="mobileProjNav(-1)" style="cursor:pointer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="proj-mob-arrow" id="proj-arrow-next" aria-label="Next project" onclick="mobileProjNav(1)" style="cursor:pointer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-    <!-- scroll driver -->
-    <div class="proj-scroll" aria-hidden="true">
-      <div class="proj-step" data-project="sufra" style="height:40vh"></div>
-      <div class="proj-step" data-project="bfm"></div>
-      <div class="proj-step" data-project="uop"></div>
-      <div class="proj-step" data-project="netspeed"></div>
-      <div class="proj-step" data-project="taskat"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SKILLS ══ -->
-<section id="skills" class="theme-light">
-  <div class="wrap">
-    <div class="sk-head rv">
-      <div class="s-label" data-i18n="skills.label">المهارات</div>
-      <h2 class="s-h" data-i18n="skills.heading">التقنيات التي أعمل بها</h2>
-    </div>
-    <div class="sk-intro rv">
-      <div class="sk-intro-left">
-        <p class="sk-intro-desc" data-i18n="skills.overText">أفضّل الأدوات التي تحسّن سرعة التسليم وسهولة الصيانة وموثوقية الإنتاج. الواجهة الخلفية هي تخصصي الأساسي — عبر منظومتي Laravel وNode.js — والواجهة الأمامية تدعم ذلك عند الحاجة.</p>
-      </div>
-      <div class="sk-core">
-        <div class="sk-core-item"><span class="sk-core-val">PHP · JS</span><span class="sk-core-lbl" data-i18n="skills.m1">اللغات الأساسية</span></div>
-        <div class="sk-core-item"><span class="sk-core-val">Laravel · NestJS</span><span class="sk-core-lbl" data-i18n="skills.m2">الأطر الرئيسية</span></div>
-        <div class="sk-core-item"><span class="sk-core-val">MySQL</span><span class="sk-core-lbl" data-i18n="skills.m3">قاعدة البيانات</span></div>
-      </div>
-    </div>
-    <div class="sk-grid">
-      <!-- Backend -->
-      <div class="sk-card rv d1">
-        <div class="sk-ico">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3d4f63" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-        </div>
-        <div class="sk-title" data-i18n="skills.card1">الواجهة الخلفية</div>
-        <div class="sk-chips">
-          <span class="sk-chip">PHP 8+</span><span class="sk-chip">Laravel</span><span class="sk-chip">Node.js</span><span class="sk-chip">NestJS</span><span class="sk-chip">REST APIs</span><span class="sk-chip">WebSockets</span><span class="sk-chip">Queues</span>
-        </div>
-      </div>
-      <!-- Database -->
-      <div class="sk-card rv d2">
-        <div class="sk-ico">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3d4f63" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <div class="sk-title" data-i18n="skills.card2">قواعد البيانات والتخزين</div>
-        <div class="sk-chips">
-          <span class="sk-chip">MySQL</span><span class="sk-chip">PostgreSQL</span><span class="sk-chip">Supabase</span><span class="sk-chip">Redis</span><span class="sk-chip">Upstash</span><span class="sk-chip">AWS S3</span><span class="sk-chip">IndexedDB</span>
-        </div>
-      </div>
-      <!-- DevOps -->
-      <div class="sk-card rv d3">
-        <div class="sk-ico">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3d4f63" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-        </div>
-        <div class="sk-title" data-i18n="skills.card3">DevOps والأدوات</div>
-        <div class="sk-chips">
-          <span class="sk-chip">Git</span><span class="sk-chip">GitHub Actions</span><span class="sk-chip">PHPUnit</span><span class="sk-chip">Docker</span><span class="sk-chip">Vercel</span><span class="sk-chip">AWS Amplify</span>
-        </div>
-      </div>
-      <!-- Frontend -->
-      <div class="sk-card rv d4">
-        <div class="sk-ico">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3d4f63" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <div class="sk-title" data-i18n="skills.card4">الواجهة الأمامية</div>
-        <div class="sk-chips">
-          <span class="sk-chip">Vue 3</span><span class="sk-chip">Nuxt 4</span><span class="sk-chip">TypeScript</span><span class="sk-chip">Tailwind CSS</span><span class="sk-chip">Pinia</span><span class="sk-chip">Zod</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ EXPERIENCE ══ -->
-<section id="experience" class="theme-dark">
-  <div class="wrap">
-    <div class="rv">
-      <div class="s-label" data-i18n="exp.label">المسيرة</div>
-      <h2 class="s-h" data-i18n="exp.heading">الخبرة</h2>
-      <p class="s-p" data-i18n="exp.sub">مسيرتي المهنية في تطوير البرمجيات</p>
-    </div>
-    <div class="exp-grid">
-      <!-- Left: timeline labels -->
-      <div class="exp-timeline">
-        <div class="exp-tl-item">
-          <div class="exp-tl-dot active"></div>
-          <div class="exp-tl-period" data-i18n="exp.job1Period">أكتوبر 2023 — حتى الآن</div>
-        </div>
-        <div class="exp-tl-item">
-          <div class="exp-tl-dot"></div>
-          <div class="exp-tl-period" data-i18n="exp.job2Period">يونيو — أكتوبر 2023</div>
-        </div>
-        <div class="exp-tl-item">
-          <div class="exp-tl-dot"></div>
-          <div class="exp-tl-period">2020 — 2025</div>
-        </div>
-      </div>
-      <!-- Right: cards -->
-      <div class="exp-cards">
-        <!-- Job 1 -->
-        <div class="exp-card rv d1">
-          <div class="exp-card-top">
-            <div class="exp-role" data-i18n="exp.job1Title">مطوّر الواجهة الخلفية</div>
-            <span class="exp-badge now" data-i18n="exp.badgeCurrent">حالي</span>
-          </div>
-          <div class="exp-co">
-            <a href="https://www.approved.tech/" target="_blank" rel="noopener" class="exp-co-link">Approved Tech<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:4px;opacity:.6;vertical-align:middle"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-            <span class="exp-co-sep"></span>
-            <span class="exp-co-loc" data-i18n="exp.job1Loc">الكويت · فلسطين</span>
-          </div>
-          <div class="exp-period-mobile" data-i18n="exp.job1Period">أكتوبر 2023 — حتى الآن</div>
-          <ul class="exp-list">
-            <li data-i18n="exp.job1l1">تصميم وبناء واجهات خلفية آمنة وقابلة للتوسع لمنصات SaaS وERP وحجوزات لعملاء مؤسسيين متعددين.</li>
-            <li data-i18n="exp.job1l2">هندسة مخططات قواعد بيانات معقدة وتحسين REST APIs عالية الحمل — تخفيضات ملموسة في زمن الاستجابة وصلت للإنتاج.</li>
-            <li data-i18n="exp.job1l3">تطبيق نظام RBAC دقيق في بيئات متعددة المستأجرين لثلاث مستويات مستخدمين.</li>
-            <li data-i18n="exp.job1l4">سبرنتات Agile، مراجعات كود منظمة، تغطية PHPUnit، CI/CD عبر GitHub Actions.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="exp-tag">PHP</span><span class="exp-tag">Laravel</span><span class="exp-tag">MySQL</span><span class="exp-tag">Redis</span><span class="exp-tag">PHPUnit</span><span class="exp-tag">GitHub Actions</span>
-          </div>
-        </div>
-        <!-- Job 2 -->
-        <div class="exp-card rv d2">
-          <div class="exp-card-top">
-            <div class="exp-role" data-i18n="exp.job2Title">مطوّر الواجهة الخلفية — تدريب</div>
-            <span class="exp-badge" data-i18n="exp.badgeIntern">تدريب</span>
-          </div>
-          <div class="exp-co">
-            <a href="https://www.approved.tech/" target="_blank" rel="noopener" class="exp-co-link">Approved Tech<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:4px;opacity:.6;vertical-align:middle"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-            <span class="exp-co-sep"></span>
-            <span class="exp-co-loc" data-i18n="exp.job1Loc">الكويت · فلسطين</span>
-          </div>
-          <div class="exp-period-mobile" data-i18n="exp.job2Period">يونيو — أكتوبر 2023</div>
-          <ul class="exp-list">
-            <li data-i18n="exp.job2l1">برنامج مكثّف لمدة 4 أشهر يغطي سير عمل الويب الحديث ودورة حياة التطوير الكاملة في كود إنتاجي.</li>
-            <li data-i18n="exp.job2l2">بناء ميزات Laravel مع مطورين متمرسين وتعلم أنماط المعمارية وثقافة مراجعة الكود.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="exp-tag">PHP</span><span class="exp-tag">Laravel</span><span class="exp-tag">MySQL</span>
-          </div>
-        </div>
-        <!-- Education -->
-        <div class="exp-card rv d3">
-          <div class="exp-card-top">
-            <div class="exp-role" data-i18n="exp.job3Title">بكالوريوس تقنية المعلومات — تطوير الويب</div>
-            <span class="exp-badge" data-i18n="exp.badgeEdu">تعليم</span>
-          </div>
-          <div class="exp-co">
-            <a href="https://www.iugaza.edu.ps/" target="_blank" rel="noopener" class="exp-co-link" data-i18n="exp.job3Co">الجامعة الإسلامية بغزة<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:4px;opacity:.6;vertical-align:middle"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-            <span class="exp-co-sep"></span>
-            <span class="exp-co-loc" data-i18n="exp.job3Loc">غزة، فلسطين</span>
-          </div>
-          <div class="exp-period-mobile">2020 — 2025</div>
-          <ul class="exp-list">
-            <li data-i18n="exp.job3l1">تقنيات الويب المتقدمة، أنظمة قواعد البيانات، الخوارزميات، ومبادئ هندسة البرمجيات.</li>
-            <li data-i18n="exp.job3l2">أساس أكاديمي متين في OOP وهياكل البيانات وتطوير الواجهة الخلفية.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<section id="contact" class="theme-light">
-  <div class="wrap">
-    <div class="contact-head rv">
-      <div class="s-label" data-i18n="contact.label">تواصل</div>
-      <h2 class="s-h" data-i18n="contact.heading">تواصل معي</h2>
-      <p class="s-p" data-i18n="contact.sub">منفتح على الفرص الجديدة والتعاونات والمشاريع المثيرة.</p>
-    </div>
-    <div class="contact-grid rv d1">
-      <!-- Left: info -->
-      <div class="cg-info">
-        <div class="contact-avail">
-          <span class="contact-avail-dot"></span>
-          <span data-i18n="nav.available">متاح للعمل</span>
-        </div>
-        <h3 class="cg-title" data-i18n="contact.leftHeading">لنعمل <span>معاً</span></h3>
-        <p class="cg-body" data-i18n="contact.leftP">سواء كان منتج SaaS، أو API عالي الحمل، أو نظاماً يحتاج معمارية مدروسة — أودّ أن أسمع عنه.</p>
-        <div class="clinks">
-          <a href="mailto:moh.alnamla@gmail.com" class="clink">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="clink-k" data-i18n="contact.emailK">البريد الإلكتروني</div><div class="clink-v">moh.alnamla@gmail.com</div></div>
-          </a>
-          <a href="tel:+970599473743" class="clink">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.82a19.79 19.79 0 01-3.07-8.67 2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div><div class="clink-k" data-i18n="contact.phoneK">الهاتف</div><div class="clink-v">+970 599 473 743</div></div>
-          </a>
-          <a href="https://github.com/Abu3Maher" target="_blank" rel="noopener" class="clink">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
-            <div><div class="clink-k">GitHub</div><div class="clink-v">github.com/Abu3Maher</div></div>
-          </a>
-          <a href="https://www.linkedin.com/in/mohammed-al-namla-084907260" target="_blank" rel="noopener" class="clink">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-            <div><div class="clink-k">LinkedIn</div><div class="clink-v">mohammed-al-namla</div></div>
-          </a>
-          <a href="https://www.instagram.com/abu._.maher00" target="_blank" rel="noopener" class="clink">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-            <div><div class="clink-k">Instagram</div><div class="clink-v">abu._.maher00</div></div>
-          </a>
-          <div class="clink" style="cursor:default;">
-            <div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><div class="clink-k" data-i18n="contact.locationK">الموقع</div><div class="clink-v" data-i18n="contact.locationV">فلسطين 🇵🇸</div></div>
-          </div>
-        </div>
-      </div>
-      <!-- Right: form -->
-      <div class="cg-form">
-        <div class="cg-form-inner">
-          <h3 class="cg-form-title" data-i18n="contact.formHeading">أرسل رسالة</h3>
-
-          <!-- Success state -->
-          <div id="form-success" class="form-success-state" style="display:none;">
-            <div class="fs-icon-wrap">
-              <svg class="fs-icon" viewBox="0 0 52 52" fill="none">
-                <circle class="fs-circle" cx="26" cy="26" r="24" stroke="#c8923a" stroke-width="2"/>
-                <polyline class="fs-check" points="15,27 22,34 37,19" stroke="#c8923a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4 class="fs-title" data-i18n="contact.successTitle">تم الإرسال بنجاح!</h4>
-            <p class="fs-msg" data-i18n="contact.successMsg">شكراً لتواصلك معي. سأراجع رسالتك وأرد عليك في أقرب وقت ممكن.</p>
-            <button class="fs-back" onclick="resetForm()" data-i18n="contact.successBack">إرسال رسالة أخرى</button>
-          </div>
-
-          <!-- Form -->
-          <form id="contact-form" onsubmit="handleForm(event)" novalidate>
-            <input type="hidden" name="access_key" value="3814092a-588e-466c-ac6e-e5daae46f386" />
-            <div class="fg2">
-              <div class="fg">
-                <label class="fl" data-i18n="contact.formName">الاسم</label>
-                <input id="fn" name="name" class="fi" type="text" data-i18n-ph="contact.formNamePh" placeholder="اسمك" autocomplete="name" maxlength="80" />
-                <span class="fi-err" id="err-name"></span>
-              </div>
-              <div class="fg">
-                <label class="fl" data-i18n="contact.formEmail">البريد الإلكتروني</label>
-                <input id="fe" name="email" class="fi" type="email" placeholder="your@email.com" autocomplete="email" maxlength="120" />
-                <span class="fi-err" id="err-email"></span>
-              </div>
-            </div>
-            <div class="fg">
-              <label class="fl" data-i18n="contact.formSubject">الموضوع</label>
-              <input id="fs" name="subject" class="fi" type="text" data-i18n-ph="contact.formSubjectPh" placeholder="استفسار عن مشروع" maxlength="150" />
-              <span class="fi-err" id="err-subject"></span>
-            </div>
-            <div class="fg">
-              <label class="fl" data-i18n="contact.formMessage">الرسالة</label>
-              <textarea id="fm" name="message" class="ft" data-i18n-ph="contact.formMessagePh" placeholder="أخبرني عن مشروعك..." maxlength="2000"></textarea>
-              <span class="fi-err" id="err-message"></span>
-            </div>
-            <button type="submit" class="cg-send-btn" id="form-submit-btn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              <span data-i18n="contact.formSend">إرسال</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="foot-w">
-    <p class="foot-copy" data-i18n-html="footer.copy">© 2025 <b>محمد النملة</b> · فلسطين 🇵🇸</p>
-    <div class="foot-soc">
-      <a href="mailto:moh.alnamla@gmail.com" class="foot-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
-      <a href="https://github.com/Abu3Maher" target="_blank" rel="noopener" class="foot-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-      <a href="https://www.linkedin.com/in/mohammed-al-namla-084907260" target="_blank" rel="noopener" class="foot-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-      <a href="https://www.instagram.com/abu._.maher00" target="_blank" rel="noopener" class="foot-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    </div>
-  </div>
-</footer>
-
-<!-- ══════ MODALS ══════ -->
-
-<!-- SUFRA -->
-<div class="modal-bg" id="modal-sufra">
-  <div class="modal">
-    <div class="modal-top"><button class="modal-x" onclick="closeModal('sufra')">✕</button></div>
-    <div class="modal-img"><img src="images/Sufra.webp" alt="Sufra" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=modal-img-ph>🍽️</div>'" /></div>
-    <div class="modal-hero">
-      <div class="modal-role-strip">
-        <span class="mrs-role" data-i18n="proj.role.fullstackBackend">Full-Stack Developer (Backend-First)</span>
-        <span class="mrs-status-live" data-i18n="proj.status.live">Production Live</span>
-      </div>
-      <div class="modal-title" data-i18n="m.sufra.title">سُفرة</div>
-      <div class="modal-sub" data-i18n="m.sufra.sub">SaaS متعدد المستأجرين للمطاعم — قوائم QR · نقطة بيع أوف لاين · شاشة مطبخ · واجهة خلفية Laravel</div>
-      <div class="modal-meta"><span data-i18n="m.sufra.date">أبريل 2025 – حتى الآن</span><span>sufra.live</span></div>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-stats">
-      <div class="mstat"><div class="mstat-n">Laravel</div><div class="mstat-l" data-i18n="m.sufra.s1">واجهة خلفية REST كاملة</div></div>
-      <div class="mstat"><div class="mstat-n">PWA</div><div class="mstat-l" data-i18n="m.sufra.s2">نقطة بيع أوف لاين</div></div>
-      <div class="mstat"><div class="mstat-n">WebSockets</div><div class="mstat-l" data-i18n="m.sufra.s3">إشعارات فورية</div></div>
-      <div class="mstat"><div class="mstat-n">Redis</div><div class="mstat-l" data-i18n="m.sufra.s4">طبقة كاش للقائمة</div></div>
-    </div>
-    <div class="modal-body">
-      <div id="modal-body-sufra" data-i18n-modal="sufra"></div>
-      <div class="modal-actions"><a href="https://sufra.live/" target="_blank" rel="noopener" class="modal-live" data-i18n="m.sufra.live">🌐 عرض الموقع</a><button class="modal-close-btn" onclick="closeModal('sufra')" data-i18n="m.close">إغلاق →</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- BOOKFORME -->
-<div class="modal-bg" id="modal-bfm">
-  <div class="modal">
-    <div class="modal-top"><button class="modal-x" onclick="closeModal('bfm')">✕</button></div>
-    <div class="modal-img"><img src="images/BFM.webp" alt="BookForMe" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=modal-img-ph>📅</div>'" /></div>
-    <div class="modal-hero">
-      <div class="modal-role-strip">
-        <span class="mrs-role" data-i18n="proj.role.backend">Backend Developer</span>
-        <span class="mrs-status-live" data-i18n="proj.status.live">Production Live</span>
-      </div>
-      <div class="modal-title">BookForMe</div>
-      <div class="modal-sub" data-i18n="m.bfm.sub">SaaS حجوزات وتجارة متعدد المستأجرين — صالونات · عيادات · منتجعات</div>
-      <div class="modal-meta"><span data-i18n="m.bfm.date">مارس 2024 – حتى الآن</span><span>Approved Tech</span><span>bookforme.ps</span></div>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-stats">
-      <div class="mstat"><div class="mstat-n">3</div><div class="mstat-l" data-i18n="m.bfm.s1">بوابات منفصلة</div></div>
-      <div class="mstat"><div class="mstat-n">5+</div><div class="mstat-l" data-i18n="m.bfm.s2">عملات</div></div>
-      <div class="mstat"><div class="mstat-n">6</div><div class="mstat-l" data-i18n="m.bfm.s3">مستودعات</div></div>
-      <div class="mstat"><div class="mstat-n">Live</div><div class="mstat-l" data-i18n="m.bfm.s4">في الإنتاج</div></div>
-    </div>
-    <div class="modal-body">
-      <div id="modal-body-bfm" data-i18n-modal="bfm"></div>
-      <div class="modal-actions"><a href="https://www.bookforme.ps" target="_blank" rel="noopener" class="modal-live" data-i18n="m.bfm.live">🌐 عرض الموقع</a><button class="modal-close-btn" onclick="closeModal('bfm')" data-i18n="m.close">إغلاق →</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- UOP -->
-<div class="modal-bg" id="modal-uop">
-  <div class="modal">
-    <div class="modal-top"><button class="modal-x" onclick="closeModal('uop')">✕</button></div>
-    <div class="modal-img"><img src="images/UOP.webp" alt="UOP Dashboard" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=modal-img-ph>🎓</div>'" /></div>
-    <div class="modal-hero">
-      <div class="modal-role-strip">
-        <span class="mrs-role" data-i18n="proj.role.backend">Backend Developer</span>
-        <span class="mrs-status-delivered" data-i18n="proj.status.delivered">Delivered</span>
-      </div>
-      <div class="modal-title" data-i18n="m.uop.title">لوحة تحكم UOP</div>
-      <div class="modal-sub" data-i18n="m.uop.sub">Headless CMS وموقع عام — جامعة فلسطين</div>
-      <div class="modal-meta"><span data-i18n="m.uop.date">أكتوبر 2024 – أبريل 2025</span><span>Approved Tech</span><span>up.edu.ps/ar</span></div>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-stats">
-      <div class="mstat"><div class="mstat-n">15+</div><div class="mstat-l" data-i18n="m.uop.s1">نوع محتوى</div></div>
-      <div class="mstat"><div class="mstat-n">3</div><div class="mstat-l" data-i18n="m.uop.s2">مستودعات</div></div>
-      <div class="mstat"><div class="mstat-n">OA3</div><div class="mstat-l" data-i18n="m.uop.s3">توثيق OpenAPI 3.0</div></div>
-      <div class="mstat"><div class="mstat-n" data-i18n="m.uop.s4n">ع+EN</div><div class="mstat-l" data-i18n="m.uop.s4">ثنائي اللغة</div></div>
-    </div>
-    <div class="modal-body">
-      <div id="modal-body-uop" data-i18n-modal="uop"></div>
-      <div class="modal-actions"><a href="https://up.edu.ps/ar" target="_blank" rel="noopener" class="modal-live" data-i18n="m.uop.live">🌐 عرض الموقع</a><button class="modal-close-btn" onclick="closeModal('uop')" data-i18n="m.close">إغلاق →</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- TASKAT -->
-<div class="modal-bg" id="modal-taskat">
-  <div class="modal">
-    <div class="modal-top"><button class="modal-x" onclick="closeModal('taskat')">✕</button></div>
-    <div class="modal-img"><img src="images/Taskat.webp" alt="Taskat" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=modal-img-ph>✅</div>'" /></div>
-    <div class="modal-hero">
-      <div class="modal-role-strip">
-        <span class="mrs-role" data-i18n="proj.role.backend">Backend Developer</span>
-        <span class="mrs-status-delivered" data-i18n="proj.status.delivered">Delivered</span>
-      </div>
-      <div class="modal-title" data-i18n="m.taskat.title">تسكات</div>
-      <div class="modal-sub" data-i18n="m.taskat.sub">إدارة مشاريع Agile وتعاون فريق في الوقت الفعلي</div>
-      <div class="modal-meta"><span data-i18n="m.taskat.date">فبراير 2025 – مارس 2025</span><span>Approved Tech</span><span data-i18n="m.taskat.access">🔒 خاص</span></div>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-stats">
-      <div class="mstat"><div class="mstat-n">Agile</div><div class="mstat-l" data-i18n="m.taskat.s1">محرك سبرنت كامل</div></div>
-      <div class="mstat"><div class="mstat-n">Live</div><div class="mstat-l" data-i18n="m.taskat.s2">دردشة فورية</div></div>
-      <div class="mstat"><div class="mstat-n">RBAC</div><div class="mstat-l" data-i18n="m.taskat.s3">أدوار ديناميكية لكل مشروع</div></div>
-      <div class="mstat"><div class="mstat-n">SaaS</div><div class="mstat-l" data-i18n="m.taskat.s4">متعدد المستأجرين</div></div>
-    </div>
-    <div class="modal-body">
-      <div id="modal-body-taskat" data-i18n-modal="taskat"></div>
-      <div class="modal-actions"><button class="modal-close-btn" onclick="closeModal('taskat')" data-i18n="m.close">إغلاق →</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- NETSPEED -->
-<div class="modal-bg" id="modal-netspeed">
-  <div class="modal">
-    <div class="modal-top"><button class="modal-x" onclick="closeModal('netspeed')">✕</button></div>
-    <div class="modal-img"><img src="images/NetSpeed.webp" alt="NetSpeed" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=modal-img-ph>📡</div>'" /></div>
-    <div class="modal-hero">
-      <div class="modal-role-strip">
-        <span class="mrs-role" data-i18n="proj.role.fullstack">Full-Stack Developer</span>
-        <span class="mrs-status-delivered" data-i18n="proj.status.delivered">Delivered</span>
-      </div>
-      <div class="modal-title">NetSpeed</div>
-      <div class="modal-sub" data-i18n="m.netspeed.sub">إدارة عمليات ISP وبطاقات الإنترنت — points.red-radius.com</div>
-      <div class="modal-meta"><span data-i18n="m.netspeed.date">يناير 2025</span><span>Approved Tech</span><span>points.red-radius.com</span></div>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-stats">
-      <div class="mstat"><div class="mstat-n">10K+</div><div class="mstat-l" data-i18n="m.netspeed.s1">مستخدم متزامن</div></div>
-      <div class="mstat"><div class="mstat-n">&lt;200ms</div><div class="mstat-l" data-i18n="m.netspeed.s2">زمن استجابة API</div></div>
-      <div class="mstat"><div class="mstat-n">60%</div><div class="mstat-l" data-i18n="m.netspeed.s3">تقليل حمل قاعدة البيانات</div></div>
-      <div class="mstat"><div class="mstat-n">HW API</div><div class="mstat-l" data-i18n="m.netspeed.s4">مصادقة Hotspot</div></div>
-    </div>
-    <div class="modal-body">
-      <div id="modal-body-netspeed" data-i18n-modal="netspeed"></div>
-      <div class="modal-actions"><a href="https://points.red-radius.com" target="_blank" rel="noopener" class="modal-live" data-i18n="m.netspeed.live">🌐 عرض الموقع</a><button class="modal-close-btn" onclick="closeModal('netspeed')" data-i18n="m.close">إغلاق →</button></div>
-    </div>
-  </div>
-</div>
-
-  <script src="js/script.js" defer></script>
+  <script src="projects-data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+  <script src="projects.js"></script>
+  <script src="project-sheet.js"></script>
 </body>
 </html>
