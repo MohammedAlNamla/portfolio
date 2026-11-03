@@ -1,0 +1,84 @@
+/* Experience ideas. Rows come from experience.css, option cards from projects-heading.css. */
+:root { --brush: #dedad2; }
+:root[data-theme="dark"] { --brush: #4d4c49; }
+
+.brush-defs { position: absolute; width: 0; height: 0; }
+.ph-label { flex-wrap: wrap; gap: 2px 10px; padding-inline-end: 76px; }
+.ph-pane[dir="ltr"] { font-family: var(--font-text); }
+.ph-pane { place-items: start center; }
+.xd { width: 100%; max-width: 560px; text-align: start; }
+.xd .xp-list { max-width: none; margin: 0; }
+.xd .h-en { margin-bottom: 30px; font-size: clamp(1.25rem, 1.9vw, 1.625rem); }
+.xd .h-ar { margin-bottom: 30px; font-size: clamp(1.5rem, 2.3vw, 2rem); }
+.xd .h-en > span, .xd .h-ar > span { white-space: normal; }
+
+/* The rail draws itself */
+.v-draw .xp-row::before { transform-origin: top; }
+.is-playing .v-draw .xp-row::before { animation: xd-rail 800ms cubic-bezier(.3, .7, .2, 1) both; animation-delay: calc(var(--order) * 420ms); }
+@keyframes xd-rail { from { transform: scaleY(0); } }
+
+/* Live dot beside current roles */
+.xd-live { display: inline-block; width: 7px; height: 7px; margin-inline-start: 7px; border-radius: 50%; background: #2f9e62; vertical-align: .08em; }
+.is-playing .xd-live { animation: xd-pulse 1100ms ease-out 2; }
+@keyframes xd-pulse { 0% { box-shadow: 0 0 0 0 rgba(47, 158, 98, .4); } 100% { box-shadow: 0 0 0 8px rgba(47, 158, 98, 0); } }
+
+/* Rows appearing in order */
+.is-playing .v-rise .xp-row { animation: ph-stack 650ms cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--order) * 130ms); }
+
+/* Years counting to their value */
+.v-count .xp-year { font-variant-numeric: tabular-nums; }
+
+/* Logos taking their colour in turn */
+.is-playing .v-wave .xp-logo img { animation: xd-wave 1100ms ease both; animation-delay: calc(var(--order) * 260ms); }
+@keyframes xd-wave { 45% { opacity: 1; filter: none; } }
+
+@media (hover: hover) and (pointer: fine) {
+  /* The other rows step back */
+  .v-focus .xp-row { transition: opacity 180ms ease; }
+  .v-focus:has(.xp-row:hover) .xp-row:not(:hover) { opacity: .42; }
+
+  /* The road up to the hovered row darkens */
+  .v-fill .xp-row::before { transition: background-color 220ms ease; }
+  .v-fill .xp-row:has(~ .xp-row:hover)::before { background: var(--ink) !important; }
+
+  /* The note opens with the row */
+  .v-reveal .xp-note { max-height: 0; margin-top: 0; overflow: hidden; opacity: 0; transition: max-height 240ms ease, margin-top 240ms ease, opacity 200ms ease; }
+  .v-reveal .xp-row:hover .xp-note, .v-reveal .xp-row:focus-within .xp-note { max-height: 4em; margin-top: 4px; opacity: 1; }
+}
+
+/* Brush behind a word */
+.w-brush { position: relative; display: inline-block; isolation: isolate; padding-inline: .1em; }
+.w-brush svg { position: absolute; z-index: -1; top: -.2em; left: -.3em; width: calc(100% + .6em); height: calc(100% + .4em); overflow: visible; filter: url(#brush-rough); }
+.w-brush path { fill: var(--brush); }
+[dir="rtl"] .w-brush svg { transform: scaleX(-1); }
+.is-playing .w-brush svg { animation: xd-brush 1000ms 250ms cubic-bezier(.3, .7, .2, 1) both; }
+@keyframes xd-brush { from { clip-path: inset(-40% 100% -40% -5%); } to { clip-path: inset(-40% -5% -40% -5%); } }
+.xp-date .w-brush { color: var(--ink); font-weight: 600; }
+
+/* Small git label */
+.xd-tag { margin-inline-start: 7px; padding: 0 6px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink-soft); direction: ltr; font-family: "IBM Plex Mono", monospace; font-size: .6875rem; line-height: 1.5; }
+
+/* Time ruler */
+.xd-ruler { margin-bottom: 30px; }
+.xd-lane { position: relative; height: 4px; margin-bottom: 5px; border-radius: 2px; background: var(--surface); }
+.xd-bar { position: absolute; top: 0; bottom: 0; inset-inline-start: var(--from); width: var(--span); border-radius: 2px; background: var(--ink-fade); transition: background-color 180ms ease; }
+.is-now { background: var(--ink); }
+.xd-ticks { position: relative; height: 18px; margin-top: 8px; color: var(--ink-soft); font-size: .75rem; font-variant-numeric: tabular-nums; }
+.xd-ticks span { position: absolute; inset-inline-start: var(--from); }
+.xd-ticks span:last-child { inset-inline-start: auto; inset-inline-end: 0; }
+.is-playing .xd-bar { animation: xd-bar 900ms cubic-bezier(.3, .7, .2, 1) both; animation-delay: calc(var(--order) * 130ms); }
+@keyframes xd-bar { from { width: 0; } }
+.xd:has(.xp-row:hover) .xd-bar { background: var(--line); }
+.xd:has(.xp-row:nth-child(1):hover) .xd-lane:nth-child(1) .xd-bar,
+.xd:has(.xp-row:nth-child(2):hover) .xd-lane:nth-child(2) .xd-bar,
+.xd:has(.xp-row:nth-child(3):hover) .xd-lane:nth-child(3) .xd-bar,
+.xd:has(.xp-row:nth-child(4):hover) .xd-lane:nth-child(4) .xd-bar { background: var(--ink); }
+
+/* Two roles under one company */
+.xd-steps { margin-top: 8px; }
+.xd-step { position: relative; padding-inline-start: 18px; padding-bottom: 14px; }
+.xd-step:last-child { padding-bottom: 0; }
+.xd-step::before { content: ""; position: absolute; top: .5em; inset-inline-start: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ink-fade); }
+.xd-step:first-child::before { background: var(--ink); }
+.xd-step:not(:last-child)::after { content: ""; position: absolute; top: calc(.5em + 11px); bottom: -2px; inset-inline-start: 3px; width: 1px; background: var(--line); }
+.xd-step .xp-role { color: var(--ink); }
