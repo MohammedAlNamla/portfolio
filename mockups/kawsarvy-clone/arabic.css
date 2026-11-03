@@ -75,3 +75,28 @@
   [dir="rtl"] .project-tag { font-size: calc(var(--u) * 13); }
   [dir="rtl"] .project-summary { font-size: calc(var(--u) * 14); line-height: 1.55; }
 }
+
+/* Shared touches for both languages */
+.tag-emoji { display: none; }
+
+/* The marked word is the clearest one in its heading */
+.w-brush, .xp-road { color: var(--ink); }
+
+/* Small screens: the name sits under the picture instead of over it */
+@media (max-width: 599px) {
+  .hero .avatar-tag { left: 50%; top: auto; bottom: -14px; transform: translateX(-50%) rotate(-6deg); }
+}
+
+/* Arabic: the strip travels with the reading direction */
+[dir="rtl"] .marquee-track { animation-direction: reverse; }
+
+/* Arabic: sizes on small screens (larger screens keep the sizes in arabic.css) */
+[dir="rtl"] .service h3, [dir="rtl"] .xp-company { font-weight: 600; }
+
+@media (max-width: 899px) {
+  [dir="rtl"] .service h3, [dir="rtl"] .xp-company { font-size: 1.125rem; line-height: 1.4; }
+  [dir="rtl"] .service p, [dir="rtl"] .xp-note { font-size: .9375rem; line-height: 1.6; }
+  [dir="rtl"] .xp-date, [dir="rtl"] .xp-duration, [dir="rtl"] .xp-role { font-size: .8125rem; line-height: 1.6; }
+  [dir="rtl"] .project-name { font-size: 1.0625rem; }
+  [dir="rtl"] .project-tag { font-size: .875rem; }
+}

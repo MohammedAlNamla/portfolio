@@ -8,13 +8,13 @@ const ui = isArabic
       useDark: 'استخدام الوضع الداكن',
       useLight: 'استخدام الوضع الفاتح',
       otherLanguage: 'Switch to English',
-      demo: 'تجريبي',
-      demoImage: 'صورة تجريبية',
+      demo: 'صورة توضيحية',
+      demoImage: 'صورة توضيحية',
       screens: 'شاشات',
       screenshot: 'صورة شاشة',
-      visit: 'زيارة الموقع ↗',
-      forBusiness: 'جانب العمل',
-      forEngineers: 'الجانب الهندسي',
+      visit: 'زيارة الموقع ↖',
+      forBusiness: 'لأصحاب العمل',
+      forEngineers: 'للمهندسين',
       moreProjects: 'مشاريع أخرى',
       close: 'إغلاق',
       previous: name => `→ ${name}`,
@@ -26,8 +26,8 @@ const ui = isArabic
       useDark: 'Use dark theme',
       useLight: 'Use light theme',
       otherLanguage: 'التبديل إلى العربية',
-      demo: 'Demo',
-      demoImage: 'demo image',
+      demo: 'Illustration',
+      demoImage: 'illustration',
       screens: 'screens',
       screenshot: 'screenshot',
       visit: 'Visit site ↗',
@@ -44,12 +44,13 @@ function formatDuration(months) {
   const rest = months % 12;
   if (!isArabic) {
     const parts = [];
-    if (years) parts.push(`${years} ${years === 1 ? 'yr' : 'yrs'}`);
-    if (rest || !years) parts.push(`${Math.max(rest, 1)} ${rest > 1 ? 'mos' : 'mo'}`);
+    if (years) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+    if (rest || !years) parts.push(`${Math.max(rest, 1)} ${rest > 1 ? 'months' : 'month'}`);
     return parts.join(' ');
   }
   const arabicYears = count => (count === 1 ? 'سنة' : count === 2 ? 'سنتان' : count <= 10 ? `${count} سنوات` : `${count} سنة`);
   const arabicMonths = count => (count === 1 ? 'شهر' : count === 2 ? 'شهران' : count <= 10 ? `${count} أشهر` : `${count} شهرًا`);
+  if (!years && rest <= 1) return 'شهر واحد';
   const parts = [];
   if (years) parts.push(arabicYears(years));
   if (rest || !years) parts.push(arabicMonths(Math.max(rest, 1)));
@@ -73,13 +74,13 @@ const projectsArabic = {
     summary: 'يدير المطعم من نظام واحد: قائمة QR والطلبات ونقطة البيع وشاشات المطبخ والتقارير.',
     meta: ['تطوير متكامل', 'يعمل الآن', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
-      ['المشكلة', 'تحتاج المطاعم إلى أن تعمل قائمتها وطلباتها وطاولاتها وصندوقها كنظام واحد.'],
+      ['المشكلة', 'تحتاج المطاعم إلى أن تعمل قائمتها وطلباتها وطاولاتها ونقطة بيعها كنظام واحد.'],
       ['من يستخدمه', 'يدير الملاك والموظفون لوحة التحكم ونقطة البيع وشاشات المطبخ، ويطلب الزبائن من القائمة.'],
       ['الوضع الحالي', 'يعمل الآن مع أصحاب مطاعم وزبائن حقيقيين.']
     ],
     engineering: [
       ['نقطة بيع تصمد عند الانقطاع', 'تُحفظ الطلبات في IndexedDB وتتزامن عند عودة الاتصال، فلا يتوقف العمل في وقت الزحام.'],
-      ['خلفية واحدة لكل التطبيقات', 'واجهة Laravel واحدة تخدم القائمة ولوحة التحكم ولوحة الإدارة وتطبيق الموظفين لمتاجر كثيرة.'],
+      ['نظام خلفي واحد لكل التطبيقات', 'واجهة برمجية واحدة بـLaravel تخدم القائمة ولوحة التحكم ولوحة الإدارة وتطبيق الموظفين لمتاجر كثيرة.'],
       ['طباعة مركزية', 'يعمل تطبيق Flutter للموظفين أيضًا كجهاز طباعة مركزي للمطعم.']
     ],
     captions: ['لوحة المالك والتقارير', 'شاشة المطبخ والطلبات المباشرة', 'نقطة البيع']
@@ -119,7 +120,7 @@ const projectsArabic = {
   edux: {
     type: 'منصة تعليمية للمعلمين والطلاب',
     tag: 'منصة تعليمية',
-    summary: 'تمنح المسؤولين والمعلمين والطلاب مساحة خاصة لكل منهم للمحتوى التعليمي.',
+    summary: 'مساحة خاصة لكل من المسؤولين والمعلمين والطلاب لإدارة المحتوى التعليمي.',
     meta: ['تطوير متكامل', 'قيد التطوير', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
       ['المشكلة', 'يحتاج المعلمون والطلاب إلى محتوى تعليمي منظم في مكان واحد.'],
@@ -128,11 +129,12 @@ const projectsArabic = {
     ],
     engineering: [
       ['تنظيم حسب المجال', 'لكل دور واجهته دون تكرار وحدات العمل الموجودة خلفها.'],
-      ['مسار طلبات صارم', 'تمر الطلبات بالحراسة والتحقق والخدمات والمستودعات قبل الوصول إلى Prisma.'],
-      ['معرفات عامة آمنة', 'تعرض الواجهة معرفات UUID فقط، بينما يمكن لقاعدة البيانات استخدام أرقام داخلية.']
+      ['مسار طلبات صارم', 'تمر الطلبات بطبقات الحماية والتحقق والخدمات والمستودعات قبل الوصول إلى Prisma.'],
+      ['معرفات عامة آمنة', 'تعرض الواجهة البرمجية معرفات UUID فقط، بينما يمكن لقاعدة البيانات استخدام أرقام داخلية.']
     ]
   },
   uop: {
+    name: 'جامعة فلسطين',
     type: 'موقع جامعي ونظام لإدارة المحتوى',
     tag: 'موقع جامعي',
     summary: 'يتيح لموظفي الجامعة نشر الأخبار والفعاليات والاختبارات والصفحات بعدة لغات.',
@@ -143,15 +145,15 @@ const projectsArabic = {
       ['ماذا يشمل', 'الأخبار والفعاليات والاختبارات والمعارض وقصص النجاح والصفحات المخصصة.']
     ],
     engineering: [
-      ['صفحات بدون نشر جديد', 'أي صفحة تُنشأ من لوحة التحكم تظهر تلقائيًا عبر مسار عام.'],
-      ['واجهة منفصلة', 'تفصل واجهة JSON الموقع العام عن نظام الإدارة.'],
-      ['توثيق واضح', 'الواجهة موثقة باستخدام OpenAPI 3.0.']
+      ['صفحات دون إعادة نشر', 'أي صفحة تُنشأ من لوحة التحكم تظهر تلقائيًا عبر مسار عام.'],
+      ['واجهة برمجية منفصلة', 'تفصل واجهة JSON البرمجية الموقع العام عن نظام الإدارة.'],
+      ['توثيق واضح', 'الواجهة البرمجية موثقة باستخدام OpenAPI 3.0.']
     ]
   },
   netspeed: {
     type: 'نظام لإدارة خدمات الإنترنت',
-    tag: 'نظام إنترنت',
-    summary: 'يدير بطاقات مزود الإنترنت المدفوعة ونقاط الولاء وتذاكر الدعم والعمل الميداني.',
+    tag: 'إدارة مزود إنترنت',
+    summary: 'يدير بطاقات الإنترنت المدفوعة مسبقًا ونقاط الولاء وتذاكر الدعم والعمل الميداني.',
     meta: ['تطوير متكامل', 'Laravel', 'jQuery', 'SMS'],
     business: [
       ['المشكلة', 'يحتاج مزود الإنترنت إلى إدارة البطاقات والعملاء والدعم والعمل الميداني في نظام واحد.'],
@@ -159,24 +161,24 @@ const projectsArabic = {
       ['ماذا يشمل', 'البطاقات المدفوعة ونقاط الولاء وتذاكر الدعم والتركيبات والصيانة.']
     ],
     engineering: [
-      ['متصل بالأجهزة', 'تستدعي أجهزة Hotspot واجهة عامة للتحقق من البطاقة وبدء الجلسة.'],
+      ['متصل بالأجهزة', 'تستدعي أجهزة Hotspot واجهة برمجية عامة للتحقق من البطاقة وبدء الجلسة.'],
       ['أدوار دقيقة', 'لكل دور إداري مجموعة صلاحياته الخاصة.'],
       ['نشاط قابل للتتبع', 'تُسجل عمليات الدخول وإجراءات المسؤولين للمراجعة.']
     ]
   },
   shahrazad: {
     type: 'واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM',
-    tag: 'واجهة للسفر',
-    summary: 'واجهة واحدة لحجز الرحلات والتنقلات وشراء شرائح eSIM، مع حجز دون إنشاء حساب.',
-    meta: ['واجهة خلفية', 'في فكرتك', 'Laravel 12', 'MySQL'],
+    tag: 'واجهة برمجية للسفر',
+    summary: 'واجهة برمجية واحدة لحجز الرحلات والتنقلات وشراء شرائح eSIM، مع حجز دون إنشاء حساب.',
+    meta: ['أنظمة خلفية', 'في فكرتك', 'Laravel 12', 'MySQL'],
     business: [
       ['الفكرة', 'مكان واحد يحجز فيه المسافرون الرحلات والتنقلات ويشترون شرائح eSIM.'],
       ['كيف تعمل', 'تبيع المنصة عبر مزودين خارجيين وتتابع كل طلب للعميل.'],
       ['من يستخدمها', 'يحجز المسافرون دون حساب، ويتابع الدعم الطلبات من أدوات الإدارة.']
     ],
     engineering: [
-      ['مزودون خلف واجهة واحدة', 'يعمل منطق العمل بكائنات عامة، فيمكن تغيير المزود دون المساس به.'],
-      ['حجز الضيوف', 'يفتح الرقم المرجعي القصير والبريد الإلكتروني الحجز دون تسجيل دخول.'],
+      ['مزودون خلف واجهة برمجية واحدة', 'يتعامل منطق العمل مع واجهة موحدة، فيمكن تغيير المزود دون المساس به.'],
+      ['حجز دون حساب', 'يفتح الرقم المرجعي القصير والبريد الإلكتروني الحجز دون تسجيل دخول.'],
       ['مزامنة مستمرة', 'تبقي Webhooks والفحوصات المجدولة الطلبات المحلية محدثة.']
     ]
   },
@@ -192,7 +194,7 @@ const projectsArabic = {
     ],
     engineering: [
       ['مسودات قبل التغيير', 'تُقترح التعديلات كمسودات للمراجعة بدل كتابتها مباشرة في قاعدة البيانات.'],
-      ['مواضيع من الاستخدام الفعلي', 'تعتمد الاقتراحات على طريقة استخدام الكود للجداول، لا الأسماء والمفاتيح فقط.'],
+      ['اقتراحات من الاستخدام الفعلي', 'تعتمد الاقتراحات على طريقة استخدام الكود للجداول، لا الأسماء والمفاتيح فقط.'],
       ['صغيرة ومحلية', 'خادم Node محلي مع واجهة JavaScript بسيطة.']
     ]
   }
@@ -224,7 +226,7 @@ function translatePage() {
   const set = (selector, text) => { document.querySelector(selector).textContent = text; };
 
   document.title = 'محمد النملة — مهندس برمجيات';
-  set('.pill-long', 'تحميل السيرة الذاتية');
+  set('.pill-long', 'السيرة الذاتية');
   set('.pill-short', 'السيرة');
   setText(document.querySelector('.avatar-tag'), 'محمد النملة');
   setText(document.querySelector('.btn-shots'), 'استعرض أعمالي');
@@ -243,16 +245,16 @@ function translatePage() {
 
   set('.clients-label', 'عملت مع');
   set('.ghost-word', 'أعمال');
-  setLines('.projects .subtitle', ['بعض المنتجات', 'التي بنيتها']);
+  setLines('.projects .subtitle', ['من المنتجات', 'التي بنيتها']);
   document.querySelector('.projects .divider-tag').textContent = 'المشاريع';
 
   setLines('.subtitle-wide', ['من قاعدة البيانات إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج']);
-  setLines('.subtitle-narrow', ['من قاعدة البيانات', 'إلى الشاشة، أنظمة', 'تعمل بثبات في الإنتاج']);
+  setLines('.subtitle-narrow', ['من قاعدة البيانات', 'إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج']);
   document.querySelector('.services .divider-tag').textContent = 'الخدمات';
 
   const services = [
     ['أنظمة متعددة العملاء', 'منصة واحدة تخدم شركات كثيرة، ولكل منها بياناتها وأدوارها وصلاحياتها.'],
-    ['واجهات برمجية وتكاملات', 'واجهات موثقة ومزودون خارجيون، تبقى متزامنة عبر Webhooks ومهام مجدولة.'],
+    ['واجهات برمجية وتكاملات', 'واجهات موثقة وربط بمزودين خارجيين، تبقى متزامنة عبر Webhooks ومهام مجدولة.'],
     ['الوقت الفعلي والعمل دون اتصال', 'تحديثات فورية عبر WebSockets، ونقطة بيع تواصل استقبال الطلبات عند انقطاع الاتصال.'],
     ['تطوير متكامل', 'واجهات Vue وNuxt تُسلَّم مع الأنظمة الخلفية التي تشغّلها.']
   ];
@@ -265,9 +267,9 @@ function translatePage() {
   setText(document.querySelector('.experience .line'), 'الطريق');
   setText(document.querySelector('.xp-road'), 'حتى الآن');
   const experience = [
-    ['أكتوبر 2026 — الآن', 'مهندس برمجيات (الواجهة الخلفية) · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
-    ['أكتوبر 2023 — الآن', 'مهندس برمجيات (الواجهة الخلفية)', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
-    ['يونيو — أكتوبر 2023', 'مطوّر واجهة خلفية · تدريب', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
+    ['أكتوبر 2026 — الآن', 'مهندس أنظمة خلفية · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
+    ['أكتوبر 2023 — الآن', 'مهندس أنظمة خلفية', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
+    ['يونيو — أكتوبر 2023', 'متدرب في تطوير الأنظمة الخلفية', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
     ['2020 — 2025', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
   ];
   const experienceDates = document.querySelectorAll('.xp-date');
@@ -282,17 +284,32 @@ function translatePage() {
   document.querySelectorAll('.xp-company').forEach((company, index) => {
     setText(company.querySelector('a') || company, companies[index]);
   });
+  const fikritakLogo = document.querySelector('.xp-logo');
+  fikritakLogo.textContent = 'ف';
+  fikritakLogo.setAttribute('aria-label', 'فكرتك');
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
   if (fixedDuration) fixedDuration.textContent = '4 أشهر';
 
   const contactTitle = document.querySelector('.cta-title');
   contactTitle.classList.add('ar-title');
-  contactTitle.setAttribute('aria-label', 'لنبن معًا شيئًا عظيمًا');
+  contactTitle.setAttribute('aria-label', 'لنبنِ معًا شيئًا يدوم');
   contactTitle.innerHTML = `
     <span class="ar-line ar-soft" aria-hidden="true">لنبنِ معًا</span>
-    <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('عظـ', 'ـيمًا', 'ar-join')}</span>`;
+    <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('يـ', 'ـدوم', 'ar-join')}</span>`;
   setText(document.querySelector('.btn-email'), 'راسلني');
   set('.btn-whatsapp', 'واتساب');
+}
+
+// The English headlines settle once when they come into view
+if (!isArabic) {
+  document.querySelectorAll('.en-title').forEach((title) => {
+    const titleObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      title.classList.add('is-playing');
+      titleObserver.disconnect();
+    }, { threshold: .4 });
+    titleObserver.observe(title);
+  });
 }
 
 if (isArabic) {

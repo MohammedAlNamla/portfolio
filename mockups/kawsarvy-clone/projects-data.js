@@ -85,13 +85,13 @@ const projects = [
     ],
     engineering: [
       ['Organised by domain', 'Roles get separate interfaces without duplicating the business modules behind them.'],
-      ['A strict request path', 'Requests pass through guards, validation, services and repositories before Prisma.'],
+      ['A strict request path', 'Requests pass through protection layers, validation, services and repositories before Prisma.'],
       ['Safe public IDs', 'The API exposes UUIDs only, while the database can use numeric IDs inside.']
     ]
   },
   {
     id: 'uop',
-    name: 'UOP',
+    name: 'University of Palestine',
     type: 'University website and CMS',
     tag: 'University CMS',
     summary: 'Lets university staff publish news, events, exams and pages in several languages.',
@@ -114,7 +114,7 @@ const projects = [
     id: 'netspeed',
     name: 'NetSpeed',
     type: 'Internet service management system',
-    tag: 'ISP system',
+    tag: 'ISP management',
     summary: "Manages an internet provider's prepaid cards, loyalty points, support tickets and field work.",
     image: '../../images/NetSpeed.webp',
     url: 'https://points.red-radius.com',
@@ -147,8 +147,8 @@ const projects = [
       ['Who uses it', 'Travellers book without an account. Support staff follow orders from admin tools.']
     ],
     engineering: [
-      ['Providers behind one interface', 'Business logic uses general objects, so a provider can change without touching it.'],
-      ['Guest bookings', 'A short reference and an email open a booking without signing in.'],
+      ['Providers behind one interface', 'Business logic talks to one provider interface, so a provider can change without touching it.'],
+      ['Booking without an account', 'A short reference and an email open a booking without signing in.'],
       ['Staying in sync', 'Provider webhooks and scheduled checks keep local orders up to date.']
     ]
   },
@@ -169,7 +169,7 @@ const projects = [
     ],
     engineering: [
       ['Drafts before changes', 'Edits are proposed as drafts for review instead of being written to the database.'],
-      ['Topics from real usage', 'Suggestions use how code uses tables, not only names and foreign keys.'],
+      ['Suggestions from real usage', 'Suggestions use how code uses tables, not only names and foreign keys.'],
       ['Small and local', 'A local Node server with a plain JavaScript front end.']
     ]
   }

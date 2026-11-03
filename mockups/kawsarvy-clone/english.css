@@ -1,4 +1,4 @@
-/* English in the refined copy: the same structure as the Arabic, in Latin type. */
+/* English version: the same structure as the Arabic, with touches of its own. */
 
 /* Hero and contact: a quiet line, then a dark one. The hero's ampersand is the ornament. */
 html:not([dir="rtl"]) .en-title { color: var(--ink); font-size: clamp(1.45rem, 6.5vw, 2rem); line-height: 1.4; }
