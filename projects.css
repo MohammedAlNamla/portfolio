@@ -48,16 +48,6 @@
   filter: grayscale(1);
   transition: filter 220ms ease;
 }
-.project-demo {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: #fff;
-  font-size: .6875rem;
-  font-weight: 600;
-}
 .project-name {
   display: block;
   margin-top: 10px;

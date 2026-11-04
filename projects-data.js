@@ -1,5 +1,4 @@
 // Biggest project first. This list drives both the cards and the details sheet.
-// crop = [zoom, x, y]; projects can also supply separate detail and gallery images.
 const projects = [
   {
     id: 'restrogram',
@@ -73,7 +72,6 @@ const projects = [
     image: 'images/covers/taskat.webp',
     detailImage: 'images/projects/taskat/main.webp',
     tint: '#eef1fa',
-    crop: ['136%', '95%', '2%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
       ['The problem', 'Software teams need planning, tracking and team conversation in one place.'],
@@ -102,7 +100,6 @@ const projects = [
     image: 'images/covers/edux.webp',
     detailImage: 'images/projects/edux/main.webp',
     tint: '#eaf6f8',
-    crop: ['100%', '50%', '50%'],
     meta: ['Full-stack', 'In development', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
       ['The problem', 'Teachers and students need structured educational content in one place.'],
@@ -132,7 +129,6 @@ const projects = [
     detailImage: 'images/projects/uop/main.webp',
     tint: '#f6f2fb',
     url: 'https://up.edu.ps/ar',
-    crop: ['235%', '36%', '5%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'Vue', 'Inertia'],
     business: [
       ['The problem', 'A university needs to publish and update all its official content in several languages.'],
@@ -189,7 +185,6 @@ const projects = [
     image: 'images/covers/shahrazad.webp',
     detailImage: 'images/projects/shahrazad/main.webp',
     tint: '#f5efe6',
-    crop: ['100%', '50%', '50%'],
     meta: ['Backend', 'At Fikritak', 'Laravel 12', 'MySQL'],
     business: [
       ['The idea', 'One place for travellers to book flights and transfers and buy eSIMs.'],
@@ -218,7 +213,6 @@ const projects = [
     image: 'images/covers/er-atlas.webp',
     detailImage: 'images/projects/er-atlas/main.webp',
     tint: '#f2f1fa',
-    crop: ['100%', '50%', '50%'],
     meta: ['Personal tool', 'Node.js', 'JavaScript', 'PostgreSQL'],
     business: [
       ['The problem', 'Large database schemas are hard to read and risky to change.'],

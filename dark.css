@@ -20,7 +20,6 @@
 [data-theme="dark"] .pill,
 [data-theme="dark"] .btn-light,
 [data-theme="dark"] .project-card,
-[data-theme="dark"] .project-demo,
 [data-theme="dark"] .sheet-close,
 [data-theme="dark"] .xp-logo { background: var(--raised); color: var(--ink); }
 [data-theme="dark"] { --brush: #4d4c49; }

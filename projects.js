@@ -22,7 +22,6 @@ function renderProject(project, rank) {
   card.innerHTML = `
     <span class="project-media">
       <img src="${project.image}" alt="${project.name} ${ui.demoImage}" loading="lazy">
-      ${project.demo ? `<span class="project-demo">${ui.demo}</span>` : ''}
     </span>
     <span class="project-name">${project.name}</span>
     <span class="project-tag">${project.tag}</span>
