@@ -179,6 +179,7 @@ const projectsArabic = {
     ],
     captions: ['رصيد المشترك وبطاقاته وهداياه', 'البطاقات المدفوعة مسبقًا ونقاطها', 'استبدال النقاط بالهدايا', 'تذاكر الدعم والعمل الميداني']
   },
+  /*
   shahrazad: {
     type: 'واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM',
     tag: 'واجهة برمجية للسفر',
@@ -196,6 +197,7 @@ const projectsArabic = {
     ],
     captions: ['تفاصيل الرحلة، استنادًا إلى تصاميم Figma', 'التنقلات من المطار، استنادًا إلى تصاميم Figma', 'باقات شرائح السفر، استنادًا إلى تصاميم Figma', 'فتح الحجز دون حساب', 'واجهة برمجية واحدة أمام عدة مزودين']
   },
+  */
   'er-atlas': {
     type: 'أداة بصرية لاستكشاف قواعد البيانات',
     tag: 'أداة للمطورين',
@@ -254,8 +256,8 @@ function translatePage() {
     <span class="ar-line ar-soft" aria-hidden="true">أبني أنظمة</span>
     <span class="ar-line" aria-hidden="true">تعمل ${stretchWord('وتكـ', 'ـبر', 'ar-grow')}</span>`;
 
-  const logos = document.querySelectorAll('.logo');
-  logos[logos.length - 1].textContent = 'فكرتك';
+  // const logos = document.querySelectorAll('.logo');
+  // logos[logos.length - 1].textContent = 'فكرتك';
 
   set('.clients-label', 'عملت مع');
   set('.ghost-word', 'أعمال');
@@ -281,7 +283,7 @@ function translatePage() {
   setText(document.querySelector('.experience .line'), 'الطريق');
   setText(document.querySelector('.xp-road'), 'حتى الآن');
   const experience = [
-    ['أكتوبر 2026 — الآن', 'مهندس أنظمة خلفية · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
+    // ['أكتوبر 2026 — الآن', 'مهندس أنظمة خلفية · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
     ['أكتوبر 2023 — الآن', 'مهندس أنظمة خلفية', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
     ['يونيو — أكتوبر 2023', 'متدرب في تطوير الأنظمة الخلفية', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
     ['2020 — 2025', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
@@ -294,16 +296,16 @@ function translatePage() {
     experienceRoles[index].textContent = role;
     experienceNotes[index].textContent = note;
   });
-  const companies = ['فكرتك', 'Approved Tech', 'الجامعة الإسلامية بغزة'];
+  const companies = [/* 'فكرتك', */ 'Approved Tech', 'الجامعة الإسلامية بغزة'];
   const companyNodes = document.querySelectorAll('.xp-company');
   companyNodes.forEach((company, index) => {
     setText(company.querySelector('a') || company, companies.slice(-companyNodes.length)[index]);
   });
-  const fikritakLogo = [...document.querySelectorAll('.xp-logo')].find(logo => logo.textContent.trim() === 'F');
-  if (fikritakLogo) {
-    fikritakLogo.textContent = 'ف';
-    fikritakLogo.setAttribute('aria-label', 'فكرتك');
-  }
+  // const fikritakLogo = [...document.querySelectorAll('.xp-logo')].find(logo => logo.textContent.trim() === 'F');
+  // if (fikritakLogo) {
+  //   fikritakLogo.textContent = 'ف';
+  //   fikritakLogo.setAttribute('aria-label', 'فكرتك');
+  // }
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
   if (fixedDuration) fixedDuration.textContent = '4 أشهر';
 

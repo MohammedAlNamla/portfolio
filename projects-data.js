@@ -176,6 +176,7 @@ const projects = [
       { image: 'images/projects/netspeed/04-support-field-work.webp', caption: 'Support tickets and field work' }
     ]
   },
+  /*
   {
     id: 'shahrazad',
     name: 'Shahrazad Tours',
@@ -204,6 +205,7 @@ const projects = [
       { image: 'images/projects/shahrazad/05-how-it-works.webp', caption: 'One API in front of many providers' }
     ]
   },
+  */
   {
     id: 'er-atlas',
     name: 'ER Atlas',
