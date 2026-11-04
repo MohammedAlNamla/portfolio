@@ -4,6 +4,8 @@
 @font-face { font-family: "Fatimah"; font-weight: 900; font-display: swap; src: url("fonts/fatimah/itfFatimahArabic-Black.otf") format("opentype"); }
 
 [dir="rtl"] body { font-family: "Thmanyah Sans", sans-serif; }
+[dir="rtl"] .avatar-name { font-family: "Aref Ruqaa", "Fatimah", serif; font-size: 1.9375rem; font-style: normal; font-weight: 700; line-height: 1.5; }
+[dir="rtl"] .avatar-swash { transform: none; }
 [dir="rtl"] .line { background-image: linear-gradient(270deg, var(--ink) 30%, var(--ink-fade) 100%); padding-block: .1em; }
 [dir="rtl"] .subtitle { font-family: "Fatimah", "Thmanyah Sans", sans-serif; font-weight: 500; line-height: 1.6; }
 [dir="rtl"] .is-current .xp-year { background-image: linear-gradient(270deg, var(--ink) 30%, var(--ink-fade) 100%); }
@@ -57,7 +59,9 @@
 
 @media (min-width: 900px) {
   .ar-title { line-height: 1.6; }
-  .hero .ar-title { font-size: calc(var(--u) * 76); margin-top: calc(var(--u) * 36); }
+  .hero .ar-title { font-size: calc(var(--u) * 58); line-height: 1.3; margin-top: calc(var(--u) * 8); }
+  [dir="rtl"] .avatar-sign { right: auto; left: auto; inset-inline-start: calc(100% + var(--u) * 10); transform: rotate(-6deg); }
+  [dir="rtl"] .avatar-name { font-size: calc(var(--u) * 40); }
   .cta .ar-title { font-size: calc(var(--u) * 60); }
   [dir="rtl"] .subtitle { font-size: calc(var(--u) * 40); line-height: calc(var(--u) * 66); }
 
@@ -65,7 +69,6 @@
   [dir="rtl"] .bar { font-size: calc(var(--u) * 14); }
   [dir="rtl"] .pill, [dir="rtl"] .btn { font-size: calc(var(--u) * 15); }
   [dir="rtl"] .tag { font-size: calc(var(--u) * 14); }
-  [dir="rtl"] .avatar-tag { font-size: calc(var(--u) * 13); }
   [dir="rtl"] .service h3 { font-size: calc(var(--u) * 21); }
   [dir="rtl"] .service p { font-size: calc(var(--u) * 17); line-height: calc(var(--u) * 26); }
   [dir="rtl"] .xp-date, [dir="rtl"] .xp-duration, [dir="rtl"] .xp-role { font-size: calc(var(--u) * 15); }
@@ -76,16 +79,8 @@
   [dir="rtl"] .project-summary { font-size: calc(var(--u) * 14); line-height: 1.55; }
 }
 
-/* Shared touches for both languages */
-.tag-emoji { display: none; }
-
 /* The marked word is the clearest one in its heading */
 .w-brush, .xp-road { color: var(--ink); }
-
-/* Small screens: the name sits under the picture instead of over it */
-@media (max-width: 599px) {
-  .hero .avatar-tag { left: 50%; top: auto; bottom: -14px; transform: translateX(-50%) rotate(-6deg); }
-}
 
 /* Arabic: the strip travels with the reading direction */
 [dir="rtl"] .marquee-track { animation-direction: reverse; }

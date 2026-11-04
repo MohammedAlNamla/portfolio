@@ -245,9 +245,9 @@ function translatePage() {
   document.title = 'محمد النملة — مهندس برمجيات';
   set('.pill-long', 'السيرة الذاتية');
   set('.pill-short', 'السيرة');
-  setText(document.querySelector('.avatar-tag'), 'محمد النملة');
+  document.querySelector('.avatar-name').textContent = 'محمد النملة';
   setText(document.querySelector('.btn-shots'), 'استعرض أعمالي');
-  document.querySelector('.avatar-photo').setAttribute('aria-label', 'محمد النملة');
+  document.querySelector('.avatar-photo').alt = 'محمد النملة';
 
   const heroTitle = document.querySelector('.hero .title');
   heroTitle.classList.add('ar-title');

@@ -282,26 +282,40 @@ svg { display: block; }
   .bar-icon:hover, .bar-theme:hover { background: rgba(0, 0, 0, .06); }
 }
 
-.avatar { position: relative; width: 112px; height: 112px; }
+/* The portrait stays grey like the project cards and gains its colour on hover */
+.avatar { position: relative; width: 184px; height: 184px; margin-bottom: 72px; }
 .avatar-photo {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .8);
+  object-fit: cover;
+  object-position: 50% 18%;
+  filter: grayscale(1);
+  transition: filter 260ms ease;
 }
-.avatar-logo { font-family: "Mr De Haviland", "Times New Roman", serif; font-weight: 400; }
-.avatar-tag {
-  left: 94px;
-  top: 33px;
-  width: 136px;
-  height: 33px;
-  font-size: .6875rem;
-  transform: rotate(-9deg);
+@media (hover: hover) and (pointer: fine) {
+  .avatar-photo:hover { filter: none; }
 }
-.tag-emoji { font-size: .625rem; }
+.avatar-sign {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  z-index: 2;
+  color: var(--ink);
+  white-space: nowrap;
+  transform: translateX(-50%) rotate(-3deg);
+}
+.avatar-name { display: block; font-family: "Instrument Serif", "Times New Roman", serif; font-size: 1.75rem; font-style: italic; line-height: 1.25; }
+.avatar-swash { display: block; width: 100%; height: 11px; fill: var(--ink-soft); transform: scaleX(-1); animation: avatar-swash 800ms 150ms cubic-bezier(.3, .7, .2, 1) both; }
+@keyframes avatar-swash { from { clip-path: inset(-20% 0 -20% 100%); } to { clip-path: inset(-20% 0 -20% 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .avatar-photo { transition: none; }
+  .avatar-swash { animation: none; }
+}
 
-.hero .title { margin-top: 34px; }
-.btn-shots { width: 167px; height: 56px; margin-top: 44px; }
+.hero .title { margin-top: 6px; }
+.btn-shots { width: 167px; height: 56px; margin-top: 24px; }
 
 /* ---------- Clients ---------- */
 .clients {
@@ -448,17 +462,10 @@ svg { display: block; }
 .btn-email { width: 112px; height: 50px; gap: 9px; font-size: .6875rem; }
 .btn-whatsapp { width: 114px; height: 50px; font-size: .6875rem; }
 
-/* Small phones: the name tag moves in so it stays on screen */
-@media (max-width: 400px) {
-  .avatar-tag { left: 74px; width: 118px; height: 30px; font-size: .625rem; }
-}
-
 /* Tablets: the first section grows to suit the larger screen */
 @media (min-width: 600px) and (max-width: 899px) {
   .hero .title { font-size: clamp(2.5rem, 6.5vw, 3.5rem); }
-  .hero .avatar { width: 148px; height: 148px; }
-  .hero .avatar-tag { left: 124px; top: 46px; width: 156px; height: 38px; font-size: .8125rem; }
-  .hero .btn-shots { width: 200px; height: 64px; margin-top: 52px; font-size: .9375rem; }
+  .hero .btn-shots { width: 200px; height: 64px; margin-top: 28px; font-size: .9375rem; }
   .bar { font-size: 1rem; }
 }
 
@@ -518,23 +525,22 @@ svg { display: block; }
     .bar-links a:hover::after { transform: scaleX(1); }
   }
 
-  .avatar { width: calc(var(--u) * 120); height: calc(var(--u) * 120); }
-  .avatar-photo { box-shadow: 0 0 0 calc(var(--u) * 4) rgba(255, 255, 255, .85); }
-  .avatar-tag {
-    left: calc(var(--u) * 100);
-    top: calc(var(--u) * 35);
-    width: calc(var(--u) * 166);
-    height: calc(var(--u) * 36);
-    font-size: calc(var(--u) * 11);
+  .avatar { width: calc(var(--u) * 236); height: calc(var(--u) * 236); margin-bottom: calc(var(--u) * 18); }
+  .avatar-sign {
+    top: auto;
+    bottom: calc(var(--u) * 14);
+    left: calc(100% + var(--u) * 10);
+    transform: rotate(-5deg);
   }
-  .tag-emoji { font-size: calc(var(--u) * 10); }
+  .avatar-name { font-size: calc(var(--u) * 36); }
+  .avatar-swash { height: calc(var(--u) * 13); }
 
-  .hero .title { margin-top: calc(var(--u) * 56); }
+  .hero .title { margin-top: calc(var(--u) * 8); }
   .btn-shots {
     gap: calc(var(--u) * 12);
     width: calc(var(--u) * 180);
     height: calc(var(--u) * 60);
-    margin-top: calc(var(--u) * 54);
+    margin-top: calc(var(--u) * 30);
   }
 
   .clients {
