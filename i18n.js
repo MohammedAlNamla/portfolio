@@ -18,6 +18,10 @@ const ui = isArabic
       forEngineers: 'للمهندسين',
       moreProjects: 'مشاريع أخرى',
       close: 'إغلاق',
+      previousImage: 'الصورة السابقة',
+      nextImage: 'الصورة التالية',
+      showImage: number => `عرض الصورة ${number}`,
+      enlargeImage: 'تكبير الصورة',
       previous: name => `→ ${name}`,
       next: name => `${name} ←`
     }
@@ -37,6 +41,10 @@ const ui = isArabic
       forEngineers: 'For engineers',
       moreProjects: 'More projects',
       close: 'Close',
+      previousImage: 'Previous image',
+      nextImage: 'Next image',
+      showImage: number => `Show image ${number}`,
+      enlargeImage: 'Enlarge image',
       previous: name => `← ${name}`,
       next: name => `${name} →`
     };
@@ -102,7 +110,7 @@ const projectsArabic = {
       ['منطق المواعيد المتاحة', 'يجمع التقويم بين الموظفين والخدمات وساعات العمل والأوقات المحجوبة.'],
       ['تحديثات مباشرة', 'يدفع Laravel Reverb التغييرات الفورية عبر WebSockets.']
     ],
-    captions: ['يختار العميل الوقت ويؤكد حجزه عبر الإنترنت', 'تقويم واحد للفريق كله', 'الحجوزات والعضويات في ملف العميل', 'المبيعات وطلبات المنتجات وبطاقات الهدايا', 'تقارير الإيرادات والحجوزات والعملاء', 'رسائل تلقائية عند كل تحديث على الحجز']
+    captions: ['يختار العميل الوقت ويؤكد حجزه عبر الإنترنت', 'تقويم واحد للفريق كله', 'حجز عدة خدمات من الموظف دفعة واحدة', 'الحجوزات والعضويات في ملف العميل', 'المبيعات وطلبات المنتجات وبطاقات الهدايا', 'تقارير الإيرادات والحجوزات والعملاء', 'الجرد والمنتجات والموردون', 'رسائل تلقائية عند كل تحديث على الحجز', 'لوحة إدارة واحدة لكل المتاجر']
   },
   taskat: {
     type: 'أداة لإدارة المشاريع بأسلوب Agile',

@@ -9,6 +9,7 @@ const projects = [
     summary: 'Connects order taking, checkout, kitchen screens and stock control.',
     image: 'images/covers/restrogram.webp',
     detailImage: 'images/projects/restrogram/main.webp',
+    tint: '#f4f0fb',
     url: 'https://sufra.live/',
     meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
@@ -38,6 +39,7 @@ const projects = [
     summary: 'Lets salons, clinics and spas take bookings online and manage calendars, clients and reports.',
     image: 'images/covers/bookforme.webp',
     detailImage: 'images/projects/bookforme/main.webp',
+    tint: '#fcf4f9',
     url: 'https://www.bookforme.ps',
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
@@ -53,10 +55,13 @@ const projects = [
     shots: [
       { image: 'images/projects/bookforme/01-customer-booking.webp', caption: 'Customers choose a time and confirm online' },
       { image: 'images/projects/bookforme/02-team-calendar.webp', caption: 'One calendar for the whole team' },
+      { image: 'images/projects/bookforme/03-staff-booking.webp', caption: 'Staff booking several services in one go' },
       { image: 'images/projects/bookforme/04-client-profile.webp', caption: 'Bookings and memberships in the client profile' },
       { image: 'images/projects/bookforme/05-sales-gift-cards.webp', caption: 'Sales, product orders and gift cards' },
       { image: 'images/projects/bookforme/06-reports.webp', caption: 'Revenue, bookings and client reports' },
-      { image: 'images/projects/bookforme/08-marketing.webp', caption: 'Automatic messages for booking updates' }
+      { image: 'images/projects/bookforme/07-inventory.webp', caption: 'Stocktakes, products and suppliers' },
+      { image: 'images/projects/bookforme/08-marketing.webp', caption: 'Automatic messages for booking updates' },
+      { image: 'images/projects/bookforme/09-platform-admin.webp', caption: 'One admin panel across all stores' }
     ]
   },
   {
@@ -67,6 +72,7 @@ const projects = [
     summary: 'Keeps software teams in one place, from backlog and sprints to Kanban boards and chat.',
     image: 'images/covers/taskat.webp',
     detailImage: 'images/projects/taskat/main.webp',
+    tint: '#eef1fa',
     crop: ['136%', '95%', '2%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
@@ -95,6 +101,7 @@ const projects = [
     summary: 'Gives administrators, teachers and students their own space for educational content.',
     image: 'images/covers/edux.webp',
     detailImage: 'images/projects/edux/main.webp',
+    tint: '#eaf6f8',
     crop: ['100%', '50%', '50%'],
     meta: ['Full-stack', 'In development', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
@@ -123,6 +130,7 @@ const projects = [
     summary: 'Lets university staff publish news, events, exams and pages in several languages.',
     image: 'images/covers/uop.webp',
     detailImage: 'images/projects/uop/main.webp',
+    tint: '#f6f2fb',
     url: 'https://up.edu.ps/ar',
     crop: ['235%', '36%', '5%'],
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'Vue', 'Inertia'],
@@ -152,6 +160,7 @@ const projects = [
     summary: "Manages an internet provider's prepaid cards, loyalty points, support tickets and field work.",
     image: 'images/covers/netspeed.webp',
     detailImage: 'images/projects/netspeed/main.webp',
+    tint: '#edf8f6',
     url: 'https://points.red-radius.com',
     meta: ['Full-stack', 'Laravel', 'jQuery', 'SMS'],
     business: [
@@ -179,6 +188,7 @@ const projects = [
     summary: 'One API for booking flights and transfers and buying travel eSIMs, with guest checkout.',
     image: 'images/covers/shahrazad.webp',
     detailImage: 'images/projects/shahrazad/main.webp',
+    tint: '#f5efe6',
     crop: ['100%', '50%', '50%'],
     meta: ['Backend', 'At Fikritak', 'Laravel 12', 'MySQL'],
     business: [
@@ -207,6 +217,7 @@ const projects = [
     summary: 'Makes large database schemas easier to explore, with diagrams and reviewable change drafts.',
     image: 'images/covers/er-atlas.webp',
     detailImage: 'images/projects/er-atlas/main.webp',
+    tint: '#f2f1fa',
     crop: ['100%', '50%', '50%'],
     meta: ['Personal tool', 'Node.js', 'JavaScript', 'PostgreSQL'],
     business: [
