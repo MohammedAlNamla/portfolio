@@ -9,7 +9,7 @@ const projects = [
     image: 'images/covers/restrogram.webp',
     detailImage: 'images/projects/restrogram/main.webp',
     tint: '#f4f0fb',
-    url: 'https://sufra.live/',
+    // url: 'https://sufra.live/',
     meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
       ['The problem', 'Restaurants need orders, tables, checkout and kitchen workflow to work as one system.'],
@@ -157,7 +157,7 @@ const projects = [
     image: 'images/covers/netspeed.webp',
     detailImage: 'images/projects/netspeed/main.webp',
     tint: '#edf8f6',
-    url: 'https://points.red-radius.com',
+    // url: 'https://points.red-radius.com',
     meta: ['Full-stack', 'Laravel', 'jQuery', 'SMS'],
     business: [
       ['The problem', 'An internet provider needs cards, customers, support and field work in one system.'],
