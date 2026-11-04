@@ -23,7 +23,7 @@ function renderGallery(project) {
         : `<div class="sheet-shot-img" role="img" aria-label="${shot.caption}" style="${cropStyle(project.image, shot.crop)}"></div>`}
       <figcaption>${shot.caption}</figcaption>
     </figure>`).join('');
-  return `<div class="sheet-gallery">${shots}</div>`;
+  return `<div class="sheet-gallery">${shots}</div><p class="sheet-note">${ui.sampleData}</p>`;
 }
 
 function renderSheet(project, index) {

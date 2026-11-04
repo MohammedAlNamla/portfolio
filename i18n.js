@@ -10,6 +10,7 @@ const ui = isArabic
       otherLanguage: 'Switch to English',
       demo: 'صورة توضيحية',
       demoImage: 'صورة توضيحية',
+      sampleData: 'بعض الشاشات تعرض بيانات تجريبية.',
       screens: 'شاشات',
       screenshot: 'صورة شاشة',
       visit: 'زيارة الموقع ↖',
@@ -28,6 +29,7 @@ const ui = isArabic
       otherLanguage: 'التبديل إلى العربية',
       demo: 'Illustration',
       demoImage: 'illustration',
+      sampleData: 'Some screens show sample data.',
       screens: 'screens',
       screenshot: 'screenshot',
       visit: 'Visit site ↗',
@@ -83,7 +85,7 @@ const projectsArabic = {
       ['نظام خلفي واحد لكل التطبيقات', 'واجهة برمجية واحدة بـLaravel تخدم لوحة التحكم ولوحة الإدارة وتطبيق الموظفين لمتاجر كثيرة.'],
       ['طباعة مركزية', 'يعمل تطبيق Flutter للموظفين أيضًا كجهاز طباعة مركزي للمطعم.']
     ],
-    captions: ['نقطة البيع والدفع مع صور توضيحية للأطباق', 'شاشة المطبخ وتفاصيل دفعة المخزون', 'دليل الموردين وصفحات الشركات والعروض']
+    captions: ['نقطة البيع مع الإضافات والخصومات وتقسيم الدفع', 'شاشة المطبخ من الطلب الجديد حتى الجاهزية', 'حالة الطاولات مباشرة في صالة المطعم', 'منيو QR يطلب منه الزبائن', 'مستويات المخزون وتكلفة كل طبق', 'الطلبات تُحفظ دون إنترنت وتتزامن بين الأجهزة']
   },
   bookforme: {
     type: 'منصة حجوزات للأعمال الخدمية',
@@ -100,7 +102,7 @@ const projectsArabic = {
       ['منطق المواعيد المتاحة', 'يجمع التقويم بين الموظفين والخدمات وساعات العمل والأوقات المحجوبة.'],
       ['تحديثات مباشرة', 'يدفع Laravel Reverb التغييرات الفورية عبر WebSockets.']
     ],
-    captions: ['تجربة الحجز للعميل', 'تقويم الفريق والمواعيد اليومية']
+    captions: ['يختار العميل الوقت ويؤكد حجزه عبر الإنترنت', 'تقويم واحد للفريق كله', 'الحجوزات والعضويات في ملف العميل', 'المبيعات وطلبات المنتجات وبطاقات الهدايا', 'تقارير الإيرادات والحجوزات والعملاء', 'رسائل تلقائية عند كل تحديث على الحجز']
   },
   taskat: {
     type: 'أداة لإدارة المشاريع بأسلوب Agile',
@@ -117,7 +119,7 @@ const projectsArabic = {
       ['سجل تغييرات كامل', 'يُحفظ كل تغيير على المهام والمشاريع في سجل واضح.'],
       ['محادثة فورية', 'قنوات وتفاعلات ورسائل مثبتة تعمل عبر البث المباشر.']
     ],
-    captions: ['قائمة المشاريع والمهام المؤجلة للسبرنت', 'لوحة كانبان بالوضعين الفاتح والداكن']
+    captions: ['المهام المؤجلة وتخطيط السبرنت', 'لوحة كانبان بالأنواع والأولويات والمسؤولين', 'تفاصيل المهمة وسجل كامل للتغييرات', 'القنوات والرسائل المباشرة والمثبتة', 'أعضاء الفريق وأدوارهم في كل مشروع']
   },
   edux: {
     type: 'منصة تعليمية للمعلمين والطلاب',
@@ -134,7 +136,7 @@ const projectsArabic = {
       ['مسار طلبات صارم', 'تمر الطلبات بطبقات الحماية والتحقق والخدمات والمستودعات قبل الوصول إلى Prisma.'],
       ['معرفات عامة آمنة', 'تعرض الواجهة البرمجية معرفات UUID فقط، بينما يمكن لقاعدة البيانات استخدام أرقام داخلية.']
     ],
-    captions: ['لوحة الشريك ومكتبة المحتوى', 'شاشات الإدارة وتسجيل الدخول']
+    captions: ['المواد بدروسها وطلابها وأسعارها وجاهزيتها', 'مكتبة الوسائط للفيديوهات وملفات PDF', 'اشتراكات الطلاب وتقدمهم في الدروس', 'مراجعة إثبات الدفع قبل تفعيل الاشتراك', 'المواد والصفوف والمعلمون الناقصون']
   },
   uop: {
     name: 'جامعة فلسطين',
@@ -152,7 +154,7 @@ const projectsArabic = {
       ['واجهة برمجية منفصلة', 'تفصل واجهة JSON البرمجية الموقع العام عن نظام الإدارة.'],
       ['توثيق واضح', 'الواجهة البرمجية موثقة باستخدام OpenAPI 3.0.']
     ],
-    captions: ['القبول وموقع الجامعة على الجوال', 'لوحة نظام إدارة المحتوى وقائمة المنشورات']
+    captions: ['الموقع العام على الحاسوب والجوال', 'خطوات القبول والوثائق المطلوبة', 'المقالات عبر المواقع والكليات', 'كتابة مقال وتحديد لغته وتصنيفه وموقعه', 'تعديل قسم مع معاينة مباشرة']
   },
   netspeed: {
     type: 'نظام لإدارة خدمات الإنترنت',
@@ -168,7 +170,8 @@ const projectsArabic = {
       ['متصل بالأجهزة', 'تستدعي أجهزة Hotspot واجهة برمجية عامة للتحقق من البطاقة وبدء الجلسة.'],
       ['أدوار دقيقة', 'لكل دور إداري مجموعة صلاحياته الخاصة.'],
       ['نشاط قابل للتتبع', 'تُسجل عمليات الدخول وإجراءات المسؤولين للمراجعة.']
-    ]
+    ],
+    captions: ['رصيد المشترك وبطاقاته وهداياه', 'البطاقات المدفوعة مسبقًا ونقاطها', 'استبدال النقاط بالهدايا', 'تذاكر الدعم والعمل الميداني']
   },
   shahrazad: {
     type: 'واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM',
@@ -185,7 +188,7 @@ const projectsArabic = {
       ['حجز دون حساب', 'يفتح الرقم المرجعي القصير والبريد الإلكتروني الحجز دون تسجيل دخول.'],
       ['مزامنة مستمرة', 'تبقي Webhooks والفحوصات المجدولة الطلبات المحلية محدثة.']
     ],
-    captions: ['تصاميم واجهات الطيران والنقل', 'تصاميم واجهات شرائح السفر والطيران']
+    captions: ['تفاصيل الرحلة، استنادًا إلى تصاميم Figma', 'التنقلات من المطار، استنادًا إلى تصاميم Figma', 'باقات شرائح السفر، استنادًا إلى تصاميم Figma', 'فتح الحجز دون حساب', 'واجهة برمجية واحدة أمام عدة مزودين']
   },
   'er-atlas': {
     type: 'أداة بصرية لاستكشاف قواعد البيانات',
@@ -202,7 +205,7 @@ const projectsArabic = {
       ['اقتراحات من الاستخدام الفعلي', 'تعتمد الاقتراحات على طريقة استخدام الكود للجداول، لا الأسماء والمفاتيح فقط.'],
       ['صغيرة ومحلية', 'خادم Node محلي مع واجهة JavaScript بسيطة.']
     ],
-    captions: ['مخططات العلاقات بالوضعين الداكن والفاتح', 'فهرس قاعدة البيانات والمواضيع']
+    captions: ['مساعد AI يميز الحقائق من الاستنتاجات', 'مراجعة التغييرات كمسودة', 'أعمدة الجدول ومفاتيحه وعلاقاته', 'الجداول مقسمة حسب المواضيع', 'البحث في كل الجداول بالوضع الداكن']
   }
 };
 
@@ -280,18 +283,21 @@ function translatePage() {
   const experienceDates = document.querySelectorAll('.xp-date');
   const experienceRoles = document.querySelectorAll('.xp-role');
   const experienceNotes = document.querySelectorAll('.xp-note');
-  experience.forEach(([date, role, note], index) => {
+  experience.slice(-experienceDates.length).forEach(([date, role, note], index) => {
     experienceDates[index].textContent = date;
     experienceRoles[index].textContent = role;
     experienceNotes[index].textContent = note;
   });
   const companies = ['فكرتك', 'Approved Tech', 'الجامعة الإسلامية بغزة'];
-  document.querySelectorAll('.xp-company').forEach((company, index) => {
-    setText(company.querySelector('a') || company, companies[index]);
+  const companyNodes = document.querySelectorAll('.xp-company');
+  companyNodes.forEach((company, index) => {
+    setText(company.querySelector('a') || company, companies.slice(-companyNodes.length)[index]);
   });
-  const fikritakLogo = document.querySelector('.xp-logo');
-  fikritakLogo.textContent = 'ف';
-  fikritakLogo.setAttribute('aria-label', 'فكرتك');
+  const fikritakLogo = [...document.querySelectorAll('.xp-logo')].find(logo => logo.textContent.trim() === 'F');
+  if (fikritakLogo) {
+    fikritakLogo.textContent = 'ف';
+    fikritakLogo.setAttribute('aria-label', 'فكرتك');
+  }
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
   if (fixedDuration) fixedDuration.textContent = '4 أشهر';
 

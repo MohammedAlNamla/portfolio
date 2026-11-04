@@ -85,6 +85,7 @@ html.is-sheet-open { overflow: hidden; }
 .sheet-shot-img { width: 100%; aspect-ratio: 4 / 3; border-radius: 14px; background-color: #fff; background-repeat: no-repeat; }
 .sheet-shot a { display: block; border-radius: 14px; }
 .sheet-shot img { display: block; height: auto; aspect-ratio: auto; }
+.sheet-note { margin-top: 18px; color: var(--ink-soft); font-size: .8125rem; }
 .sheet-shot figcaption { margin-top: 8px; color: var(--ink-soft); font-size: .8125rem; }
 
 .sheet-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); }
