@@ -317,10 +317,6 @@ svg { display: block; }
   transition: filter 260ms ease;
 }
 .avatar-photo { position: absolute; top: -7%; left: 50%; display: block; width: 115%; max-width: none; height: auto; transform: translateX(-50%); }
-/* Touch screens have no hover, so the portrait keeps its colour there, like the project cards */
-@media (hover: none) {
-  .avatar-frame { filter: none; }
-}
 @media (hover: hover) and (pointer: fine) {
   .avatar-frame:hover { filter: none; }
 }

@@ -82,10 +82,6 @@
 .project-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .project-card:focus-visible img { filter: none; }
 
-@media (hover: none) {
-  .project-media img { filter: none; }
-}
-
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover { box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 10px 26px rgba(0, 0, 0, .09); }
   .project-card:hover img { filter: none; }
