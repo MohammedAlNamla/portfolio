@@ -10,10 +10,6 @@
 [dir="rtl"] .subtitle { font-family: "Fatimah", "Thmanyah Sans", sans-serif; font-weight: 500; line-height: 1.6; }
 [dir="rtl"] .is-current .xp-year { background-image: linear-gradient(270deg, var(--ink) 30%, var(--ink-fade) 100%); }
 [dir="rtl"] .project-card { text-align: right; }
-[dir="rtl"] .project-card:hover .project-name,
-[dir="rtl"] .project-card:hover .project-tag,
-[dir="rtl"] .project-card:focus-visible .project-name,
-[dir="rtl"] .project-card:focus-visible .project-tag { text-align: right; }
 [dir="rtl"] .bar-email-text { direction: ltr; }
 [dir="rtl"] .btn-shots svg, [dir="rtl"] .sheet-visit { direction: rtl; }
 [dir="rtl"] .btn-shots svg { transform: scaleX(-1); }

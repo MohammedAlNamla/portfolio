@@ -81,3 +81,14 @@
 @media (hover: none) {
   [data-theme="dark"] .project-media img { filter: grayscale(1) brightness(.86); }
 }
+
+/* From 900px the card's face and its text drawer carry the surface, not the card */
+@media (min-width: 900px) {
+  [data-theme="dark"] .project-card,
+  [data-theme="dark"] .project-card:hover { background: none; box-shadow: none; }
+  [data-theme="dark"] .project-face,
+  [data-theme="dark"] .project-summary { background: var(--raised); }
+  [data-theme="dark"] .project-face { box-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25); }
+  [data-theme="dark"] .project-summary { box-shadow: 0 14px 28px rgba(0, 0, 0, .3); }
+  [data-theme="dark"] .project-card:hover .project-face { box-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 36px rgba(0, 0, 0, .34); }
+}
