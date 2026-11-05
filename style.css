@@ -607,3 +607,26 @@ html[lang="en"].is-loading .page { visibility: hidden; }
 .is-loading .hero * { animation-play-state: paused !important; }
 .is-entering .hero > * { animation: hero-in 320ms ease both; }
 @keyframes hero-in { from { opacity: 0; } }
+
+/* Selected text uses the site's greys instead of the browser's blue */
+::selection { background: #5f5f5d; color: #fff; }
+
+/* A thin thread for the scrollbar, on devices that show one */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    border: 3.5px solid transparent;
+    border-radius: 9px;
+    background: rgba(22, 22, 22, .3);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    border-width: 3px;
+    background: rgba(22, 22, 22, .6);
+    background-clip: padding-box;
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    html { scrollbar-width: thin; scrollbar-color: rgba(22, 22, 22, .3) transparent; }
+  }
+}
