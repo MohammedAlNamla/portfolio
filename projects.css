@@ -1,4 +1,4 @@
-/* Projects section. Phones get a swipeable row; from 760px up the cards sit on an arc. */
+/* Projects section. Phones get a swipeable row; from 900px up the cards sit on an arc. */
 .projects {
   position: relative;
   z-index: 1;
@@ -95,7 +95,7 @@
 .services { z-index: 0; }
 
 /* ---------- Arc ---------- */
-@media (min-width: 760px) {
+@media (min-width: 900px) {
   .projects-arc {
     --card-w: clamp(116px, 15vw, 290px);
     --arc-radius: calc(var(--card-w) * 5.4);
@@ -137,7 +137,7 @@
   .project-card:focus-visible .project-summary { display: block; }
 }
 
-@media (min-width: 760px) and (hover: hover) and (pointer: fine) {
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
   .project-card:hover {
     z-index: 19;
     width: var(--open-w);

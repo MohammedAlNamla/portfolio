@@ -79,7 +79,7 @@ const marqueeTrack = document.getElementById('marquee-track');
 const marqueeGroup = marqueeTrack.firstElementChild;
 const marqueeLogos = [...marqueeGroup.children];
 
-// Four logos alone are narrower than a wide screen, so each group repeats them
+// Three logos alone are narrower than a wide screen, so each group repeats them
 for (let copy = 0; copy < 2; copy++) {
   for (const logo of marqueeLogos) {
     const logoClone = logo.cloneNode(true);

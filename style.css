@@ -49,6 +49,23 @@
   src: url("fonts/thmanyahsans-Black.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/InstrumentSerif-italic-latin.woff2") format("woff2");
+}
+
+/* Holds only the letters of the Arabic signature */
+@font-face {
+  font-family: "Aref Ruqaa";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/ArefRuqaa-700-name.woff2") format("woff2");
+}
+
 :root {
   --font-text: "DM Sans", "Thmanyah Sans", sans-serif;
   --font-display: "Unbounded", "Thmanyah Sans", sans-serif;
@@ -222,6 +239,7 @@ svg { display: block; }
 .bar a:focus-visible, .bar button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .bar-email {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 40px;
@@ -277,6 +295,11 @@ svg { display: block; }
   white-space: nowrap;
 }
 .pill-long { display: none; }
+/* The narrowest phones need tighter buttons for the whole bar to fit */
+@media (max-width: 359px) {
+  .bar-right { gap: 2px; }
+  .bar-email, .bar-icon, .bar-theme { width: 34px; }
+}
 
 @media (hover: hover) and (pointer: fine) {
   .bar-icon:hover, .bar-theme:hover { background: rgba(0, 0, 0, .06); }
@@ -294,6 +317,10 @@ svg { display: block; }
   transition: filter 260ms ease;
 }
 .avatar-photo { position: absolute; top: -7%; left: 50%; display: block; width: 115%; max-width: none; height: auto; transform: translateX(-50%); }
+/* Touch screens have no hover, so the portrait keeps its colour there, like the project cards */
+@media (hover: none) {
+  .avatar-frame { filter: none; }
+}
 @media (hover: hover) and (pointer: fine) {
   .avatar-frame:hover { filter: none; }
 }
@@ -340,9 +367,6 @@ svg { display: block; }
 .logo-full { height: 2.4em; }
 .logo-on-dark { display: none; }
 .logo-badge { height: 1.9em; border-radius: 50%; }
-.logo-iug img { height: 2.5em; }
-.logo-iug-name { display: grid; gap: .2em; font-size: .9em; letter-spacing: 0; }
-.logo-iug-name small { font-size: .5em; font-weight: 500; }
 
 /* A short label beside the strip, stacked on small screens */
 .clients-side { display: grid; align-items: center; justify-items: center; gap: 22px; }
@@ -486,7 +510,7 @@ svg { display: block; }
   .hero {
     /* Shrinks with short screens too, so everything always fits in one screen */
     --u: min(calc(100cqw / 1440), calc(100svh / 880));
-    padding: calc(var(--u) * 40) calc(100cqw / 1440 * 71) calc(var(--u) * 90) calc(100cqw / 1440 * 88);
+    padding: calc(var(--u) * 40) calc(100cqw / 1440 * 80) calc(var(--u) * 90);
     border-radius: 0 0 calc(var(--u) * 100) calc(var(--u) * 100);
     box-shadow: 0 2px 0 rgba(255, 255, 255, .9);
   }

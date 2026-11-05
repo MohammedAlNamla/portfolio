@@ -39,7 +39,7 @@ const projects = [
     image: 'images/covers/bookforme.webp',
     detailImage: 'images/projects/bookforme/main.webp',
     tint: '#fcf4f9',
-    url: 'https://www.bookforme.ps',
+    url: 'https://www.bookforme.com/',
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
       ['The problem', 'Salons, clinics and spas need online booking without managing calls and messages by hand.'],
@@ -176,36 +176,6 @@ const projects = [
       { image: 'images/projects/netspeed/04-support-field-work.webp', caption: 'Support tickets and field work' }
     ]
   },
-  /*
-  {
-    id: 'shahrazad',
-    name: 'Shahrazad Tours',
-    type: 'Booking API for flights, transfers and travel eSIMs',
-    tag: 'Travel API',
-    summary: 'One API for booking flights and transfers and buying travel eSIMs, with guest checkout.',
-    image: 'images/covers/shahrazad.webp',
-    detailImage: 'images/projects/shahrazad/main.webp',
-    tint: '#f5efe6',
-    meta: ['Backend', 'At Fikritak', 'Laravel 12', 'MySQL'],
-    business: [
-      ['The idea', 'One place for travellers to book flights and transfers and buy eSIMs.'],
-      ['How it works', 'The platform sells through external providers and tracks each order for the customer.'],
-      ['Who uses it', 'Travellers book without an account. Support staff follow orders from admin tools.']
-    ],
-    engineering: [
-      ['Providers behind one interface', 'Business logic talks to one provider interface, so a provider can change without touching it.'],
-      ['Booking without an account', 'A short reference and an email open a booking without signing in.'],
-      ['Staying in sync', 'Provider webhooks and scheduled checks keep local orders up to date.']
-    ],
-    shots: [
-      { image: 'images/projects/shahrazad/01-flights.webp', caption: 'Flight details, based on the Figma designs' },
-      { image: 'images/projects/shahrazad/02-transfers.webp', caption: 'Airport transfers, based on the Figma designs' },
-      { image: 'images/projects/shahrazad/03-esim.webp', caption: 'Travel eSIM plans, based on the Figma designs' },
-      { image: 'images/projects/shahrazad/04-guest-booking.webp', caption: 'Opening a booking without an account' },
-      { image: 'images/projects/shahrazad/05-how-it-works.webp', caption: 'One API in front of many providers' }
-    ]
-  },
-  */
   {
     id: 'er-atlas',
     name: 'ER Atlas',

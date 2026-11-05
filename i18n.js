@@ -179,25 +179,6 @@ const projectsArabic = {
     ],
     captions: ['رصيد المشترك وبطاقاته وهداياه', 'البطاقات المدفوعة مسبقًا ونقاطها', 'استبدال النقاط بالهدايا', 'تذاكر الدعم والعمل الميداني']
   },
-  /*
-  shahrazad: {
-    type: 'واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM',
-    tag: 'واجهة برمجية للسفر',
-    summary: 'واجهة برمجية واحدة لحجز الرحلات والتنقلات وشراء شرائح eSIM، مع حجز دون إنشاء حساب.',
-    meta: ['أنظمة خلفية', 'في فكرتك', 'Laravel 12', 'MySQL'],
-    business: [
-      ['الفكرة', 'مكان واحد يحجز فيه المسافرون الرحلات والتنقلات ويشترون شرائح eSIM.'],
-      ['كيف تعمل', 'تبيع المنصة عبر مزودين خارجيين وتتابع كل طلب للعميل.'],
-      ['من يستخدمها', 'يحجز المسافرون دون حساب، ويتابع الدعم الطلبات من أدوات الإدارة.']
-    ],
-    engineering: [
-      ['مزودون خلف واجهة برمجية واحدة', 'يتعامل منطق العمل مع واجهة موحدة، فيمكن تغيير المزود دون المساس به.'],
-      ['حجز دون حساب', 'يفتح الرقم المرجعي القصير والبريد الإلكتروني الحجز دون تسجيل دخول.'],
-      ['مزامنة مستمرة', 'تبقي Webhooks والفحوصات المجدولة الطلبات المحلية محدثة.']
-    ],
-    captions: ['تفاصيل الرحلة، استنادًا إلى تصاميم Figma', 'التنقلات من المطار، استنادًا إلى تصاميم Figma', 'باقات شرائح السفر، استنادًا إلى تصاميم Figma', 'فتح الحجز دون حساب', 'واجهة برمجية واحدة أمام عدة مزودين']
-  },
-  */
   'er-atlas': {
     type: 'أداة بصرية لاستكشاف قواعد البيانات',
     tag: 'أداة للمطورين',
@@ -242,7 +223,8 @@ const stretchWord = (start, end, modifier) =>
 function translatePage() {
   const set = (selector, text) => { document.querySelector(selector).textContent = text; };
 
-  document.title = 'محمد النملة — مهندس برمجيات';
+  document.title = 'محمد النملة — مهندس أنظمة خلفية';
+  document.querySelector('meta[name="description"]').content = 'مهندس أنظمة خلفية أبني منصات SaaS ونقاط بيع وأنظمة حجز تعمل وتكبر.';
   set('.pill-long', 'السيرة الذاتية');
   set('.pill-short', 'السيرة');
   document.querySelector('.avatar-name').textContent = 'محمد النملة';
@@ -255,9 +237,6 @@ function translatePage() {
   heroTitle.innerHTML = `
     <span class="ar-line ar-soft" aria-hidden="true">أبني أنظمة</span>
     <span class="ar-line" aria-hidden="true">تعمل ${stretchWord('وتكـ', 'ـبر', 'ar-grow')}</span>`;
-
-  // const logos = document.querySelectorAll('.logo');
-  // logos[logos.length - 1].textContent = 'فكرتك';
 
   set('.clients-label', 'عملت مع');
   set('.ghost-word', 'أعمال');
@@ -283,7 +262,6 @@ function translatePage() {
   setText(document.querySelector('.experience .line'), 'الطريق');
   setText(document.querySelector('.xp-road'), 'حتى الآن');
   const experience = [
-    // ['أكتوبر 2026 — الآن', 'مهندس أنظمة خلفية · دوام جزئي', 'أبني Shahrazad Tours، واجهة برمجية لحجز الرحلات والتنقلات وشرائح eSIM.'],
     ['أكتوبر 2023 — الآن', 'مهندس أنظمة خلفية', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
     ['يونيو — أكتوبر 2023', 'متدرب في تطوير الأنظمة الخلفية', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
     ['2020 — 2025', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
@@ -296,16 +274,11 @@ function translatePage() {
     experienceRoles[index].textContent = role;
     experienceNotes[index].textContent = note;
   });
-  const companies = [/* 'فكرتك', */ 'Approved Tech', 'الجامعة الإسلامية بغزة'];
+  const companies = ['Approved Tech', 'الجامعة الإسلامية بغزة'];
   const companyNodes = document.querySelectorAll('.xp-company');
   companyNodes.forEach((company, index) => {
     setText(company.querySelector('a') || company, companies.slice(-companyNodes.length)[index]);
   });
-  // const fikritakLogo = [...document.querySelectorAll('.xp-logo')].find(logo => logo.textContent.trim() === 'F');
-  // if (fikritakLogo) {
-  //   fikritakLogo.textContent = 'ف';
-  //   fikritakLogo.setAttribute('aria-label', 'فكرتك');
-  // }
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
   if (fixedDuration) fixedDuration.textContent = '4 أشهر';
 
