@@ -92,10 +92,9 @@
 .services { z-index: 0; }
 
 /* ---------- Arc ---------- */
-/* An open card straightens and its neighbours part along the curve. The text is a drawer
-   that slides out from under the card, and goes back in before the card tilts again. */
-@property --push { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-@property --open { syntax: '<number>'; inherits: false; initial-value: 0; }
+/* An open card straightens and its neighbours part. On the way back the card settles first and
+   changes layer while they are still apart, then they close over it, so nothing pops in front.
+   Only translate, rotate and scale animate, so the motion stays off the main thread. */
 
 @media (min-width: 900px) {
   .projects-arc {
@@ -112,7 +111,8 @@
     overflow: visible;
   }
   .project-card {
-    --angle: calc(var(--slot) * var(--arc-step) + var(--push));
+    --open: 0;
+    --angle: calc(var(--slot) * var(--arc-step) + var(--push, 0deg));
     --arc-x: calc(var(--arc-radius) * sin(var(--angle)));
     --arc-y: calc(var(--arc-radius) * (1 - cos(var(--angle))));
     position: absolute;
@@ -128,9 +128,10 @@
     rotate: calc(var(--angle) * (1 - var(--open)));
     scale: calc(1 + var(--open) * .05);
     transition:
-      --push 320ms var(--ease-part),
-      --open 260ms var(--ease-part) 90ms,
-      z-index 350ms cubic-bezier(.8, 0, 1, .5);
+      translate 320ms var(--ease-part),
+      rotate 320ms var(--ease-part),
+      scale 320ms var(--ease-part),
+      z-index 200ms linear(0, .08 2%, .08 98%, 1);
   }
   .project-face {
     position: relative;
@@ -174,7 +175,7 @@
   .project-card:focus-visible {
     --open: 1;
     z-index: 20;
-    transition: --push 320ms var(--ease-part), --open 280ms var(--ease-part), z-index 0s;
+    transition: translate 300ms var(--ease-part), rotate 300ms var(--ease-part), scale 300ms var(--ease-part), z-index 0s;
   }
   .project-card:focus-visible :is(.project-name, .project-tag) { translate: 0 0; transition-duration: 280ms; }
   .project-card:focus-visible .project-more { pointer-events: auto; }
@@ -190,7 +191,7 @@
     --open: 1;
     z-index: 20;
     box-shadow: none;
-    transition: --push 320ms var(--ease-part), --open 280ms var(--ease-part), z-index 0s;
+    transition: translate 300ms var(--ease-part), rotate 300ms var(--ease-part), scale 300ms var(--ease-part), z-index 0s;
   }
   /* Keeps the card under the cursor while it lifts away from its old place */
   .project-card:hover::after { content: ""; position: absolute; inset: 0 0 -24px; z-index: -1; }

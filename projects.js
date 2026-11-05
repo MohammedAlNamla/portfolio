@@ -52,7 +52,9 @@ function measureTitleSlides() {
 document.fonts.ready.then(measureTitleSlides);
 window.addEventListener('resize', measureTitleSlides);
 
-// Neighbours part around the open card, less the further away they are
+// Neighbours part around the open card, less the further away they are.
+// They wait for the card to settle before closing, so it can change layer while they are apart.
+const NEIGHBOURS_CLOSE_AFTER = 180;
 const neighbourPush = [3.4, 2.2, 1.1, .5, .2, .1];
 let closeArcTimer;
 
@@ -75,10 +77,12 @@ arcCards.forEach((card) => {
     if (event.pointerType === 'mouse' && onArc.matches) partAround(slot);
   });
   card.addEventListener('pointerleave', () => {
-    closeArcTimer = setTimeout(closeArc, 70);
+    closeArcTimer = setTimeout(closeArc, NEIGHBOURS_CLOSE_AFTER);
   });
   card.addEventListener('focusin', () => {
     if (onArc.matches && card.matches(':focus-visible')) partAround(slot);
   });
-  card.addEventListener('focusout', closeArc);
+  card.addEventListener('focusout', () => {
+    closeArcTimer = setTimeout(closeArc, NEIGHBOURS_CLOSE_AFTER);
+  });
 });
