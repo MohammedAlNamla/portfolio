@@ -79,5 +79,5 @@
 }
 
 @media (hover: none) {
-  [data-theme="dark"] .project-media img { filter: brightness(.86); }
+  [data-theme="dark"] .project-media img { filter: grayscale(1) brightness(.86); }
 }
