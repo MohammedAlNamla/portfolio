@@ -19,13 +19,36 @@
   <link rel="icon" href="images/icons/icon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="images/icons/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="projects.css">
-  <link rel="stylesheet" href="experience.css">
-  <link rel="stylesheet" href="project-sheet.css">
-  <link rel="stylesheet" href="dark.css">
-  <link rel="stylesheet" href="arabic.css">
-  <link rel="stylesheet" href="english.css">
+  <style>
+    /* The loader lives here so it can paint before any stylesheet, font or image arrives */
+    html { background: #eeecea; color: #161616; scrollbar-gutter: stable; }
+    html[data-theme="dark"] { background: #2c2c2b; color: #f3f3f0; }
+    html.is-loading, html.is-loading body { overflow: hidden; overscroll-behavior: none; }
+    .site-loader { display: none; }
+    .is-loading .site-loader, .is-entering .site-loader {
+      position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+      background: #eeecea; color: #161616;
+    }
+    [data-theme="dark"] .site-loader { background: #2c2c2b; color: #f3f3f0; }
+    .is-entering .site-loader { pointer-events: none; animation: site-loader-out 280ms ease both; }
+    /* Waits a moment, so a fast connection never sees the loader flash */
+    .site-loader-mark { display: grid; justify-items: center; gap: 16px; animation: site-loader-in 260ms ease 400ms both; }
+    .site-loader-icon { display: block; width: 72px; height: 72px; overflow: visible; fill: currentColor; }
+    .site-loader-brace { animation: site-loader-open 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+    .site-loader-brace.is-right { --side: 1; }
+    .site-loader-brace { --side: -1; }
+    .site-loader-letter { animation: site-loader-letter 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+    .site-loader-line { display: block; width: 62px; height: 7px; overflow: visible; fill: currentColor; opacity: .55; transform: scaleX(.18); transform-origin: 100% 50%; animation: site-loader-line 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+    @keyframes site-loader-in { from { opacity: 0; } }
+    @keyframes site-loader-out { to { opacity: 0; } }
+    @keyframes site-loader-open { from { transform: translateX(calc(var(--side) * -3px)); } to { transform: translateX(calc(var(--side) * 4px)); } }
+    @keyframes site-loader-letter { from { opacity: .45; } to { opacity: 1; } }
+    @keyframes site-loader-line { to { transform: scaleX(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .site-loader-brace, .site-loader-line { animation: none; }
+      .site-loader-line { transform: none; }
+    }
+  </style>
   <script>
     try {
       if (localStorage.getItem('portfolio-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
@@ -39,9 +62,9 @@
       document.documentElement.lang = 'en';
       document.documentElement.removeAttribute('dir');
     }
-    // The hero waits for its fonts so it never shows a swap. English also waits for its translation.
+    // The loader stays, and scrolling stays locked, until the hero's text, fonts and portrait arrive
     document.documentElement.classList.add('is-loading');
-    setTimeout(() => document.documentElement.classList.remove('is-loading'), language === 'en' ? 8000 : 3000);
+    setTimeout(() => document.documentElement.classList.remove('is-loading'), 20000);
     const heroFonts = language === 'en'
       ? ['Unbounded-normal-500-latin.woff2', 'InstrumentSerif-italic-latin.woff2']
       : ['fatimah/itfFatimahArabic-Medium.otf', 'fatimah/itfFatimahArabic-Black.otf', 'ArefRuqaa-700-name.woff2'];
@@ -56,6 +79,26 @@
   </script>
 </head>
 <body>
+  <div class="site-loader" role="status" aria-label="جارٍ التحميل">
+    <div class="site-loader-mark" aria-hidden="true">
+      <svg class="site-loader-icon" viewBox="0 0 100 100">
+        <path class="site-loader-brace" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/>
+        <g transform="matrix(-1 0 0 1 100 0)"><path class="site-loader-brace" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/></g>
+        <path class="site-loader-letter" d="M52.1 28.4L54 28.4L56.1 29.3L58 30.8L58 31L58.5 31.4L59.1 32.7L59.4 32.8L60.3 35L60.8 37.6L60.8 40.1L60.1 43.3L59.1 46.6L58.5 47.7L57.6 48.6L56.3 49.2L54.3 49.4L47.6 48.8L42.4 48.8L44.8 57.2L44.9 58L45.4 59.3L45.8 61.7L45.8 63.8L45.3 66.4L43.6 71.7L42.5 71.6L40.6 64.3L39.5 59.2L39.3 57.2L39.4 54.2L39.6 52.5L40.4 50.1L42 46.7L42.1 46.6L42.3 46.2L42.8 45.7L43 45.2L44.6 43.4L44.9 43.4L45.1 43L45.4 43L46.1 42.4L47.6 41.7L49.3 41.2L52.5 41L55.6 41.4L59.1 42.1L58.4 41L57.5 40.2L57.5 40L57.1 39.9L56.6 39.2L56.4 39.2L55.3 38.2L52.9 36.9L50.8 36.3L49.1 36.3L48.3 36.6L48.1 36.8L47.6 37L47.5 37.4L47 37.8L46 39.6L44.9 39.3L46.5 34.9L47.5 32.8L47.6 32.7L48.5 31.2L48.8 31L49.1 30.4L50.4 29.2L51.5 28.6L52.1 28.5Z"/>
+      </svg>
+      <svg class="site-loader-line" viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M1 12C42 5 118 1 199 4C128 5 62 9 7 15C4 15 1 14 1 12Z"/></svg>
+    </div>
+  </div>
+  <script>
+    if (language === 'en') document.currentScript.previousElementSibling.setAttribute('aria-label', 'Loading');
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects.css">
+  <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="project-sheet.css">
+  <link rel="stylesheet" href="dark.css">
+  <link rel="stylesheet" href="arabic.css">
+  <link rel="stylesheet" href="english.css">
   <svg class="brush-defs" aria-hidden="true">
     <filter id="brush-rough" x="-5%" y="-20%" width="110%" height="140%">
       <feTurbulence type="fractalNoise" baseFrequency=".05 .3" numOctaves="2" seed="4"/>

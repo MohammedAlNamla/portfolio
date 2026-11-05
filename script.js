@@ -102,8 +102,9 @@ document.querySelectorAll('.ar-title').forEach((title) => {
   observer.observe(title);
 });
 
-// Shows the hero when its fonts and portrait are ready, or after a short wait on a slow connection
-const HERO_MAX_WAIT = 1500;
+// Ends the loader and shows the hero when its fonts and portrait are ready.
+// A file that never arrives must not trap the visitor, so the wait has a limit.
+const HERO_MAX_WAIT = 15000;
 const heroFontsNeeded = isArabic
   ? ['500 1em "Fatimah"', '900 1em "Fatimah"', '700 1em "Aref Ruqaa"', '500 1em "Thmanyah Sans"', '700 1em "Thmanyah Sans"']
   : ['500 1em "Unbounded"', 'italic 400 1em "Instrument Serif"', '500 1em "DM Sans"'];
