@@ -38,6 +38,20 @@
       document.documentElement.lang = 'ar';
       document.documentElement.dir = 'rtl';
     }
+    // The hero waits for its text and fonts, so it never shows the wrong language or a font swap
+    document.documentElement.classList.add('is-loading');
+    setTimeout(() => document.documentElement.classList.remove('is-loading'), 3000);
+    const heroFonts = language === 'en'
+      ? ['Unbounded-normal-500-latin.woff2', 'InstrumentSerif-italic-latin.woff2']
+      : ['fatimah/itfFatimahArabic-Medium.otf', 'fatimah/itfFatimahArabic-Black.otf', 'ArefRuqaa-700-name.woff2'];
+    heroFonts.forEach((file) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'font';
+      link.href = `fonts/${file}`;
+      link.crossOrigin = '';
+      document.head.append(link);
+    });
   </script>
 </head>
 <body>

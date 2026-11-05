@@ -32,21 +32,25 @@
 .ar-big { display: inline-block; font-weight: 900; }
 .ar-big > span:not(.ar-stretch) { display: inline-block; margin-inline: -.01em; }
 
-/* A clipped run of kashida widens smoothly, so the word never jumps letter by letter */
-.ar-stretch { display: inline-block; width: 1.5em; clip-path: inset(-50% 0); }
+/* A clipped run of kashida widens smoothly, so the word never jumps letter by letter.
+   The space is already reserved: only transforms play, so the line is never laid out again. */
+.hero .ar-title { --stretch: 1.5em; }
+.cta .ar-title { --stretch: 1.2em; }
+.ar-stretch { display: inline-block; width: var(--stretch); clip-path: inset(-50% 0); transform-origin: 100% 50%; }
 .ar-stretch > span { display: inline-block; }
 .ar-grow { margin-inline: .12em .6em; transform: scale(1.14); transform-origin: 100% 45%; }
-.ar-join .ar-stretch { width: 1.2em; }
 
 .is-playing .ar-grow { animation: ar-scale 1500ms cubic-bezier(.22, .8, .24, 1) both; }
-.is-playing .ar-grow .ar-stretch { animation: ar-stretch-grow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
-.is-playing .ar-join .ar-stretch { animation: ar-stretch-join 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+.is-playing .ar-stretch { animation: ar-stretch-grow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+.is-playing .ar-big > span:last-child { animation: ar-end-follow 1500ms cubic-bezier(.22, .8, .24, 1) both; }
+.is-playing .ar-line:last-child { animation: ar-line-centre 1500ms cubic-bezier(.22, .8, .24, 1) both; }
 @keyframes ar-scale { from { transform: scale(.72); } to { transform: scale(1.14); } }
-@keyframes ar-stretch-grow { from { width: 0; } to { width: 1.5em; } }
-@keyframes ar-stretch-join { from { width: 0; } to { width: 1.2em; } }
+@keyframes ar-stretch-grow { from { transform: scaleX(0); } }
+@keyframes ar-end-follow { from { transform: translateX(var(--stretch)); } }
+@keyframes ar-line-centre { from { transform: translateX(calc(var(--stretch) * -.5)); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .is-playing .ar-grow, .is-playing .ar-stretch { animation: none; }
+  .is-playing .ar-grow, .is-playing .ar-stretch, .is-playing .ar-big > span:last-child, .is-playing .ar-line:last-child { animation: none; }
 }
 
 @media (min-width: 600px) and (max-width: 899px) {

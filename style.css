@@ -600,3 +600,9 @@ svg { display: block; }
   .btn-email, .btn-whatsapp { width: calc(var(--u) * 124); height: calc(var(--u) * 56); font-size: calc(var(--u) * 12); }
   .btn-email { gap: calc(var(--u) * 9); }
 }
+
+/* The hero appears once, complete. Its animations wait with it. */
+.is-loading .hero > * { opacity: 0; }
+.is-loading .hero * { animation-play-state: paused !important; }
+.is-entering .hero > * { animation: hero-in 320ms ease both; }
+@keyframes hero-in { from { opacity: 0; } }

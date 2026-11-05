@@ -101,3 +101,23 @@ document.querySelectorAll('.ar-title').forEach((title) => {
   }, { threshold: .4 });
   observer.observe(title);
 });
+
+// Shows the hero when its fonts and portrait are ready, or after a short wait on a slow connection
+const HERO_MAX_WAIT = 1500;
+const heroFontsNeeded = isArabic
+  ? ['500 1em "Fatimah"', '900 1em "Fatimah"', '700 1em "Aref Ruqaa"', '500 1em "Thmanyah Sans"', '700 1em "Thmanyah Sans"']
+  : ['500 1em "Unbounded"', 'italic 400 1em "Instrument Serif"', '500 1em "DM Sans"'];
+const heroText = isArabic ? 'محمد النملة' : 'Mohammed';
+
+Promise.race([
+  Promise.allSettled([
+    ...heroFontsNeeded.map(font => document.fonts.load(font, heroText)),
+    document.querySelector('.avatar-photo').decode()
+  ]),
+  new Promise(resolve => setTimeout(resolve, HERO_MAX_WAIT))
+]).then(() => {
+  const root = document.documentElement;
+  root.classList.add('is-entering');
+  root.classList.remove('is-loading');
+  setTimeout(() => root.classList.remove('is-entering'), 400);
+});
