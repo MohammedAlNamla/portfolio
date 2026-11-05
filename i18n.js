@@ -1,4 +1,4 @@
-// Language: English is written in the HTML, and this file swaps in Arabic when it is chosen.
+// Language: Arabic is written in the HTML, and this file swaps in English when it is chosen.
 const isArabic = document.documentElement.lang === 'ar';
 
 const ui = isArabic
@@ -217,83 +217,82 @@ function setLines(selector, lines) {
   });
 }
 
-const stretchWord = (start, end, modifier) =>
-  `<span class="ar-big ${modifier}"><span>${start}</span><span class="ar-stretch"><span>${'ـ'.repeat(30)}</span></span><span>${end}</span></span>`;
-
 function translatePage() {
   const set = (selector, text) => { document.querySelector(selector).textContent = text; };
+  const useEnglishTitle = (title, lines) => {
+    title.classList.remove('ar-title');
+    title.removeAttribute('aria-label');
+    title.innerHTML = lines;
+  };
 
-  document.title = 'محمد النملة — مهندس أنظمة خلفية';
-  document.querySelector('meta[name="description"]').content = 'مهندس أنظمة خلفية أبني منصات SaaS ونقاط بيع وأنظمة حجز تعمل وتكبر.';
-  set('.pill-long', 'السيرة الذاتية');
-  set('.pill-short', 'السيرة');
-  document.querySelector('.avatar-name').textContent = 'محمد النملة';
-  setText(document.querySelector('.btn-shots'), 'استعرض أعمالي');
-  document.querySelector('.avatar-photo').alt = 'محمد النملة';
+  document.title = 'Mohammed Al-Namla — Backend Software Engineer';
+  document.querySelector('meta[name="description"]').content = 'Backend Software Engineer building SaaS, POS and booking systems that work and grow.';
+  set('.pill-long', 'My CV');
+  set('.pill-short', 'CV');
+  document.querySelector('.avatar-name').textContent = 'Mohammed Al-Namla';
+  setText(document.querySelector('.btn-shots'), 'See my work');
+  document.querySelector('.avatar-photo').alt = 'Mohammed Al-Namla';
 
-  const heroTitle = document.querySelector('.hero .title');
-  heroTitle.classList.add('ar-title');
-  heroTitle.setAttribute('aria-label', 'أبني أنظمة تعمل وتكبر');
-  heroTitle.innerHTML = `
-    <span class="ar-line ar-soft" aria-hidden="true">أبني أنظمة</span>
-    <span class="ar-line" aria-hidden="true">تعمل ${stretchWord('وتكـ', 'ـبر', 'ar-grow')}</span>`;
+  useEnglishTitle(document.querySelector('.hero .title'), `
+    <span class="en-line en-soft">I build systems</span>
+    <span class="en-line">that work <span class="en-amp">&amp;</span> grow</span>`);
 
-  set('.clients-label', 'عملت مع');
-  set('.ghost-word', 'أعمال');
-  setLines('.projects .subtitle', ['من المنتجات', 'التي بنيتها']);
-  document.querySelector('.projects .divider-tag').textContent = 'المشاريع';
+  set('.clients-label', 'Worked with');
+  document.querySelectorAll('.logo-full').forEach((logo) => { logo.alt = 'University of Palestine'; });
+  set('.ghost-word', 'Work');
+  setLines('.projects .subtitle', ['Some of the products', "I've built"]);
+  document.querySelector('.projects .divider-tag').textContent = 'Projects';
 
-  setLines('.subtitle-wide', ['من قاعدة البيانات إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج']);
-  setLines('.subtitle-narrow', ['من قاعدة البيانات', 'إلى الشاشة،', 'أنظمة تعمل بثبات في الإنتاج']);
-  document.querySelector('.services .divider-tag').textContent = 'الخدمات';
+  setLines('.subtitle-wide', ['From the database to the screen,', 'built to run in production']);
+  setLines('.subtitle-narrow', ['From the database', 'to the screen,', 'built to run in production']);
+  document.querySelector('.services .divider-tag').textContent = 'Services';
 
   const services = [
-    ['أنظمة متعددة العملاء', 'منصة واحدة تخدم شركات كثيرة، ولكل منها بياناتها وأدوارها وصلاحياتها.'],
-    ['واجهات برمجية وتكاملات', 'واجهات موثقة وربط بمزودين خارجيين، تبقى متزامنة عبر Webhooks ومهام مجدولة.'],
-    ['الوقت الفعلي والعمل دون اتصال', 'تحديثات فورية عبر WebSockets، ونقطة بيع تواصل استقبال الطلبات عند انقطاع الاتصال.'],
-    ['تطوير متكامل', 'واجهات Vue وNuxt تُسلَّم مع الأنظمة الخلفية التي تشغّلها.']
+    ['Multi-tenant SaaS', 'One platform serving many businesses, each with its own data, roles and permissions.'],
+    ['APIs & Integrations', 'Documented APIs and external providers, kept in sync with webhooks and scheduled checks.'],
+    ['Real-time & Offline', 'Live updates over WebSockets, and a POS that keeps taking orders when the connection drops.'],
+    ['Full-stack Delivery', 'Vue and Nuxt interfaces, shipped together with the backend behind them.']
   ];
   document.querySelectorAll('.service').forEach((service, index) => {
     service.querySelector('h3').textContent = services[index][0];
     service.querySelector('p').textContent = services[index][1];
   });
 
-  document.querySelector('.experience .divider-tag').textContent = 'الخبرات';
-  setText(document.querySelector('.experience .line'), 'الطريق');
-  setText(document.querySelector('.xp-road'), 'حتى الآن');
+  document.querySelector('.experience .divider-tag').textContent = 'Experience';
+  setText(document.querySelector('.experience .line'), 'The road');
+  setText(document.querySelector('.xp-road'), 'so far');
   const experience = [
-    ['أكتوبر 2023 — الآن', 'مهندس أنظمة خلفية', 'منصات SaaS وERP وحجوزات لعدة عملاء.'],
-    ['يونيو — أكتوبر 2023', 'متدرب في تطوير الأنظمة الخلفية', 'PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.'],
-    ['2020 — 2025', 'بكالوريوس تقنية المعلومات', 'تطوير الويب وقواعد البيانات وهندسة البرمجيات.']
+    ['Oct 2023 — Now', 'Backend Software Engineer', 'SaaS, ERP and booking platforms for multiple clients.'],
+    ['Jun — Oct 2023', 'Backend Developer Intern', 'PHP, Laravel and MySQL, before joining the team full-time.'],
+    ['2020 — 2025', 'B.Sc. Information Technology', 'Web development, databases and software engineering.']
   ];
   const experienceDates = document.querySelectorAll('.xp-date');
   const experienceRoles = document.querySelectorAll('.xp-role');
   const experienceNotes = document.querySelectorAll('.xp-note');
-  experience.slice(-experienceDates.length).forEach(([date, role, note], index) => {
+  experience.forEach(([date, role, note], index) => {
     experienceDates[index].textContent = date;
     experienceRoles[index].textContent = role;
     experienceNotes[index].textContent = note;
   });
-  const companies = ['Approved Tech', 'الجامعة الإسلامية بغزة'];
-  const companyNodes = document.querySelectorAll('.xp-company');
-  companyNodes.forEach((company, index) => {
-    setText(company.querySelector('a') || company, companies.slice(-companyNodes.length)[index]);
+  const companies = ['Approved Tech', 'Islamic University of Gaza'];
+  document.querySelectorAll('.xp-company').forEach((company, index) => {
+    setText(company.querySelector('a') || company, companies[index]);
   });
+  const companyLogos = ['Approved Tech logo', 'Islamic University of Gaza logo'];
+  document.querySelectorAll('.xp-logo img').forEach((logo, index) => { logo.alt = companyLogos[index]; });
   const fixedDuration = document.querySelector('.xp-duration:not([data-start])');
-  if (fixedDuration) fixedDuration.textContent = '4 أشهر';
+  if (fixedDuration) fixedDuration.textContent = '4 months';
 
-  const contactTitle = document.querySelector('.cta-title');
-  contactTitle.classList.add('ar-title');
-  contactTitle.setAttribute('aria-label', 'لنبنِ معًا شيئًا يدوم');
-  contactTitle.innerHTML = `
-    <span class="ar-line ar-soft" aria-hidden="true">لنبنِ معًا</span>
-    <span class="ar-line" aria-hidden="true">شيئًا ${stretchWord('يـ', 'ـدوم', 'ar-join')}</span>`;
-  setText(document.querySelector('.btn-email'), 'راسلني');
-  set('.btn-whatsapp', 'واتساب');
+  useEnglishTitle(document.querySelector('.cta-title'), `
+    <span class="en-line en-soft">Let’s build</span>
+    <span class="en-line">something that lasts</span>`);
+  setText(document.querySelector('.btn-email'), 'Email me');
+  set('.btn-whatsapp', 'WhatsApp');
 }
 
 // The English headlines settle once when they come into view
 if (!isArabic) {
+  translatePage();
   document.querySelectorAll('.en-title').forEach((title) => {
     const titleObserver = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
@@ -305,7 +304,6 @@ if (!isArabic) {
 }
 
 if (isArabic) {
-  translatePage();
   projects.forEach((project) => {
     const arabic = projectsArabic[project.id];
     Object.assign(project, arabic);

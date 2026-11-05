@@ -603,6 +603,7 @@ svg { display: block; }
 
 /* The hero appears once, complete. Its animations wait with it. */
 .is-loading .hero > * { opacity: 0; }
+html[lang="en"].is-loading .page { visibility: hidden; }
 .is-loading .hero * { animation-play-state: paused !important; }
 .is-entering .hero > * { animation: hero-in 320ms ease both; }
 @keyframes hero-in { from { opacity: 0; } }

@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mohammed Al-Namla — Backend Software Engineer</title>
-  <meta name="description" content="Backend Software Engineer building SaaS, POS and booking systems that work and grow.">
+  <title>محمد النملة — مهندس أنظمة خلفية</title>
+  <meta name="description" content="مهندس أنظمة خلفية أبني منصات SaaS ونقاط بيع وأنظمة حجز تعمل وتكبر.">
   <link rel="canonical" href="https://mohammed-alnamla.vercel.app/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
   <meta property="og:url" content="https://mohammed-alnamla.vercel.app/">
-  <meta property="og:title" content="Mohammed Al-Namla — Backend Software Engineer">
-  <meta property="og:description" content="Backend Software Engineer building SaaS, POS and booking systems that work and grow.">
+  <meta property="og:title" content="محمد النملة — مهندس أنظمة خلفية">
+  <meta property="og:description" content="مهندس أنظمة خلفية أبني منصات SaaS ونقاط بيع وأنظمة حجز تعمل وتكبر.">
   <meta property="og:image" content="https://mohammed-alnamla.vercel.app/images/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -29,18 +30,18 @@
     try {
       if (localStorage.getItem('portfolio-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
     } catch (error) {}
-    // Arabic is the default; English only when the visitor chose it
+    // This page is written in Arabic. English is applied by i18n.js only when the visitor chose it.
     let language = 'ar';
     try {
       language = localStorage.getItem('portfolio-lang') || 'ar';
     } catch (error) {}
-    if (language !== 'en') {
-      document.documentElement.lang = 'ar';
-      document.documentElement.dir = 'rtl';
+    if (language === 'en') {
+      document.documentElement.lang = 'en';
+      document.documentElement.removeAttribute('dir');
     }
-    // The hero waits for its text and fonts, so it never shows the wrong language or a font swap
+    // The hero waits for its fonts so it never shows a swap. English also waits for its translation.
     document.documentElement.classList.add('is-loading');
-    setTimeout(() => document.documentElement.classList.remove('is-loading'), 3000);
+    setTimeout(() => document.documentElement.classList.remove('is-loading'), language === 'en' ? 8000 : 3000);
     const heroFonts = language === 'en'
       ? ['Unbounded-normal-500-latin.woff2', 'InstrumentSerif-italic-latin.woff2']
       : ['fatimah/itfFatimahArabic-Medium.otf', 'fatimah/itfFatimahArabic-Black.otf', 'ArefRuqaa-700-name.woff2'];
@@ -68,7 +69,7 @@
   <div class="page">
     <section class="hero">
       <nav class="bar">
-        <button class="bar-email" id="copy" type="button" aria-label="Copy email address">
+        <button class="bar-email" id="copy" type="button" aria-label="نسخ البريد الإلكتروني">
           <svg class="icon-mail" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="1.500" y="3" width="13" height="10" rx="1.500"/><path d="m2 4 6 5 6-5"/></svg>
           <span class="bar-email-text" id="email">moh.alnamla@gmail.com</span>
           <svg class="icon-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.500" y="5.500" width="8" height="8" rx="1.500"/><path d="M10.500 3.500v-.500a1 1 0 0 0-1-1H3.500a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.500"/></svg>
@@ -83,47 +84,47 @@
             <a class="bar-icon" href="https://github.com/MohammedAlNamla" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.630 0-12 5.373-12 12 0 5.303 3.438 9.800 8.205 11.385.600.113.820-.258.820-.577 0-.285-.010-1.040-.015-2.040-3.338.724-4.042-1.610-4.042-1.610C4.422 18.070 3.633 17.700 3.633 17.700c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.070 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.760-1.605-2.665-.300-5.466-1.332-5.466-5.930 0-1.310.465-2.380 1.235-3.220-.135-.303-.540-1.523.105-3.176 0 0 1.005-.322 3.300 1.230.960-.267 1.980-.399 3-.405 1.020.006 2.040.138 3 .405 2.280-1.552 3.285-1.230 3.285-1.230.645 1.653.240 2.873.120 3.176.765.840 1.230 1.910 1.230 3.220 0 4.610-2.805 5.625-5.475 5.920.420.360.810 1.096.810 2.220 0 1.606-.015 2.896-.015 3.286 0 .315.210.690.825.570C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
             <a class="bar-icon" href="https://www.linkedin.com/in/mohammed-al-namla-084907260" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.900 1.637-1.850 3.370-1.850 3.601 0 4.267 2.370 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452z"/></svg></a>
           </div>
-          <button class="bar-theme bar-lang" id="lang-toggle" type="button"></button>
-          <button class="bar-theme" id="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+          <button class="bar-theme bar-lang" id="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+          <button class="bar-theme" id="theme-toggle" type="button" aria-label="استخدام الوضع الداكن" aria-pressed="false">
             <svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true"><path d="M13.500 9.700A6 6 0 0 1 6.300 2.500a6 6 0 1 0 7.200 7.200z"/></svg>
             <svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.500v1.500M8 13v1.500M1.500 8H3M13 8h1.500M3.400 3.400l1.100 1.100M11.500 11.500l1.100 1.100M3.400 12.600l1.100-1.100M11.500 4.500l1.100-1.100"/></svg>
           </button>
           <a class="pill" href="Mohammed_Al_Namla_CV.pdf" target="_blank" rel="noopener">
-            <span class="pill-long">My CV</span><span class="pill-short">CV</span>
+            <span class="pill-long">السيرة الذاتية</span><span class="pill-short">السيرة</span>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M4.500 7 8 10.500 11.500 7M2.500 13.500h11"/></svg>
           </a>
         </div>
       </nav>
 
       <div class="avatar">
-        <div class="avatar-frame"><img class="avatar-photo" src="images/portrait.webp" width="1461" height="1672" alt="Mohammed Al-Namla"></div>
+        <div class="avatar-frame"><img class="avatar-photo" src="images/portrait.webp" width="1461" height="1672" alt="محمد النملة"></div>
         <div class="avatar-sign">
-          <span class="avatar-name">Mohammed Al-Namla</span>
+          <span class="avatar-name">محمد النملة</span>
           <svg class="avatar-swash" viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M1 12C42 5 118 1 199 4C128 5 62 9 7 15C4 15 1 14 1 12Z"/></svg>
         </div>
       </div>
 
-      <h1 class="title en-title">
-        <span class="en-line en-soft">I build systems</span>
-        <span class="en-line">that work <span class="en-amp">&amp;</span> grow</span>
+      <h1 class="title en-title ar-title" aria-label="أبني أنظمة تعمل وتكبر">
+        <span class="ar-line ar-soft" aria-hidden="true">أبني أنظمة</span>
+        <span class="ar-line" aria-hidden="true">تعمل <span class="ar-big ar-grow"><span>وتكـ</span><span class="ar-stretch"><span>ــــــــــــــــــــــــــــــ</span></span><span>ـبر</span></span></span>
       </h1>
 
       <a class="btn btn-dark btn-shots" href="#projects">
-        See my work
+        استعرض أعمالي
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 12 12 2M4.5 2H12v7.5"/></svg>
       </a>
     </section>
 
     <section class="clients">
       <div class="clients-side">
-      <p class="clients-label">Worked with</p>
+      <p class="clients-label">عملت مع</p>
       <div class="marquee">
         <div class="marquee-track" id="marquee-track">
           <div class="marquee-group">
             <div class="logo"><img class="logo-square" src="logos/approved-tech.png" alt="">Approved Tech</div>
             <div class="logo">
-              <img class="logo-full logo-on-light" src="logos/university-of-palestine.svg" alt="University of Palestine">
-              <img class="logo-full logo-on-dark" src="logos/university-of-palestine-dark.svg" alt="University of Palestine">
+              <img class="logo-full logo-on-light" src="logos/university-of-palestine.svg" alt="جامعة فلسطين">
+              <img class="logo-full logo-on-dark" src="logos/university-of-palestine-dark.svg" alt="جامعة فلسطين">
             </div>
             <div class="logo"><img class="logo-badge" src="logos/netspeed.png" alt="">NetSpeed</div>
           </div>
@@ -134,84 +135,84 @@
 
     <section class="projects" id="projects">
       <h2 class="subtitle">
-        <span class="ghost-word" aria-hidden="true">Work</span>
-        <span class="line">Some of the products</span>
-        <span class="line">I've built</span>
+        <span class="ghost-word" aria-hidden="true">أعمال</span>
+        <span class="line">من المنتجات</span>
+        <span class="line">التي بنيتها</span>
       </h2>
 
-      <div class="divider"><span class="tag divider-tag">Projects</span></div>
+      <div class="divider"><span class="tag divider-tag">المشاريع</span></div>
 
       <div class="projects-arc" id="projects-arc"></div>
     </section>
 
     <section class="services">
       <h2 class="subtitle subtitle-wide">
-        <span class="line">From the database to the screen,</span>
-        <span class="line">built to run in <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>production</span></span>
+        <span class="line">من قاعدة البيانات إلى الشاشة،</span>
+        <span class="line">أنظمة تعمل بثبات في <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>الإنتاج</span></span>
       </h2>
       <h2 class="subtitle subtitle-narrow">
-        <span class="line">From the database</span>
-        <span class="line">to the screen,</span>
-        <span class="line">built to run in <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>production</span></span>
+        <span class="line">من قاعدة البيانات</span>
+        <span class="line">إلى الشاشة،</span>
+        <span class="line">أنظمة تعمل بثبات في <span class="w-brush"><svg aria-hidden="true"><use href="#brush-stroke"/></svg>الإنتاج</span></span>
       </h2>
 
-      <div class="divider"><span class="tag divider-tag">Services</span></div>
+      <div class="divider"><span class="tag divider-tag">الخدمات</span></div>
 
       <div class="service-grid">
         <article class="service">
           <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><path class="ink" d="M21 3 38 11 21 19 4 11z"/><path d="M4 18 21 26 38 18M4 25 21 33 38 25"/></svg></div>
-          <h3>Multi-tenant SaaS</h3>
-          <p>One platform serving many businesses, each with its own data, roles and permissions.</p>        </article>
+          <h3>أنظمة متعددة العملاء</h3>
+          <p>منصة واحدة تخدم شركات كثيرة، ولكل منها بياناتها وأدوارها وصلاحياتها.</p>        </article>
         <article class="service">
           <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><circle cx="9" cy="18" r="6"/><circle class="ink" cx="33" cy="18" r="6"/><path d="M15 18h12"/></svg></div>
-          <h3>APIs &amp; Integrations</h3>
-          <p>Documented APIs and external providers, kept in sync with webhooks and scheduled checks.</p>        </article>
+          <h3>واجهات برمجية وتكاملات</h3>
+          <p>واجهات موثقة وربط بمزودين خارجيين، تبقى متزامنة عبر Webhooks ومهام مجدولة.</p>        </article>
         <article class="service">
           <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><path d="M8 14a14 14 0 0 1 24-5l3 3M35 5v7h-7"/><path d="M34 22a14 14 0 0 1-24 5l-3-3M7 31v-7h7"/></svg></div>
-          <h3>Real-time &amp; Offline</h3>
-          <p>Live updates over WebSockets, and a POS that keeps taking orders when the connection drops.</p>        </article>
+          <h3>الوقت الفعلي والعمل دون اتصال</h3>
+          <p>تحديثات فورية عبر WebSockets، ونقطة بيع تواصل استقبال الطلبات عند انقطاع الاتصال.</p>        </article>
         <article class="service">
           <div class="service-icon"><svg viewBox="0 0 42 36" aria-hidden="true"><rect x="9" y="2" width="24" height="12" rx="2"/><path d="M21 14v6"/><path class="ink" d="M21 18c5.500 0 10 1.800 10 4s-4.500 4-10 4-10-1.800-10-4 4.500-4 10-4z"/><path d="M11 22v8c0 2.200 4.500 4 10 4s10-1.800 10-4v-8"/></svg></div>
-          <h3>Full-stack Delivery</h3>
-          <p>Vue and Nuxt interfaces, shipped together with the backend behind them.</p>        </article>
+          <h3>تطوير متكامل</h3>
+          <p>واجهات Vue وNuxt تُسلَّم مع الأنظمة الخلفية التي تشغّلها.</p>        </article>
       </div>
     </section>
 
     <section class="experience">
       <h2 class="subtitle">
-        <span class="line">The road <span class="xp-road">so far<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6C24 2 44 9 64 5S90 4 100 7"/></svg></span></span>
+        <span class="line">الطريق <span class="xp-road">حتى الآن<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6C24 2 44 9 64 5S90 4 100 7"/></svg></span></span>
       </h2>
 
-      <div class="divider"><span class="tag divider-tag">Experience</span></div>
+      <div class="divider"><span class="tag divider-tag">الخبرات</span></div>
 
       <div class="xp-list">
         <article class="xp-row is-current">
           <div class="xp-year">2023</div>
-          <span class="xp-logo"><img src="logos/approved-tech.png" alt="Approved Tech logo"></span>
+          <span class="xp-logo"><img src="logos/approved-tech.png" alt="شعار Approved Tech"></span>
           <div class="xp-body">
             <h3 class="xp-company"><a href="https://www.approved.tech/" target="_blank" rel="noopener">Approved Tech</a></h3>
             <div class="xp-steps">
               <div class="xp-step">
-                <div class="xp-dates"><span class="xp-date">Oct 2023 — Now</span><span class="xp-duration" data-start="2023-10"></span></div>
-                <span class="xp-role">Backend Software Engineer</span>
-                <p class="xp-note">SaaS, ERP and booking platforms for multiple clients.</p>
+                <div class="xp-dates"><span class="xp-date">أكتوبر 2023 — الآن</span><span class="xp-duration" data-start="2023-10"></span></div>
+                <span class="xp-role">مهندس أنظمة خلفية</span>
+                <p class="xp-note">منصات SaaS وERP وحجوزات لعدة عملاء.</p>
               </div>
               <div class="xp-step">
-                <div class="xp-dates"><span class="xp-date">Jun — Oct 2023</span><span class="xp-duration">4 months</span></div>
-                <span class="xp-role">Backend Developer Intern</span>
-                <p class="xp-note">PHP, Laravel and MySQL, before joining the team full-time.</p>
+                <div class="xp-dates"><span class="xp-date">يونيو — أكتوبر 2023</span><span class="xp-duration">4 أشهر</span></div>
+                <span class="xp-role">متدرب في تطوير الأنظمة الخلفية</span>
+                <p class="xp-note">PHP وLaravel وMySQL، قبل الانضمام إلى الفريق بدوام كامل.</p>
               </div>
             </div>
           </div>
         </article>
         <article class="xp-row">
           <div class="xp-year">2020</div>
-          <span class="xp-logo"><img src="logos/iug.png" alt="Islamic University of Gaza logo"></span>
+          <span class="xp-logo"><img src="logos/iug.png" alt="شعار الجامعة الإسلامية بغزة"></span>
           <div class="xp-body">
             <div class="xp-dates"><span class="xp-date">2020 — 2025</span></div>
-            <h3 class="xp-company"><a href="https://www.iugaza.edu.ps/" target="_blank" rel="noopener">Islamic University of Gaza</a></h3>
-            <span class="xp-role">B.Sc. Information Technology</span>
-            <p class="xp-note">Web development, databases and software engineering.</p>
+            <h3 class="xp-company"><a href="https://www.iugaza.edu.ps/" target="_blank" rel="noopener">الجامعة الإسلامية بغزة</a></h3>
+            <span class="xp-role">بكالوريوس تقنية المعلومات</span>
+            <p class="xp-note">تطوير الويب وقواعد البيانات وهندسة البرمجيات.</p>
           </div>
         </article>
       </div>
@@ -225,23 +226,23 @@
           <path d="M3 3 2 14l6.500 6.500a1 1 0 1 0 3-3"/>
           <path d="M3 4h8"/>
         </svg></div>
-      <h2 class="title cta-title en-title">
-        <span class="en-line en-soft">Let’s build</span>
-        <span class="en-line">something that lasts</span>
+      <h2 class="title cta-title en-title ar-title" aria-label="لنبنِ معًا شيئًا يدوم">
+        <span class="ar-line ar-soft" aria-hidden="true">لنبنِ معًا</span>
+        <span class="ar-line" aria-hidden="true">شيئًا <span class="ar-big ar-join"><span>يـ</span><span class="ar-stretch"><span>ــــــــــــــــــــــــــــــ</span></span><span>ـدوم</span></span></span>
       </h2>
       <div class="cta-actions">
         <a class="btn btn-dark btn-email" href="mailto:moh.alnamla@gmail.com">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.500" y="3" width="13" height="10" rx="1.500"/><path d="m2 4 6 5 6-5"/></svg>
-          Email me
+          راسلني
         </a>
-        <a class="btn btn-light btn-whatsapp" href="https://wa.me/970599473743" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-light btn-whatsapp" href="https://wa.me/970599473743" target="_blank" rel="noopener">واتساب</a>
       </div>
     </section>
   </div>
 
   <dialog class="sheet" id="project-sheet" aria-labelledby="project-sheet-title">
     <div class="sheet-scroll">
-      <button class="sheet-close" type="button" aria-label="Close" autofocus>
+      <button class="sheet-close" type="button" aria-label="إغلاق" autofocus>
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12"/></svg>
       </button>
       <div class="sheet-body" id="project-sheet-body"></div>
