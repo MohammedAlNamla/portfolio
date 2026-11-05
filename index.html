@@ -32,21 +32,25 @@
     [data-theme="dark"] .site-loader { background: #2c2c2b; color: #f3f3f0; }
     .is-entering .site-loader { pointer-events: none; animation: site-loader-out 280ms ease both; }
     /* Waits a moment, so a fast connection never sees the loader flash */
-    .site-loader-mark { display: grid; justify-items: center; gap: 16px; animation: site-loader-in 260ms ease 400ms both; }
+    .site-loader-mark { animation: site-loader-in 260ms ease 400ms both; }
     .site-loader-icon { display: block; width: 72px; height: 72px; overflow: visible; fill: currentColor; }
-    .site-loader-brace { animation: site-loader-open 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
-    .site-loader-brace.is-right { --side: 1; }
-    .site-loader-brace { --side: -1; }
-    .site-loader-letter { animation: site-loader-letter 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
-    .site-loader-line { display: block; width: 62px; height: 7px; overflow: visible; fill: currentColor; opacity: .55; transform: scaleX(.18); transform-origin: 100% 50%; animation: site-loader-line 1500ms cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+    /* Types { م } and then deletes it backwards, one piece at a time, like an editor */
+    .site-loader-open, .site-loader-letter, .site-loader-close { opacity: 0; animation: 2400ms step-end infinite; }
+    .site-loader-open { animation-name: site-loader-open; }
+    .site-loader-letter { animation-name: site-loader-letter; }
+    .site-loader-close { animation-name: site-loader-close; }
+    .site-loader-caret { animation: site-loader-caret 2400ms step-end infinite, site-loader-blink 2400ms step-end infinite; }
     @keyframes site-loader-in { from { opacity: 0; } }
     @keyframes site-loader-out { to { opacity: 0; } }
-    @keyframes site-loader-open { from { transform: translateX(calc(var(--side) * -3px)); } to { transform: translateX(calc(var(--side) * 4px)); } }
-    @keyframes site-loader-letter { from { opacity: .45; } to { opacity: 1; } }
-    @keyframes site-loader-line { to { transform: scaleX(1); } }
+    @keyframes site-loader-open { 0% { opacity: 0; } 8%, 85% { opacity: 1; } 86% { opacity: 0; } }
+    @keyframes site-loader-letter { 0% { opacity: 0; } 21%, 75% { opacity: 1; } 76% { opacity: 0; } }
+    @keyframes site-loader-close { 0% { opacity: 0; } 34%, 65% { opacity: 1; } 66% { opacity: 0; } }
+    @keyframes site-loader-caret { 0% { transform: translateX(3px); } 8% { transform: translateX(35px); } 21% { transform: translateX(65px); } 34% { transform: translateX(98px); } 66% { transform: translateX(65px); } 76% { transform: translateX(35px); } 86% { transform: translateX(3px); } }
+    /* Solid while typing or deleting, blinking while it waits */
+    @keyframes site-loader-blink { 0%, 40% { opacity: 1; } 47% { opacity: .15; } 54% { opacity: 1; } 91% { opacity: .15; } 96% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
-      .site-loader-brace, .site-loader-line { animation: none; }
-      .site-loader-line { transform: none; }
+      .site-loader-open, .site-loader-letter, .site-loader-close { opacity: 1; animation: none; }
+      .site-loader-caret { display: none; }
     }
   </style>
   <script>
@@ -82,11 +86,11 @@
   <div class="site-loader" role="status" aria-label="جارٍ التحميل">
     <div class="site-loader-mark" aria-hidden="true">
       <svg class="site-loader-icon" viewBox="0 0 100 100">
-        <path class="site-loader-brace" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/>
-        <g transform="matrix(-1 0 0 1 100 0)"><path class="site-loader-brace" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/></g>
+        <path class="site-loader-open" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/>
         <path class="site-loader-letter" d="M52.1 28.4L54 28.4L56.1 29.3L58 30.8L58 31L58.5 31.4L59.1 32.7L59.4 32.8L60.3 35L60.8 37.6L60.8 40.1L60.1 43.3L59.1 46.6L58.5 47.7L57.6 48.6L56.3 49.2L54.3 49.4L47.6 48.8L42.4 48.8L44.8 57.2L44.9 58L45.4 59.3L45.8 61.7L45.8 63.8L45.3 66.4L43.6 71.7L42.5 71.6L40.6 64.3L39.5 59.2L39.3 57.2L39.4 54.2L39.6 52.5L40.4 50.1L42 46.7L42.1 46.6L42.3 46.2L42.8 45.7L43 45.2L44.6 43.4L44.9 43.4L45.1 43L45.4 43L46.1 42.4L47.6 41.7L49.3 41.2L52.5 41L55.6 41.4L59.1 42.1L58.4 41L57.5 40.2L57.5 40L57.1 39.9L56.6 39.2L56.4 39.2L55.3 38.2L52.9 36.9L50.8 36.3L49.1 36.3L48.3 36.6L48.1 36.8L47.6 37L47.5 37.4L47 37.8L46 39.6L44.9 39.3L46.5 34.9L47.5 32.8L47.6 32.7L48.5 31.2L48.8 31L49.1 30.4L50.4 29.2L51.5 28.6L52.1 28.5Z"/>
+        <g transform="matrix(-1 0 0 1 100 0)"><path class="site-loader-close" d="M31 11C20 11 18 19 18 31C18 42 16 47 6 50C16 53 18 58 18 69C18 81 20 89 31 89L31 85C26 84 26 78 26 68C26 57 23 52 15 50C23 48 26 43 26 32C26 22 26 16 31 15Z"/></g>
+        <rect class="site-loader-caret" x="-1" y="10" width="3" height="80" rx="1.5"/>
       </svg>
-      <svg class="site-loader-line" viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M1 12C42 5 118 1 199 4C128 5 62 9 7 15C4 15 1 14 1 12Z"/></svg>
     </div>
   </div>
   <script>
