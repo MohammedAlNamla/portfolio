@@ -82,6 +82,11 @@
 
 * { box-sizing: border-box; margin: 0; }
 
+/* Links to a section, like "See my work", glide there instead of jumping */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 body {
   background: var(--surface);
   color: var(--ink);
@@ -363,6 +368,9 @@ svg { display: block; }
 .logo-full { height: 2.4em; }
 .logo-on-dark { display: none; }
 .logo-badge { height: 1.9em; border-radius: 50%; }
+.logo-iug img { height: 2.5em; }
+.logo-iug-name { display: grid; gap: .2em; font-size: .9em; letter-spacing: 0; }
+.logo-iug-name small { font-size: .5em; font-weight: 500; }
 
 /* A short label beside the strip, stacked on small screens */
 .clients-side { display: grid; align-items: center; justify-items: center; gap: 22px; }
