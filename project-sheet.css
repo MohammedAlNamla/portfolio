@@ -45,8 +45,25 @@ html.is-sheet-open { overflow: hidden; }
 .sheet-body { container-type: inline-size; }
 
 .viewer-stage { position: relative; overflow: hidden; border-radius: 18px; touch-action: pan-y; }
-.viewer-open { display: block; width: 100%; padding: 0; border: 0; background: var(--tint); cursor: zoom-in; }
-.viewer-img { display: block; width: 100%; max-height: 62dvh; aspect-ratio: 16 / 11; object-fit: contain; }
+.viewer-open { position: relative; display: block; width: 100%; padding: 0; border: 0; background: var(--tint); cursor: zoom-in; }
+.viewer-img { display: block; width: 100%; max-height: 62dvh; aspect-ratio: 16 / 11; object-fit: contain; transition: opacity 200ms ease; }
+
+/* While a picture is still on its way, a soft light sweeps across the stage */
+.viewer-open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .5) 50%, transparent 70%) 0 0 / 220% 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+.viewer-open.is-loading::after { opacity: 1; animation: viewer-shimmer 1.4s ease-in-out infinite; }
+.viewer-open.is-loading .viewer-img { opacity: .35; }
+@keyframes viewer-shimmer { from { background-position: 130% 0; } to { background-position: -30% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .viewer-open.is-loading::after { animation: none; opacity: .6; }
+}
 .viewer-arrow {
   position: absolute;
   top: 50%;

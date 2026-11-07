@@ -34,7 +34,7 @@ function renderViewer(project) {
   return `
     <section class="viewer" style="--tint:${project.tint}">
       <div class="viewer-stage">
-        <button class="viewer-open" type="button" aria-label="${ui.enlargeImage}"><img class="viewer-img" src="${viewerMedia[0].image}" alt="${viewerMedia[0].caption}"></button>
+        <button class="viewer-open" type="button" aria-label="${ui.enlargeImage}"><img class="viewer-img" alt=""></button>
         <button class="viewer-arrow viewer-prev" type="button" data-step="-1" aria-label="${ui.previousImage}"><span aria-hidden="true"></span></button>
         <button class="viewer-arrow viewer-next" type="button" data-step="1" aria-label="${ui.nextImage}"><span aria-hidden="true"></span></button>
       </div>
@@ -43,19 +43,55 @@ function renderViewer(project) {
     </section>`;
 }
 
+// Pictures are fetched ahead of time and only swapped in once fully decoded, so the stage never
+// goes blank. Fetching alone is cheap; decoding happens only for the picture about to be shown.
+const imageCache = new Map();
+const readyImages = new Set();
+function fetchImage(src) {
+  if (!imageCache.has(src)) {
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = src;
+    imageCache.set(src, image);
+  }
+  return imageCache.get(src);
+}
+function loadImage(src) {
+  // A failed load still resolves, so the viewer is never stuck waiting.
+  return fetchImage(src).decode().catch(() => {}).then(() => { readyImages.add(src); });
+}
+
+// The shimmer waits a moment before showing, so pictures that arrive quickly never flash it.
+const SHIMMER_DELAY = 120;
+let showToken = 0;
+
 function showImage(index) {
   const count = viewerMedia.length;
   viewerIndex = (index + count) % count;
   const media = viewerMedia[viewerIndex];
-  [sheetBody.querySelector('.viewer-img'), lightbox.querySelector('img')].forEach((image) => {
-    image.src = media.image;
-    image.alt = media.caption;
-  });
+  const token = ++showToken;
   sheetBody.querySelectorAll('.viewer-dot').forEach((dot, dotIndex) => {
     dot.setAttribute('aria-current', String(dotIndex === viewerIndex));
   });
-  if (!reducedMotion()) sheetBody.querySelector('.viewer-img').animate([{ opacity: .4 }, { opacity: 1 }], { duration: 220 });
-  [viewerIndex + 1, viewerIndex - 1].forEach((near) => { new Image().src = viewerMedia[(near + count) % count].image; });
+
+  const stage = sheetBody.querySelector('.viewer-open');
+  const wasReady = readyImages.has(media.image);
+  const shimmer = wasReady ? null : setTimeout(() => {
+    if (token === showToken) stage.classList.add('is-loading');
+  }, SHIMMER_DELAY);
+
+  loadImage(media.image).then(() => {
+    clearTimeout(shimmer);
+    if (token !== showToken) return;
+    const viewerImage = sheetBody.querySelector('.viewer-img');
+    [viewerImage, lightbox.querySelector('img')].forEach((image) => {
+      image.src = media.image;
+      image.alt = media.caption;
+    });
+    stage.classList.remove('is-loading');
+    if (!reducedMotion()) viewerImage.animate([{ opacity: wasReady ? .4 : 0 }, { opacity: 1 }], { duration: wasReady ? 220 : 320 });
+  });
+  [viewerIndex + 1, viewerIndex - 1].forEach((near) => { fetchImage(viewerMedia[(near + count) % count].image); });
 }
 
 function bindSwipe(area) {
@@ -144,6 +180,26 @@ function closeSheet() {
   sheet.classList.add('is-closing');
   closeTimer = setTimeout(finishClose, 220);
 }
+
+// Start fetching a project's first picture as soon as the visitor reaches for its card.
+function warmCard(event) {
+  const card = event.target.closest('.project-card');
+  const project = card && projects.find(item => item.id === card.dataset.project);
+  if (project) fetchImage(project.detailImage);
+}
+arc.addEventListener('pointerover', warmCard);
+arc.addEventListener('focusin', warmCard);
+arc.addEventListener('touchstart', warmCard, { passive: true });
+
+// Once the projects are on screen and the page is idle, fetch every first picture,
+// unless the visitor asked their browser to save data.
+new IntersectionObserver((entries, observer) => {
+  if (!entries.some(entry => entry.isIntersecting)) return;
+  observer.disconnect();
+  if (navigator.connection && navigator.connection.saveData) return;
+  const whenIdle = window.requestIdleCallback || (callback => setTimeout(callback, 1200));
+  whenIdle(() => projects.forEach(project => fetchImage(project.detailImage)));
+}).observe(document.getElementById('projects'));
 
 arc.addEventListener('click', (event) => {
   const card = event.target.closest('.project-card');
