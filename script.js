@@ -22,16 +22,16 @@ async function copyText(text) {
   }
 }
 
-copyButton.setAttribute('aria-label', ui.copy);
+copyButton.setAttribute('aria-label', `${email} - ${ui.copy}`);
 
 copyButton.addEventListener('click', async () => {
   if (!await copyText(email)) return;
   copyButton.classList.add('is-copied');
-  copyButton.setAttribute('aria-label', ui.copied);
+  copyButton.setAttribute('aria-label', `${email} - ${ui.copied}`);
   clearTimeout(copyTimer);
   copyTimer = setTimeout(() => {
     copyButton.classList.remove('is-copied');
-    copyButton.setAttribute('aria-label', ui.copy);
+    copyButton.setAttribute('aria-label', `${email} - ${ui.copy}`);
   }, 1500);
 });
 

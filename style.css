@@ -368,7 +368,7 @@ svg { display: block; }
 .logo-full { height: 2.4em; }
 .logo-on-dark { display: none; }
 .logo-badge { height: 1.9em; border-radius: 50%; }
-.logo-iug img { height: 2.5em; }
+.logo-iug img { width: auto; height: 2.5em; }
 .logo-iug-name { display: grid; gap: .2em; font-size: .9em; letter-spacing: 0; }
 .logo-iug-name small { font-size: .5em; font-weight: 500; }
 
