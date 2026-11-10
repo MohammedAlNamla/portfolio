@@ -44,8 +44,8 @@ const projects = [
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
       ['The idea', 'Many salons and clinics still take bookings by phone and message. Here customers book on their own.'],
-      ['Who uses it', 'Owners and staff run their day from it, and customers find a store and pick a time.'],
-      ['More than booking', 'Clients, inventory, marketing and reports are there too, so the owner works from one place.']
+      ['Who uses it', "Owners and staff run their day from it, customers book from the app or the store's own page, and a platform team manages every store."],
+      ["What's inside", 'Bookings and calendar, services, packages and memberships, clients and gift cards, stock and suppliers, marketing and reminders, staff and permissions, and reports, in Arabic and English.']
     ],
     engineering: [
       ['Every store on its own', 'Each store keeps its data separate, even though all stores share the same apps.'],
@@ -77,7 +77,7 @@ const projects = [
     business: [
       ['The idea', 'Many software teams split planning, tasks and conversation across several tools. Taskat keeps them together.'],
       ['How teams use it', 'From the backlog to planning a sprint, working through it and closing it.'],
-      ['More than tasks', 'Team invites and built-in chat, so the conversation stays next to the work.']
+      ["What's inside", 'Drag-and-drop Kanban boards, sprints and backlog, custom statuses per project, comments and attachments, a "Your Work" view, team invites, notifications and chat.']
     ],
     engineering: [
       ['Permissions per project', 'Someone can lead one project and only view another, so roles are checked per project, not per account.'],
@@ -134,7 +134,7 @@ const projects = [
     business: [
       ['The need', 'A university publishes a lot of official content in more than one language, and it has to stay up to date.'],
       ['Who uses it', 'Editors work from the dashboard. Students and visitors read the public site.'],
-      ['What they publish', 'News, events, exams, galleries, success stories and custom pages.']
+      ["What's inside", 'News and events, exam schedules, galleries, high school results, partnerships and research, success stories, colleges and majors, and any new page, in Arabic and English.']
     ],
     engineering: [
       ['New pages, no developer', 'An editor creates a page in the dashboard and it goes live on its own.'],
@@ -162,8 +162,8 @@ const projects = [
     meta: ['Full-stack', 'Laravel', 'jQuery', 'SMS'],
     business: [
       ['Why it exists', 'Cards, customers, support tickets and field visits had to live in one place.'],
-      ['Who uses it', 'Admins and support run the work. Customers collect points and swap them for gifts.'],
-      ['In the field', 'Installations and repairs are followed from the same system.']
+      ['Who uses it', 'Admins, support and field technicians run the work. Customers collect points and swap them for gifts.'],
+      ["What's inside", 'Prepaid cards, points and gifts, support tickets, installations and repairs, equipment custody, SMS verification and usage charts.']
     ],
     engineering: [
       ['It talks to the routers', 'Hotspot routers call a public API to check a card and start the session.'],
