@@ -5,21 +5,21 @@ const projects = [
     name: 'RestroGram',
     type: 'Restaurant point of sale and operations',
     tag: 'Restaurant SaaS',
-    summary: 'Connects order taking, checkout, kitchen screens and stock control.',
+    summary: 'One system for the whole restaurant: orders, checkout, kitchen and stock.',
     image: 'images/covers/restrogram.webp',
     detailImage: 'images/projects/restrogram/main.webp',
     tint: '#f4f0fb',
     // url: 'https://sufra.live/',
     meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
-      ['The problem', 'Restaurants need orders, tables, checkout and kitchen workflow to work as one system.'],
-      ['Who uses it', 'Cashiers take orders, kitchen staff track preparation, and managers oversee operations and stock.'],
-      ['Where it stands', 'Live, with real restaurant owners and customers.']
+      ['Why I built it', "At rush hour a restaurant can't lose an order between the cashier and the kitchen, so everything had to work as one system."],
+      ['Who uses it', 'The cashier takes the order, the kitchen sees it right away, and the manager follows sales and stock.'],
+      ['Today', 'It runs every day with real restaurants and their customers.']
     ],
     engineering: [
-      ['A POS that survives outages', "Orders queue in IndexedDB and sync on reconnect, so a dropped line doesn't stop a busy shift."],
-      ['One backend for every app', 'A single Laravel API serves the dashboard, operator console and staff app across many stores.'],
-      ['Central printing', 'A Flutter staff app doubles as the central print device for the restaurant.']
+      ['When the internet drops', "Orders are saved on the device and sync when the connection is back, so the shift doesn't stop."],
+      ['One backend', 'The dashboard, the admin panel and the staff app all run on one Laravel API, for many stores.'],
+      ['Printing', "The Flutter staff app also works as the restaurant's print hub."]
     ],
     shots: [
       { image: 'images/projects/restrogram/01-point-of-sale.webp', caption: 'Point of sale with extras, discounts and split payments' },
@@ -35,21 +35,21 @@ const projects = [
     name: 'BookForMe',
     type: 'Booking platform for service businesses',
     tag: 'Booking platform',
-    summary: 'Lets salons, clinics and spas take bookings online and manage calendars, clients and reports.',
+    summary: 'Online booking for salons, clinics and spas, with the calendar, clients and reports behind it.',
     image: 'images/covers/bookforme.webp',
     detailImage: 'images/projects/bookforme/main.webp',
     tint: '#fcf4f9',
     url: 'https://www.bookforme.com/',
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
-      ['The problem', 'Salons, clinics and spas need online booking without managing calls and messages by hand.'],
-      ['Who uses it', 'Store owners and staff manage the business. Customers find a store and book a time.'],
-      ['What it covers', 'Bookings, calendar, clients, inventory, marketing and reports.']
+      ['The idea', 'Many salons and clinics still take bookings by phone and message. Here customers book on their own.'],
+      ['Who uses it', 'Owners and staff run their day from it, and customers find a store and pick a time.'],
+      ['More than booking', 'Clients, inventory, marketing and reports are there too, so the owner works from one place.']
     ],
     engineering: [
-      ['Multi-tenant by design', 'Each store keeps its own isolated data across several connected apps.'],
-      ['Availability logic', 'Calendars combine staff, services, working hours and blocked time.'],
-      ['Live updates', 'Laravel Reverb pushes real-time changes over WebSockets.']
+      ['Every store on its own', 'Each store keeps its data separate, even though all stores share the same apps.'],
+      ['Finding a free time', 'An open slot depends on staff, services, working hours and blocked time, all checked together.'],
+      ['A live calendar', 'When a booking changes, everyone sees it right away through Laravel Reverb.']
     ],
     shots: [
       { image: 'images/projects/bookforme/01-customer-booking.webp', caption: 'Customers choose a time and confirm online' },
@@ -68,20 +68,20 @@ const projects = [
     name: 'Taskat',
     type: 'Agile project management tool',
     tag: 'Project tool',
-    summary: 'Keeps software teams in one place, from backlog and sprints to Kanban boards and chat.',
+    summary: 'One place for software teams to plan sprints, move tasks and talk.',
     image: 'images/covers/taskat.webp',
     detailImage: 'images/projects/taskat/main.webp',
     tint: '#eef1fa',
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'WebSockets'],
     business: [
-      ['The problem', 'Software teams need planning, tracking and team conversation in one place.'],
-      ['Who uses it', 'Teams working from backlog to sprint planning, active sprint and completion.'],
-      ['What it covers', 'Kanban boards, sprints, backlog, team invitations and built-in chat.']
+      ['The idea', 'Many software teams split planning, tasks and conversation across several tools. Taskat keeps them together.'],
+      ['How teams use it', 'From the backlog to planning a sprint, working through it and closing it.'],
+      ['More than tasks', 'Team invites and built-in chat, so the conversation stays next to the work.']
     ],
     engineering: [
-      ['Permissions per project', 'Role-based access is checked for each project, not only per account.'],
-      ['A full audit trail', 'Every change to issues and projects is kept in a readable history.'],
-      ['Real-time chat', 'Channels, reactions and pinned messages run on broadcasting.']
+      ['Permissions per project', 'Someone can lead one project and only view another, so roles are checked per project, not per account.'],
+      ['Nothing gets lost', 'Every change to a task or project is kept in a clear history.'],
+      ['Chat inside the tool', 'Channels, reactions and pinned messages, live over broadcasting.']
     ],
     shots: [
       { image: 'images/projects/taskat/01-backlog-sprints.webp', caption: 'Backlog and sprint planning' },
@@ -96,20 +96,20 @@ const projects = [
     name: 'Edux',
     type: 'Education platform for teachers and students',
     tag: 'Education',
-    summary: 'Gives administrators, teachers and students their own space for educational content.',
+    summary: 'An education platform where admins, teachers and students each get their own space.',
     image: 'images/covers/edux.webp',
     detailImage: 'images/projects/edux/main.webp',
     tint: '#eaf6f8',
     meta: ['Full-stack', 'In development', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
-      ['The problem', 'Teachers and students need structured educational content in one place.'],
-      ['Who uses it', 'Administrators, teachers and students, each with their own interface.'],
-      ['Where it stands', 'In development, starting with platform administration.']
+      ['The idea', 'Teachers and students need their lessons, files and subscriptions organised in one place.'],
+      ['Who uses it', 'Admins, teachers and students, each with their own screens.'],
+      ['Where it is now', 'Still in development. I started with the admin side.']
     ],
     engineering: [
-      ['Organised by domain', 'Roles get separate interfaces without duplicating the business modules behind them.'],
-      ['A strict request path', 'Requests pass through protection layers, validation, services and repositories before Prisma.'],
-      ['Safe public IDs', 'The API exposes UUIDs only, while the database can use numeric IDs inside.']
+      ['Organised by domain', 'Each role gets its own interface, but the logic behind it is written once.'],
+      ['A clear path for every request', 'Each request passes guards, validation, services and repositories before it reaches Prisma.'],
+      ['Safe IDs', 'The API only shows UUIDs. Numeric IDs stay inside the database.']
     ],
     shots: [
       { image: 'images/projects/edux/01-subjects.webp', caption: 'Subjects with lessons, students, prices and readiness' },
@@ -124,21 +124,21 @@ const projects = [
     name: 'University of Palestine',
     type: 'University website and CMS',
     tag: 'University CMS',
-    summary: 'Lets university staff publish news, events, exams and pages in several languages.',
+    summary: 'The university website, and the system its staff use to publish news, events and pages in several languages.',
     image: 'images/covers/uop.webp',
     detailImage: 'images/projects/uop/main.webp',
     tint: '#f6f2fb',
     url: 'https://up.edu.ps/ar',
     meta: ['Full-stack', 'Laravel', 'Nuxt', 'Vue', 'Inertia'],
     business: [
-      ['The problem', 'A university needs to publish and update all its official content in several languages.'],
-      ['Who uses it', 'Content editors work in the dashboard. Students and visitors use the public site.'],
-      ['What it covers', 'News, events, exams, galleries, success stories and custom pages.']
+      ['The need', 'A university publishes a lot of official content in more than one language, and it has to stay up to date.'],
+      ['Who uses it', 'Editors work from the dashboard. Students and visitors read the public site.'],
+      ['What they publish', 'News, events, exams, galleries, success stories and custom pages.']
     ],
     engineering: [
-      ['Pages without deploys', 'Any page created in the dashboard is served automatically by a catch-all route.'],
-      ['A headless API', 'A JSON API keeps the public site separate from the admin system.'],
-      ['Documented surface', 'The API is described with OpenAPI 3.0.']
+      ['New pages, no developer', 'An editor creates a page in the dashboard and it goes live on its own.'],
+      ['Front and back apart', 'The public site reads from a JSON API, so it stays independent of the admin system.'],
+      ['A documented API', "Every endpoint is described with OpenAPI 3.0, so the next developer doesn't have to guess."]
     ],
     shots: [
       { image: 'images/projects/uop/01-public-website.webp', caption: 'Public website on desktop and mobile' },
@@ -153,21 +153,21 @@ const projects = [
     name: 'NetSpeed',
     type: 'Internet service management system',
     tag: 'ISP management',
-    summary: "Manages an internet provider's prepaid cards, loyalty points, support tickets and field work.",
+    summary: 'One system for an internet provider: prepaid cards, loyalty points, support and field work.',
     image: 'images/covers/netspeed.webp',
     detailImage: 'images/projects/netspeed/main.webp',
     tint: '#edf8f6',
     // url: 'https://points.red-radius.com',
     meta: ['Full-stack', 'Laravel', 'jQuery', 'SMS'],
     business: [
-      ['The problem', 'An internet provider needs cards, customers, support and field work in one system.'],
-      ['Who uses it', 'Admins and support staff run operations. Customers earn points and redeem gifts.'],
-      ['What it covers', 'Prepaid cards, loyalty points, support tickets, installations and repairs.']
+      ['Why it exists', 'Cards, customers, support tickets and field visits had to live in one place.'],
+      ['Who uses it', 'Admins and support run the work. Customers collect points and swap them for gifts.'],
+      ['In the field', 'Installations and repairs are followed from the same system.']
     ],
     engineering: [
-      ['Connected to hardware', 'Hotspot routers call a public API to authenticate a card and start a session.'],
-      ['Granular admin roles', 'Each admin role has its own set of permissions.'],
-      ['Traceable activity', 'Logins and admin actions are logged for review.']
+      ['It talks to the routers', 'Hotspot routers call a public API to check a card and start the session.'],
+      ['A role for each job', 'Each admin role sees only what it needs.'],
+      ['Everything is traceable', 'Logins and admin actions are logged for review.']
     ],
     shots: [
       { image: 'images/projects/netspeed/01-customer-dashboard.webp', caption: 'Customer balance, cards and gifts' },
@@ -181,20 +181,20 @@ const projects = [
     name: 'ER Atlas',
     type: 'Visual database schema explorer',
     tag: 'Developer tool',
-    summary: 'Makes large database schemas easier to explore, with diagrams and reviewable change drafts.',
+    summary: 'A tool I built for myself to read large databases and plan changes without fear.',
     image: 'images/covers/er-atlas.webp',
     detailImage: 'images/projects/er-atlas/main.webp',
     tint: '#f2f1fa',
     meta: ['Personal tool', 'Node.js', 'JavaScript', 'PostgreSQL'],
     business: [
-      ['The problem', 'Large database schemas are hard to read and risky to change.'],
-      ['Who uses it', 'Developers exploring tables and preparing schema changes on their own machine.'],
-      ['What it covers', 'Diagrams, table inspection, relationships and change drafts.']
+      ['Why I built it', 'Large database schemas are hard to read, and changing them is risky.'],
+      ['Who it is for', 'Developers who want to understand the tables and prepare changes on their own machine.'],
+      ['What you get', 'Diagrams, table details, relationships and change drafts.']
     ],
     engineering: [
-      ['Drafts before changes', 'Edits are proposed as drafts for review instead of being written to the database.'],
-      ['Suggestions from real usage', 'Suggestions use how code uses tables, not only names and foreign keys.'],
-      ['Small and local', 'A local Node server with a plain JavaScript front end.']
+      ['Drafts first', 'No change touches the database directly. It stays a draft until you review it.'],
+      ['Suggestions from real code', 'It looks at how the code actually uses the tables, not only names and keys.'],
+      ['Small and local', 'A small Node server and plain JavaScript, running on your machine.']
     ],
     shots: [
       { image: 'images/projects/er-atlas/01-ai-assistant.webp', caption: 'AI assistant that separates facts from guesses' },
