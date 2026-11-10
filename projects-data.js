@@ -104,8 +104,9 @@ const projects = [
     meta: ['Full-stack', 'In development', 'NestJS', 'PostgreSQL', 'Flutter'],
     business: [
       ['The idea', 'Teachers and students need their lessons, files and subscriptions organised in one place.'],
-      ['Who uses it', 'Admins, teachers and students, each with their own screens.'],
-      ['Where it is now', 'Still in development. I started with the admin side.']
+      ['Who uses it', 'Admins review teachers and manage grades and subjects, teachers build their courses and set their price, and students subscribe and learn in a Flutter app.'],
+      ["What's inside", 'Teacher applications and review, grades and subjects, courses with units and lessons, videos and files, teacher price plans, student subscriptions with payment proof, and learning progress, in Arabic and English.'],
+      ['Where it is now', 'Still in development: administration and teacher onboarding are done, and course content is being built.']
     ],
     engineering: [
       ['Organised by domain', 'Each role gets its own interface, but the logic behind it is written once.'],
@@ -190,12 +191,12 @@ const projects = [
     business: [
       ['Why I built it', 'Large database schemas are hard to read, and changing them is risky.'],
       ['Who it is for', 'Developers who want to understand the tables and prepare changes on their own machine.'],
-      ['What you get', 'Diagrams, table details, relationships and change drafts.']
+      ["What's inside", 'A map of tables and relationships, browsing the databases on a server, schema checks for mistakes, topics that group tables, drafts with undo and redo, export to Mermaid, DBML, SQL and Laravel migrations, an AI assistant and dark mode.']
     ],
     engineering: [
       ['Drafts first', 'No change touches the database directly. It stays a draft until you review it.'],
       ['Suggestions from real code', 'It looks at how the code actually uses the tables, not only names and keys.'],
-      ['Small and local', 'A small Node server and plain JavaScript, running on your machine.']
+      ['Read-only', 'The database connection is read-only, and the password is never saved.']
     ],
     shots: [
       { image: 'images/projects/er-atlas/01-ai-assistant.webp', caption: 'AI assistant that separates facts from guesses' },
