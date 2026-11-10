@@ -71,12 +71,23 @@ function closeArc() {
   arcCards.forEach(card => card.style.removeProperty('--push'));
 }
 
+// A card opens only after the cursor rests on it briefly, so a fast sweep across the arc stays calm
+const OPEN_AFTER = 70;
+let openTimer;
+
 arcCards.forEach((card) => {
   const slot = Number(card.dataset.slot);
   card.addEventListener('pointerenter', (event) => {
-    if (event.pointerType === 'mouse' && onArc.matches) partAround(slot);
+    if (event.pointerType !== 'mouse' || !onArc.matches) return;
+    clearTimeout(openTimer);
+    openTimer = setTimeout(() => {
+      arcCards.forEach(other => other.classList.toggle('is-open', other === card));
+      partAround(slot);
+    }, OPEN_AFTER);
   });
   card.addEventListener('pointerleave', () => {
+    clearTimeout(openTimer);
+    card.classList.remove('is-open');
     closeArcTimer = setTimeout(closeArc, NEIGHBOURS_CLOSE_AFTER);
   });
   card.addEventListener('focusin', () => {
