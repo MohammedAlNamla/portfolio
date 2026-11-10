@@ -13,7 +13,8 @@ const projects = [
     meta: ['Full-stack', 'Live', 'Laravel', 'Nuxt', 'PostgreSQL', 'Flutter'],
     business: [
       ['Why I built it', "At rush hour a restaurant can't lose an order between the cashier and the kitchen, so everything had to work as one system."],
-      ['Who uses it', 'The cashier takes the order, the kitchen sees it right away, and the manager follows sales and stock.'],
+      ['Who uses it', 'Cashiers, waiters, the kitchen, managers and HR, each with their own screens.'],
+      ["What's inside", 'Point of sale, tables, kitchen display, QR menu, stock and suppliers, the cost of each dish, customers, staff and reports.'],
       ['Today', 'It runs every day with real restaurants and their customers.']
     ],
     engineering: [
