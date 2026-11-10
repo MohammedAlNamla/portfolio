@@ -127,12 +127,12 @@
     translate: var(--arc-x) calc(var(--arc-y) - var(--open) * 10px);
     rotate: calc(var(--angle) * (1 - var(--open)));
     scale: calc(1 + var(--open) * .05);
-    /* A closing card stays just under the open one, above its other neighbours, until it is fully back in place */
+    /* A closing card drops to its own layer at once, while its neighbours are still parted, so it never flips behind one mid-way */
     transition:
       translate 320ms var(--ease-part),
       rotate 320ms var(--ease-part),
       scale 320ms var(--ease-part),
-      z-index 320ms linear(0, .08 2%, .08 98%, 1);
+      z-index 0s;
   }
   .project-face {
     position: relative;

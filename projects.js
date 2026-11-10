@@ -55,7 +55,7 @@ window.addEventListener('resize', measureTitleSlides);
 // Neighbours part around the open card, less the further away they are.
 // They wait for the card to settle before closing, so it can change layer while they are apart.
 const NEIGHBOURS_CLOSE_AFTER = 180;
-const neighbourPush = [3.4, 2.2, 1.1, .5, .2, .1];
+const neighbourPush = [4.6, 2.6, 1.2, .5, .2, .1];
 let closeArcTimer;
 
 function partAround(openSlot) {
