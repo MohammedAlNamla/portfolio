@@ -5,11 +5,11 @@
   --surface-light: #353534;
   --raised: #404040;
   --ink: #f3f3f0;
-  --ink-fade: #c0c0bc;
-  --ink-soft: #bbbbb7;
+  --ink-fade: #9d9a94;
+  --ink-soft: #c2bfb9;
   --btn: #f3f3f0;
   --btn-ink: #2c2c2b;
-  --line: #484847;
+  --line: #4a4844;
 }
 
 [data-theme="dark"] .page::after { filter: invert(1); opacity: .035; }

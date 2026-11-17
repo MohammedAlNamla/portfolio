@@ -70,12 +70,14 @@
   --font-text: "DM Sans", "Thmanyah Sans", sans-serif;
   --font-display: "Unbounded", "Thmanyah Sans", sans-serif;
   --surface: #eeecea;
-  --surface-light: #f7f7f7;
+  --surface-light: #f8f7f5;
   --ink: #161616;
-  --ink-fade: #5e5e5e;
-  --ink-soft: #5f5f5d;
-  --btn: #242424;
-  --line: #dcdcda;
+  /* Decoration and hover: clearly lighter than the secondary text below */
+  --ink-fade: #75726c;
+  /* Secondary text: dark enough to read at small sizes */
+  --ink-soft: #57544f;
+  --btn: #252321;
+  --line: #dddad4;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 0 0 0 -.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --u: calc(100cqw / 1440);
 }
