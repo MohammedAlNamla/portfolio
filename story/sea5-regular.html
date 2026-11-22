@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Poetry Story — Sea, final</title>
+<style>
+  @font-face { font-family: "ITFFatimah"; font-weight: 500; src: url("fonts/itfFatimahArabic-Regular.otf") format("opentype"); }
+  :root { --cream: #ece3d2; --amber: #e0b274;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 0 0 0 -.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0f15; }
+  .story { position: relative; width: 1080px; height: 1920px; overflow: hidden; isolation: isolate; font-family: "ITFFatimah", serif; font-weight: 500; color: var(--cream); text-align: center; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .story::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(90% 60% at 50% 60%, rgba(0,0,0,0) 40%, rgba(4,6,10,.45) 100%); }
+  .story::after { content: ""; position: absolute; inset: 0; z-index: 9; background: var(--grain); opacity: .08; mix-blend-mode: soft-light; pointer-events: none; }
+
+  .line { position: absolute; z-index: 2; left: 0; right: 0; font-size: 54px; line-height: 1.9; }
+  .line span { display: block; }
+  .a { top: 470px; opacity: .94; }
+  .farj { position: absolute; z-index: 2; left: 0; right: 0; top: 972px; font-size: 168px; line-height: 1; color: var(--amber);
+    text-shadow: 0 0 46px rgba(224,178,116,.32); }
+  .b { top: 1480px; opacity: .64; }
+  .glow { position: absolute; z-index: 1; left: 190px; right: 190px; top: 1040px; height: 210px; mix-blend-mode: screen; opacity: .5; background: radial-gradient(50% 60% at 50% 55%, rgba(224,178,116,.55), rgba(224,178,116,0) 72%); }
+</style>
+</head>
+<body>
+<main class="story">
+  <img class="bg" src="sea-bg.webp" alt="">
+  <p class="line a"><span>لا تيأسن وإن طـــــالت مطالبةٌ</span><span>إذا استعنتَ بصبرٍ أن ترى</span></p>
+  <div class="glow"></div>
+  <div class="farj">فرجا</div>
+  <p class="line b"><span>أخلق بذي الصبرِ أن يحظى بحاجتهِ</span><span>ومدمـــــــنِ القرعِ للأبوابِ أن يلجا</span></p>
+</main>
+</body>
+</html>
