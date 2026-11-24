@@ -296,6 +296,25 @@
           راسلني
         </a>
         <a class="btn btn-light btn-whatsapp" href="https://wa.me/970599473743" target="_blank" rel="noopener">واتساب</a>
+        <details class="contact-form-details">
+          <summary class="btn btn-light contact-form-summary">أرسل بيانات التواصل</summary>
+          <form class="contact-form" id="contact-form" action="mailto:moh.alnamla@gmail.com" method="post" enctype="text/plain" aria-describedby="contact-form-note">
+            <label class="contact-field">
+              <span class="contact-name-label">اسمك</span>
+              <input name="name" type="text" autocomplete="name" maxlength="100" required>
+            </label>
+            <label class="contact-field">
+              <span class="contact-email-label">بريدك الإلكتروني</span>
+              <input name="email" type="email" autocomplete="email" maxlength="254" required>
+            </label>
+            <label class="contact-field">
+              <span class="contact-message-label">رسالتك</span>
+              <textarea name="message" rows="4" maxlength="3000" required></textarea>
+            </label>
+            <p class="contact-form-note" id="contact-form-note">سيفتح تطبيق البريد رسالة جاهزة؛ لن تُرسل إلا بعد ضغطك على «إرسال». لا نرسل اسمك أو بريدك أو رسالتك إلى Google Analytics.</p>
+            <button class="btn btn-dark contact-submit" type="submit">فتح رسالة البريد</button>
+          </form>
+        </details>
       </div>
     </section>
   </main>
@@ -315,5 +334,6 @@
   <script src="projects.js"></script>
   <script src="project-sheet.js"></script>
   <script src="analytics.js"></script>
+  <script src="contact-form.js"></script>
 </body>
 </html>

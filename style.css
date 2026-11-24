@@ -488,9 +488,39 @@ svg { display: block; }
 }
 .cta-circle svg { width: 62px; stroke-width: .65; stroke-linecap: round; stroke-linejoin: round; }
 .cta-title { margin-top: 29px; }
-.cta-actions { display: flex; gap: 15px; margin-top: 29px; }
+.cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 29px; }
 .btn-email { width: 112px; height: 50px; gap: 9px; font-size: .6875rem; }
 .btn-whatsapp { width: 114px; height: 50px; font-size: .6875rem; }
+.contact-form-details { flex-basis: 100%; display: grid; justify-items: center; }
+.contact-form-summary { min-height: 50px; padding: 0 20px; cursor: pointer; list-style: none; }
+.contact-form-summary::-webkit-details-marker { display: none; }
+.contact-form-details[open] .contact-form-summary { background: var(--raised, var(--surface-light)); }
+.contact-form {
+  display: grid;
+  gap: 13px;
+  width: min(440px, calc(100vw - 34px));
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: start;
+}
+.contact-field { display: grid; gap: 6px; font-size: .8125rem; font-weight: 500; }
+.contact-field input, .contact-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-light);
+  color: var(--ink);
+  font: 400 .875rem/1.5 var(--font-text);
+}
+.contact-field textarea { min-height: 96px; resize: vertical; }
+.contact-field input:focus-visible, .contact-field textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.contact-form-note { color: var(--ink-soft); font-size: .75rem; line-height: 1.55; }
+.contact-submit { min-height: 44px; padding: 0 18px; border: 0; font: 600 .8125rem var(--font-text); cursor: pointer; }
 
 /* Tablets: the first section grows to suit the larger screen */
 @media (min-width: 600px) and (max-width: 899px) {

@@ -290,6 +290,12 @@ function translatePage() {
     <span class="en-line">something that lasts</span>`);
   setText(document.querySelector('.btn-email'), 'Email me');
   set('.btn-whatsapp', 'WhatsApp');
+  set('.contact-form-summary', 'Share your contact details');
+  set('.contact-name-label', 'Your name');
+  set('.contact-email-label', 'Your email');
+  set('.contact-message-label', 'Your message');
+  set('.contact-form-note', 'This opens a ready-to-send email. It is sent only if you press Send. Your name, email and message are not sent to Google Analytics.');
+  set('.contact-submit', 'Open email draft');
 }
 
 // The English headlines settle once when they come into view
