@@ -1,24 +1,20 @@
 // Mohammed Al-Namla Portfolio web stream.
-// Analytics stays disabled until a visitor opts in.
+// Analytics is on by default; a visitor can switch it off from the privacy panel.
 const GA_MEASUREMENT_ID = 'G-MV5PK161QN';
 const ANALYTICS_CONSENT_KEY = 'portfolio-analytics-consent';
 
 const analyticsText = document.documentElement.lang === 'ar'
   ? {
-      message: 'أستخدم Google Analytics لفهم زيارات الموقع والنقرات. لن يبدأ التتبع إلا إذا وافقت.',
-      accept: 'موافقة',
-      reject: 'رفض',
+      message: 'أستخدم Google Analytics لقياس الزيارات والنقرات بشكل مجهول، بدون إعلانات. تقدر توقفه متى شئت.',
+      toggle: 'الإحصاءات',
       settings: 'الخصوصية',
-      label: 'إعدادات الخصوصية',
-      close: 'إغلاق إعدادات الخصوصية'
+      label: 'إعدادات الخصوصية'
     }
   : {
-      message: 'I use Google Analytics to understand visits and clicks. Tracking starts only if you agree.',
-      accept: 'Accept',
-      reject: 'Decline',
+      message: 'I use Google Analytics to measure visits and clicks anonymously, with no ads. You can turn it off anytime.',
+      toggle: 'Analytics',
       settings: 'Privacy',
-      label: 'Privacy settings',
-      close: 'Close privacy settings'
+      label: 'Privacy settings'
     };
 
 function readAnalyticsConsent() {
@@ -122,45 +118,55 @@ function safeExternalUrl(href) {
 function setupConsentUi() {
   const style = document.createElement('style');
   style.textContent = `
-    .analytics-consent, .analytics-settings { font-family: var(--font-text, sans-serif); }
-    .analytics-consent { position: fixed; z-index: 1200; inset-inline: 16px; bottom: 16px; max-width: 620px; margin-inline: auto; padding: 18px; color: var(--ink, #161616); background: var(--surface, #eeecea); border: 1px solid currentColor; box-shadow: 0 8px 32px #0002; }
-    .analytics-consent[hidden] { display: none; }
-    .analytics-consent p { margin: 0 0 14px; line-height: 1.6; }
-    .analytics-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    .analytics-consent button, .analytics-settings { border: 1px solid currentColor; color: inherit; background: transparent; padding: 8px 14px; font: inherit; cursor: pointer; }
-    .analytics-consent button[data-choice="accept"] { background: var(--ink, #161616); color: var(--surface, #eeecea); }
-    .analytics-settings { position: fixed; z-index: 1199; bottom: 12px; inset-inline-start: 12px; border-radius: 999px; padding: 6px 12px; font-size: 13px; background: var(--surface, #eeecea); }
-    @media (prefers-reduced-motion: no-preference) { .analytics-consent { animation: analytics-consent-in 180ms ease-out both; } @keyframes analytics-consent-in { from { opacity: 0; transform: translateY(8px); } } }
+    .analytics-ui { position: fixed; z-index: 1199; bottom: 14px; inset-inline-start: 14px; font-family: var(--font-text, sans-serif); color: var(--ink, #161616); }
+    .analytics-fab { display: flex; align-items: center; height: 42px; min-width: 42px; padding: 0; border: 0; border-radius: 999px; color: inherit; background: var(--surface-light, #f8f7f5); box-shadow: 0 8px 24px -8px rgba(40,34,28,.22), 0 0 0 1px var(--line, #dddad4); cursor: pointer; font: inherit; font-size: 13px; transition: transform 160ms ease; }
+    .analytics-fab:active { transform: scale(.95); }
+    .analytics-fab svg { flex: none; width: 42px; height: 18px; }
+    .analytics-fab span { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 320ms ease, opacity 240ms ease, margin 320ms ease; }
+    .analytics-ui.is-hint .analytics-fab span { max-width: 120px; opacity: 1; margin-inline-end: 16px; margin-inline-start: -8px; }
+    .analytics-panel { position: absolute; bottom: 52px; inset-inline-start: 0; width: min(300px, calc(100vw - 28px)); padding: 18px; border-radius: 22px; background: var(--surface-light, #f8f7f5); box-shadow: 0 14px 36px -10px rgba(40,34,28,.28), 0 0 0 1px var(--line, #dddad4); transition: opacity 180ms ease, transform 180ms ease; }
+    html[dir="rtl"] .analytics-panel { transform-origin: bottom right; }
+    html:not([dir="rtl"]) .analytics-panel { transform-origin: bottom left; }
+    .analytics-panel[hidden] { display: block; opacity: 0; transform: scale(.94) translateY(6px); pointer-events: none; visibility: hidden; }
+    .analytics-panel h2 { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .analytics-panel p { margin: 0 0 14px; font-size: 13px; line-height: 1.7; color: var(--ink-soft, #57544f); }
+    .analytics-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+    .analytics-switch { position: relative; flex: none; width: 44px; height: 26px; padding: 0; border: 0; border-radius: 999px; background: var(--line, #dddad4); cursor: pointer; transition: background-color 200ms ease; }
+    .analytics-switch::after { content: ""; position: absolute; top: 3px; inset-inline-start: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-light, #f8f7f5); box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform 200ms ease; }
+    .analytics-switch[aria-checked="true"] { background: var(--btn, #252321); }
+    .analytics-switch[aria-checked="true"]::after { transform: translateX(18px); background: var(--surface, #eeecea); }
+    html[dir="rtl"] .analytics-switch[aria-checked="true"]::after { transform: translateX(-18px); }
+    .analytics-fab:focus-visible, .analytics-switch:focus-visible { outline: 2px solid var(--ink, #161616); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .analytics-ui * { transition: none !important; } }
   `;
   document.head.append(style);
 
-  const banner = document.createElement('section');
-  banner.className = 'analytics-consent';
-  banner.setAttribute('aria-label', analyticsText.label);
-  banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-modal', 'false');
-  banner.hidden = true;
-  banner.innerHTML = `<p>${analyticsText.message}</p><div class="analytics-consent-actions"><button type="button" data-choice="accept">${analyticsText.accept}</button><button type="button" data-choice="reject">${analyticsText.reject}</button></div>`;
-  document.body.append(banner);
+  const ui = document.createElement('div');
+  ui.className = 'analytics-ui';
+  ui.innerHTML = `
+    <div class="analytics-panel" id="analytics-panel" role="dialog" aria-modal="false" aria-label="${analyticsText.label}" hidden>
+      <h2>${analyticsText.settings}</h2>
+      <p>${analyticsText.message}</p>
+      <div class="analytics-row"><span id="analytics-switch-label">${analyticsText.toggle}</span><button class="analytics-switch" type="button" role="switch" aria-checked="true" aria-labelledby="analytics-switch-label"></button></div>
+    </div>
+    <button class="analytics-fab" type="button" aria-expanded="false" aria-controls="analytics-panel" aria-label="${analyticsText.label}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg>
+      <span>${analyticsText.settings}</span>
+    </button>`;
+  document.body.append(ui);
 
-  const settings = document.createElement('button');
-  settings.className = 'analytics-settings';
-  settings.type = 'button';
-  settings.textContent = analyticsText.settings;
-  settings.setAttribute('aria-label', analyticsText.label);
-  settings.hidden = true;
-  document.body.append(settings);
+  const fab = ui.querySelector('.analytics-fab');
+  const panel = ui.querySelector('.analytics-panel');
+  const toggle = ui.querySelector('.analytics-switch');
 
-  function showBanner() {
-    banner.hidden = false;
-    settings.hidden = true;
-    banner.querySelector('button')?.focus();
+  function setPanel(open) {
+    panel.hidden = !open;
+    fab.setAttribute('aria-expanded', String(open));
+    ui.classList.remove('is-hint');
   }
 
   function applyChoice(value) {
-    saveAnalyticsConsent(value);
-    banner.hidden = true;
-    settings.hidden = false;
+    toggle.setAttribute('aria-checked', String(value === 'granted'));
     if (value === 'granted') {
       window[`ga-disable-${GA_MEASUREMENT_ID}`] = false;
       if (window.portfolioAnalyticsLoaded) {
@@ -188,16 +194,28 @@ function setupConsentUi() {
     }
   }
 
-  banner.addEventListener('click', event => {
-    const button = event.target.closest('button[data-choice]');
-    if (button) applyChoice(button.dataset.choice === 'accept' ? 'granted' : 'denied');
+  fab.addEventListener('click', () => setPanel(panel.hidden));
+  toggle.addEventListener('click', () => {
+    const value = toggle.getAttribute('aria-checked') === 'true' ? 'denied' : 'granted';
+    saveAnalyticsConsent(value);
+    applyChoice(value);
   });
-  settings.addEventListener('click', showBanner);
+  document.addEventListener('pointerdown', event => {
+    if (!panel.hidden && !ui.contains(event.target)) setPanel(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) { setPanel(false); fab.focus(); }
+  });
 
+  // On by default: only an explicit opt-out stops tracking.
   const savedChoice = readAnalyticsConsent();
-  if (savedChoice === 'granted') applyChoice('granted');
-  else if (savedChoice === 'denied') settings.hidden = false;
-  else showBanner();
+  applyChoice(savedChoice === 'denied' ? 'denied' : 'granted');
+
+  // First visit: the icon shows its name for a few seconds, then shrinks to a circle.
+  if (!savedChoice) {
+    setTimeout(() => ui.classList.add('is-hint'), 1200);
+    setTimeout(() => ui.classList.remove('is-hint'), 7000);
+  }
 }
 
 setupConsentUi();
