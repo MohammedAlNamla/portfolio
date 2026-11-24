@@ -7,3 +7,14 @@ CLAUDE.md
 projects-overview.md
 skills-lock.json
 .claude/
+
+# Drafts and experiments, kept locally only
+demo.html
+consent-demo.html
+story/door*
+story/sea.*
+story/sea3.*
+story/story.*
+story/story-base.*
+story/thread*
+story/fonts/thmanyahserifdisplay-*
